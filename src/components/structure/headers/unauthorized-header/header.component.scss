@@ -1,0 +1,73 @@
+@import "../../../common/root.scss";
+
+.unauthorized-header {
+  margin-left: $margin-desktop;
+  margin-right: $margin-desktop;
+  border-bottom: 1px solid #000000;
+}
+
+.header-component {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  align-content: center;
+  justify-content: space-between;
+}
+
+.logo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.logo-main {
+  font-family: $default-font-family;
+  color: $foreground-color;
+  font-size: $default-font-size;
+}
+
+.logo-sub {
+  font-family: $default-font-family;
+  color: $alt-foreground-color;
+  font-size: $default-font-size;
+  margin-top: -28px;
+}
+
+.header-navigation {
+  display: flex;
+  justify-content: space-between;
+}
+
+.header-link {
+  color: $link;
+  font-family: $ru-font-family;
+  font-size: $default-font-ru-size;
+  margin: 10px;
+  transition: 0.15s ease-in;
+}
+
+.header-link:hover {
+    color: $link-alternative;
+  }
+
+.auth {
+  display: flex;
+  align-items: center;
+}
+
+.auth a {
+  color: $link;
+  font-family: $ru-font-family;
+  font-size: $default-font-ru-size;
+  margin: 10px;
+}
+
+.languages {
+  width: 10px;
+}

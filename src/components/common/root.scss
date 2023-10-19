@@ -1,0 +1,51 @@
+// import fonts
+@import url("https://fonts.googleapis.com/css2?family=Inconsolata:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Imprima&family=Inconsolata:wght@300&display=swap");
+
+// common color
+$link: #000000;
+$link-alternative: #00a3ff;
+$background-white-color: #ffffff;
+$foreground-color: #000000;
+$alt-foreground-color: #00a3ff;
+$error-color: #fc5959;
+$success-color: #95ff95;
+$warning-color: #fff148;
+
+// font families
+$default-font-family: "Inconsolata";
+$alt-font-family: "Imprima";
+$ru-font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans";
+$all-font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans";
+
+// sizes
+$default-font-size: 1.5em;
+$default-font-ru-size: 1.3em;
+
+// margins
+$margin-desktop: 100px;
+$margin-landscape: 80px;
+$margin-mobile: 50px;
+
+// root
+body {
+    margin: 0;
+    box-sizing: border-box;
+    background-color: $background-white-color;
+}
+
+p {
+    font-family: $all-font-family;
+    font-size: $default-font-size;
+    font-weight: 330;
+    color: $foreground-color;
+}
+
+a {
+    color: $link;
+    font-family: $default-font-family;
+    font-weight: 330;
+    text-decoration: none;
+}
