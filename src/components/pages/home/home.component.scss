@@ -1,0 +1,60 @@
+@import "../../common/root.scss";
+
+.content-main {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.content-main-right
+{
+    text-align: right;
+    width: 40%;
+}
+
+.main-h2-alternative {
+    color: $alt-foreground-color;
+    font-family: $all-font-family;
+    font-size: $default-h2-font-size;
+}
+
+.main-h2-cursive {
+    font-family: $all-font-family;
+    font-size: $default-h2-font-size;
+    font-style: italic;
+    margin-top: -28px;
+}
+
+.content-short-about-us {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.content-short-about-us-main {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.p-short-about-us-head {
+    font-size: 1.3em;
+    font-weight: 330;
+    font-style: oblique;
+    width: 70%;
+}
+
+.ul-short-about-us {
+    list-style-type: space-counter;
+}
+
+.li-short-about-us {
+    font-size: 1.2em;
+    font-family: $all-font-family;
+    font-weight: 330;
+}
+
+.content-short-about-us-main-right {
+    margin: auto;
+}

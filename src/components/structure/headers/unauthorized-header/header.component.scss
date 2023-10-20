@@ -1,9 +1,12 @@
 @import "../../../common/root.scss";
 
 .unauthorized-header {
+  background-color: $background-white-color;
   margin-left: $margin-desktop;
   margin-right: $margin-desktop;
   border-bottom: 1px solid #000000;
+  position: absolute;
+  width: 90%;
 }
 
 .header-component {
@@ -52,16 +55,12 @@
   transition: 0.15s ease-in;
 }
 
-.header-link:hover {
-    color: $link-alternative;
-  }
-
 .auth {
   display: flex;
   align-items: center;
 }
 
-.auth a {
+.auth-link {
   color: $link;
   font-family: $ru-font-family;
   font-size: $default-font-ru-size;

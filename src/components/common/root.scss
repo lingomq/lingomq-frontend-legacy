@@ -23,11 +23,32 @@ $all-font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
 // sizes
 $default-font-size: 1.5em;
 $default-font-ru-size: 1.3em;
+$default-h2-font-size: 3em;
+$default-button-text-size: 1.1em;
 
 // margins
 $margin-desktop: 100px;
 $margin-landscape: 80px;
 $margin-mobile: 50px;
+
+// buttons
+.default-button {
+    border-radius: 5px;
+    border-style: none;
+    padding: 0.5em 5.5em;
+    font-family: $all-font-family;
+    background-color: $alt-foreground-color;
+    color: #FFFFFF;
+    font-weight: bold;
+    font-size: $default-button-text-size;
+    transition: 0.2s ease-in;
+    cursor: pointer;
+}
+
+.default-button:hover {
+    background-color: #F1F1F1;
+    color: $alt-foreground-color;
+}
 
 // root
 body {
@@ -36,11 +57,15 @@ body {
     background-color: $background-white-color;
 }
 
-p {
+p{
     font-family: $all-font-family;
     font-size: $default-font-size;
     font-weight: 330;
     color: $foreground-color;
+}
+
+h1, h2, h3, h4, h5  {
+    font-family: $all-font-family;
 }
 
 a {
@@ -48,4 +73,9 @@ a {
     font-family: $default-font-family;
     font-weight: 330;
     text-decoration: none;
+    transition: 0.15s ease-in;
+}
+
+a:hover {   
+    color: $link-alternative;
 }

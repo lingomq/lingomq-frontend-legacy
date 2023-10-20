@@ -23,9 +23,9 @@ const Header = () => {
           </a>
         </div>
         <div className="auth">
-            <a href="">Вход</a>
+            <a href="" className="auth-link">Вход</a>
             <p>/</p>
-            <a href="">Регистрация</a>
+            <a href="" className="auth-link">Регистрация</a>
         </div>
       </div>
     </div>
