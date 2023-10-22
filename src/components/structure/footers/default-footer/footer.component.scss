@@ -1,0 +1,73 @@
+@import "../../../common/root.scss";
+
+.footer {
+    margin-top: 5em;
+    background: $background-dark-color;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: -$margin-desktop;
+    margin-right: -$margin-desktop;
+    padding-left: $margin-desktop;
+    padding-right: $margin-desktop;
+    padding-bottom: 2em;
+}
+
+.footer-navigation {
+    color: $alt-white-foreground-color;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.footer-navigation-main-p {
+    color: $alt-white-foreground-color;
+}
+
+.footer-navigation-ul {
+    padding-left: 20px;
+    list-style: square;
+}
+
+.footer-navigation-li-a {
+    color: $alt-white-foreground-color;
+    font-family: $all-font-family;
+}
+
+.footer-last-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.footer-logo {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.footer-logo-main {
+    font-family: $default-font-family;
+    color: $alt-white-foreground-color;
+    font-size: $default-font-size;
+}
+
+.footer-logo-sub {
+    font-family: $default-font-family;
+    color: $alt-foreground-color;
+    font-size: $default-font-size;
+    margin-top: -28px;
+}
+
+.footer-copyright {
+    font-family: $all-font-family;
+    color: #a2a2a2;
+    font-size: 1em;
+}

@@ -1,5 +1,6 @@
 import "./home.component.scss";
 import Images from "../../common/local-images.jsx";
+import Footer from "../../structure/footers/default-footer/footer.jsx";
 
 const Home = () => {
     return (
@@ -43,6 +44,7 @@ const Home = () => {
                     </div>
                 </div>
             </div>
+            <Footer/>
         </div>
     );
 };
