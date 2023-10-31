@@ -40,11 +40,20 @@ const Home = () => {
                         </ul>
                     </div>
                     <div className="content-short-about-us-main-right">
-                        <img src={Images.DiaryBigPicture}/>
+                        <img src={Images.DiaryBigPicture} />
                     </div>
                 </div>
             </div>
-            <Footer/>
+            <div className="content-repeating-block">
+                <img src={Images.RepeatBigPicture} />
+                <div className="content-repeating-block-description">
+                    <p className="p-repeating-block-head">
+                        Повторяя слова каждый день, мозг начнет запоминать это
+                        все на автомате, чем-то похоже на детство, не так ли?
+                    </p>
+                </div>
+            </div>
+            <Footer />
         </div>
     );
 };

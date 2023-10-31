@@ -58,3 +58,21 @@
 .content-short-about-us-main-right {
     margin: auto;
 }
+
+.content-repeating-block {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.content-repeating-block-description {
+    text-align: right;
+    width: 50%;
+}
+
+.p-repeating-block-head {
+    font-size: 1.3em;
+    font-weight: 330;
+    font-style: oblique;
+}

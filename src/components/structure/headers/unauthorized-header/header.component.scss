@@ -5,8 +5,12 @@
   margin-left: $margin-desktop;
   margin-right: $margin-desktop;
   border-bottom: 1px solid #000000;
-  position: absolute;
+  position: fixed;
   width: 90%;
+}
+
+.hamburger-component {
+  display: none;
 }
 
 .header-component {
@@ -15,6 +19,16 @@
   align-items: center;
   align-content: center;
   justify-content: space-between;
+}
+
+.hamburger-button {
+  display: none;
+}
+
+.logo-section {
+  display: flex;
+  justify-content: flex-start;
+  width: 20%;
 }
 
 .logo {
@@ -32,12 +46,14 @@
 .logo-main {
   font-family: $default-font-family;
   color: $foreground-color;
+  font-weight: bold;
   font-size: $default-font-size;
 }
 
 .logo-sub {
   font-family: $default-font-family;
   color: $alt-foreground-color;
+  // font-weight: bold;
   font-size: $default-font-size;
   margin-top: -28px;
 }
@@ -51,13 +67,14 @@
   color: $link;
   font-family: $ru-font-family;
   font-size: $default-font-ru-size;
-  margin: 10px;
+  margin: 15px;
   transition: 0.15s ease-in;
 }
 
 .auth {
   display: flex;
-  align-items: center;
+  justify-content: flex-end;
+  width: 20%;
 }
 
 .auth-link {
@@ -69,4 +86,62 @@
 
 .languages {
   width: 10px;
+}
+
+.header-hamburger-navigation {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 1400px) {
+  .unauthorized-header {
+    margin-left: 50px;
+    margin-right: 50px;
+  }
+}
+
+@media (max-width: 1080px) {
+  .header-link {
+    font-size: 1.1em;
+  }
+}
+
+@media (max-width: 770px) {
+  .unauthorized-header {
+    margin-left: 25px;
+    margin-right: 25px;
+    padding-right: 25px;
+  }
+
+  .hamburger-button {
+    display: block;
+  }
+
+  .hamburger-component {
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    background: $background-white-color;
+    height: 100vh;
+  }
+
+  .header-hamburger-navigation
+  {
+    margin-top: 10em;
+  }
+
+  .header-hamburger-navigation a{
+    font-size: 1.5em;
+  }
+
+  .header-navigation {
+    display: none;
+  }
+
+  .auth {
+    display: none;
+  }
 }

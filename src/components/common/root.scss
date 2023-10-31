@@ -1,6 +1,7 @@
 // import fonts
 @import url("https://fonts.googleapis.com/css2?family=Inconsolata:wght@300&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Imprima&family=Inconsolata:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&display=swap");
 
 // common color
 $link: #000000;
@@ -17,16 +18,14 @@ $warning-color: #fff148;
 // font families
 $default-font-family: "Inconsolata";
 $alt-font-family: "Imprima";
-$ru-font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-    Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans";
-$all-font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-    Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans";
+$ru-font-family: "IBM Plex Mono";
+$all-font-family: "IBM Plex Mono";
 
 // sizes
-$default-font-size: 1.5em;
-$default-font-ru-size: 1.3em;
+$default-font-size: 1.8em;
+$default-font-ru-size: 1.6em;
 $default-h2-font-size: 3em;
-$default-button-text-size: 1.1em;
+$default-button-text-size: 1.3em;
 
 // margins
 $margin-desktop: 100px;
@@ -37,8 +36,8 @@ $margin-mobile: 50px;
 .default-button {
     border-radius: 5px;
     border-style: none;
-    padding: 0.5em 5.5em;
-    font-family: $all-font-family;
+    padding: 0.5em 2.5em;
+    font-family: $ru-font-family;
     background-color: $alt-foreground-color;
     color: #FFFFFF;
     font-weight: bold;
@@ -62,7 +61,6 @@ body {
 p{
     font-family: $all-font-family;
     font-size: $default-font-size;
-    font-weight: 330;
     color: $foreground-color;
 }
 
