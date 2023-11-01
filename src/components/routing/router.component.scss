@@ -5,3 +5,17 @@
     margin-left: $margin-desktop;
     margin-right: $margin-desktop;
 }
+
+@media screen and (max-width: 1400px) {
+    .component {
+        margin-left: 50px;
+        margin-right: 50px;
+    }
+}
+
+@media (max-width: 770px) {
+    .component {
+        margin-left: 25px;
+        margin-right: 25px;
+    }
+}

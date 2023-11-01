@@ -1,78 +1,40 @@
 @import "../../common/root.scss";
 
-.content-main {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+.content {
+    margin-top: 114px;
 }
 
-.content-main-right
-{
-    text-align: right;
-    width: 40%;
-}
-
-.main-h2-alternative {
-    color: $alt-foreground-color;
-    font-family: $all-font-family;
-    font-size: $default-h2-font-size;
-}
-
-.main-h2-cursive {
-    font-family: $all-font-family;
-    font-size: $default-h2-font-size;
-    font-style: italic;
-    margin-top: -28px;
-}
-
-.content-short-about-us {
+.content-main-section {
     display: flex;
     flex-direction: column;
     align-items: center;
+    height: 75vh;
+    border-bottom: 1px solid #000000;
 }
 
-.content-short-about-us-main {
+.content-main-section .default-button
+{
+    margin-top: 2em;
+}
+
+.logo-big-section {
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    width: 100%;
-}
-
-.p-short-about-us-head {
-    font-size: 1.3em;
-    font-weight: 330;
-    font-style: oblique;
-    width: 70%;
-}
-
-.ul-short-about-us {
-    list-style-type: space-counter;
-}
-
-.li-short-about-us {
-    font-size: 1.2em;
-    font-family: $all-font-family;
-    font-weight: 330;
-}
-
-.content-short-about-us-main-right {
-    margin: auto;
-}
-
-.content-repeating-block {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
 }
 
-.content-repeating-block-description {
-    text-align: right;
-    width: 50%;
+.logo-big-section .logo-main {
+    font-size: 5em;
+    color: $alt-white-foreground-color;
 }
 
-.p-repeating-block-head {
-    font-size: 1.3em;
-    font-weight: 330;
-    font-style: oblique;
+.logo-big-section .logo-sub {
+    font-size: 3em;
+    margin-top: -2em;
+    color: $foreground-color;
+}
+
+.logo-big-section img {
+    position: absolute;
+    z-index: -1;
 }

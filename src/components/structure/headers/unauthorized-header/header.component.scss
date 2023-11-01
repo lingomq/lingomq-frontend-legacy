@@ -2,11 +2,11 @@
 
 .unauthorized-header {
   background-color: $background-white-color;
-  margin-left: $margin-desktop;
-  margin-right: $margin-desktop;
   border-bottom: 1px solid #000000;
   position: fixed;
-  width: 90%;
+  width: 100%;
+  left: 0;
+  top: 0;
 }
 
 .hamburger-component {
@@ -14,6 +14,8 @@
 }
 
 .header-component {
+  margin-left: $margin-desktop;
+  margin-right: $margin-desktop;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -95,7 +97,7 @@
 }
 
 @media (max-width: 1400px) {
-  .unauthorized-header {
+  .header-component {
     margin-left: 50px;
     margin-right: 50px;
   }
@@ -107,12 +109,7 @@
   }
 }
 
-@media (max-width: 770px) {
-  .unauthorized-header {
-    margin-left: 25px;
-    margin-right: 25px;
-    padding-right: 25px;
-  }
+@media (max-width: 800px) {
 
   .hamburger-button {
     display: block;
@@ -123,6 +120,7 @@
     align-items: center;
     justify-content: flex-start;
     width: 100%;
+    position: absolute;
     background: $background-white-color;
     height: 100vh;
   }
