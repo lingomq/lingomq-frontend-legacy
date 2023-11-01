@@ -1,6 +1,6 @@
 import "./home.component.scss";
 import Images from "../../common/local-images.jsx";
-import Footer from "../../structure/footers/default-footer/footer.jsx";
+import InfoBlockAll from "../../structure/blocks/info-block-all/info-block.jsx";
 
 const Home = () => {
     return (
@@ -14,8 +14,57 @@ const Home = () => {
                         <p className="logo-sub">mq</p>
                     </div>
                 </div>
+                <button className="default-button">ПОДРОБНЕЕ</button>
+            </div>
+            <div className="content-secondary-section">
+                <p className="secondary-section-route-p">НАЧАЛО / О НАС</p>
+                <div className="secondary-section">
+                    <InfoBlockAll
+                        isLeft={true}
+                        headText={"ПРИСОЕДИНЯЙСЯ К НАМ"}
+                        contentText={
+                            "Наше приложение позволяет отслеживать свой прогресс, попадать в топы обучающихся, а также читать тематические статьи"
+                        }
+                        buttons={
+                            <div className="info-block-buttons">
+                                <button className="default-button">
+                                    GOOGLE PLAY
+                                </button>
+                                <button className="default-button">САЙТ</button>
+                            </div>
+                        }
+                        image={Images.Collaboration}
+                    />
+                    <InfoBlockAll
+                        isLeft={false}
+                        headText={"ОТСЛЕЖИВАЙ СВОЙ ПРОГРЕСС"}
+                        contentText={
+                            "Добавляя каждое новое слово, повторяя добавленные слова, проводя время в приложении ты сможешь отследить свой прогресс, который будет мотивировать тебя изучать языки в удовольствие"
+                        }
+                        image={Images.Analytics}
+                    />
+                    <InfoBlockAll
+                        isLeft={true}
+                        headText={"СОРЕВНУЙСЯ С ЛЮДЬМИ"}
+                        contentText={
+                            "Вы можете посмотреть успехи людей, или стать обьектом наблюдения на доске рекордсменов"
+                        }
+                        image={Images.Success}
+                    />
+                    <InfoBlockAll 
+                        isLeft={false}
+                        headText={"ЧИТАЙ ТЕМАТИЧЕСКИЕ СТАТЬИ"}
+                        contentText={
+                            "Время от времени наша команда будет выкладывать тематические статьи для разных языков, дневники разработчика или общие статьи"
+                        }
+                        image={Images.Application}
+                    />
+                </div>
+            </div>
+            <div className="content-bye-section">
+                <h1>НАЧИНАЙ УЧИТЬ ЯЗЫКИ <br/> ВМЕСТЕ С <b>LINGO.MQ</b></h1>
                 <button className="default-button">
-                    ПОДРОБНЕЕ
+                    НАЧАТЬ
                 </button>
             </div>
         </div>

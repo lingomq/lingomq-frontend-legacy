@@ -12,8 +12,11 @@
     border-bottom: 1px solid #000000;
 }
 
-.content-main-section .default-button
-{
+.content-main-section h1 {
+    font-weight: 300;
+}
+
+.content-main-section .default-button {
     margin-top: 2em;
 }
 
@@ -39,9 +42,42 @@
     z-index: -1;
 }
 
-
 .logo-big-section img {
     position: absolute;
     z-index: -1;
-    width: 20em;
+}
+
+.secondary-section-route-p {
+    text-align: left;
+    font-size: 1.1em;
+}
+
+.content-bye-section {
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 3em;
+    margin-bottom: 10em;
+}
+
+.content-bye-section h1 {
+    font-weight: 300;
+}
+
+.content-bye-section b {
+    color: $alt-foreground-color;
+}
+
+@media screen and (max-width: 700px) {
+    .logo-big-section img {
+        width: 20em;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .content-main-section h1 {
+        font-size: 1.5em;
+    }
 }
