@@ -18,7 +18,6 @@ const Home = () => {
                     ПОДРОБНЕЕ
                 </button>
             </div>
-            <Footer />
         </div>
     );
 };
