@@ -1,7 +1,22 @@
 import "./header.component.scss";
 import Images from "../../../common/local-images.jsx";
+import React, { useState } from 'react';
 
 const Header = () => {
+    
+    const [isVisible, setIsVisible] = useState(true);
+
+    function showHamburger() {
+        let hamburger = document.getElementsByClassName("hamburger-button")[0];
+        let hamburgerMenu = document.getElementsByClassName("hamburger-component")[0];
+
+        hamburger.onclick = function () {
+            setIsVisible(!isVisible);
+            console.log(isVisible? 'flex' : 'none');
+            hamburgerMenu.style.display = isVisible? 'flex' : 'none';
+        };
+    }
+
     return (
         <div className="unauthorized-header">
             <div className="header-component">
@@ -28,7 +43,7 @@ const Header = () => {
                 <div className="auth">
                     <button className="default-button">ВХОД</button>
                 </div>
-                <div className="hamburger-button">
+                <div className="hamburger-button" onClick={() => showHamburger()}>
                     <img src={Images.HamburgerMenuPicture} />
                 </div>
             </div>
