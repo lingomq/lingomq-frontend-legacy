@@ -44,17 +44,16 @@
 }
 
 .logo-main {
-  font-family: $default-font-family;
+  font-family: $alt-font-family;
   color: $foreground-color;
-  font-weight: bold;
   font-size: $default-font-size;
 }
 
 .logo-sub {
-  font-family: $default-font-family;
+  font-family: $alt-font-family;
   color: $alt-foreground-color;
   // font-weight: bold;
-  font-size: $default-font-size;
+  font-size: $default-font-size - 0.3em;
   margin-top: -28px;
 }
 
