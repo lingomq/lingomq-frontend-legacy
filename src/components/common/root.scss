@@ -50,6 +50,16 @@ $margin-mobile: 50px;
     color: $alt-foreground-color;
 }
 
+.alt-btn {
+    background-color: #F1F1F1;
+    color: $alt-foreground-color;
+}
+
+.alt-btn:hover {
+    background-color: $alt-foreground-color;
+    color: #FFFFFF;
+}
+
 // root
 body {
     margin: 0;
