@@ -1,10 +1,11 @@
 import "./header.component.scss";
 import Images from "../../../common/local-images.jsx";
+import Modal from '../../modals/modal-window.jsx';
 import React, { useState } from 'react';
 
 const Header = () => {
-    
     const [isVisible, setIsVisible] = useState(true);
+    const [isShowModal, setIsShowModal] = useState(false);
 
     function showHamburger() {
         let hamburger = document.getElementsByClassName("hamburger-button")[0];
@@ -12,13 +13,18 @@ const Header = () => {
 
         hamburger.onclick = function () {
             setIsVisible(!isVisible);
-            console.log(isVisible? 'flex' : 'none');
             hamburgerMenu.style.display = isVisible? 'flex' : 'none';
         };
     }
 
+    const handleShowModal = () =>
+    {
+        setIsShowModal(!isShowModal);
+    }
+
     return (
         <div className="unauthorized-header">
+            <Modal isModalShow={isShowModal}  handleChange={handleShowModal} width="average"/>
             <div className="header-component">
                 <div className="logo-section">
                     <div className="logo">
@@ -41,7 +47,7 @@ const Header = () => {
                     </a>
                 </div>
                 <div className="auth">
-                    <button className="default-button">ВХОД</button>
+                    <button className="default-button auth-btn" onClick={handleShowModal}>ВХОД</button>
                 </div>
                 <div className="hamburger-button" onClick={() => showHamburger()}>
                     <img src={Images.HamburgerMenuPicture} />
@@ -63,7 +69,7 @@ const Header = () => {
                     </a>
                 </div>
                 <div className="auth-hamburger">
-                    <button className="default-button">ВХОД</button>
+                    <button className="default-button auth-btn" onClick={handleShowModal}>ВХОД</button>
                 </div>
             </div>
         </div>

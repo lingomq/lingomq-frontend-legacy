@@ -7,9 +7,10 @@ import Collaboration from '../../../public/img/collaboration.svg';
 import Analytics from '../../../public/img/analytics.svg';
 import Success from '../../../public/img/success.svg';
 import Application from '../../../public/img/application.svg';
+import Close from '../../../public/img/close.svg';
 
 const Images = { MainPagePicture, DiaryBigPicture, RepeatBigPicture,
     HamburgerMenuPicture, Spread, Collaboration, Analytics,
-    Success, Application }
+    Success, Application, Close }
 
 export default Images;
