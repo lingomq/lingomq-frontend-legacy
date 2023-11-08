@@ -2,7 +2,7 @@ import "./header.component.scss";
 import Images from "../../../common/local-images.jsx";
 import Modal from "../../modals/modal-window.jsx";
 import React, { useState } from "react";
-import SignInModal from "../../modals/authorization/sign-in/sign-in-modal.jsx";
+import SignModal from "../../modals/authorization/sign-modal.jsx";
 
 const Header = () => {
   const [isVisible, setIsVisible] = useState(true);
@@ -31,7 +31,7 @@ const Header = () => {
         handleChange={handleShowModal}
         width="average"
         content={
-          <SignInModal/>
+          <SignModal/>
         }
       />
       <div className="header-component">

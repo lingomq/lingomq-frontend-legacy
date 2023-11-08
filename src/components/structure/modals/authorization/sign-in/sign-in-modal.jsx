@@ -1,6 +1,6 @@
 import '../sign-modal.component.scss';
 
-const SignInModal = () => {
+const SignInModal = ({method}) => {
     return (
         <form className="modal-sign">
             <div className="modal-sign-header">
@@ -9,7 +9,7 @@ const SignInModal = () => {
             <div className="modal-sign-inputs">
               <div className="modal-sign-input">
                 <label>E-mail</label>
-                <input placeholder="example@mail.ru" />
+                <input placeholder="example@mail.ru" type="email"/>
               </div>
 
               <div className="modal-sign-input">
@@ -25,7 +25,7 @@ const SignInModal = () => {
             </div>
             <div className="modal-sign-buttons">
               <button className="default-button">ВХОД</button>
-              <button className="default-button alt-btn">
+              <button className="default-button alt-btn" onClick={method}>
                 СОЗДАТЬ АККАУНТ
               </button>
             </div>

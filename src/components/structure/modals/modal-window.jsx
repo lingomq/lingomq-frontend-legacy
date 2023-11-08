@@ -10,7 +10,7 @@ const ModalWindow = ({ isModalShow, handleChange, width = "average", content = "
         windowStyle = "modal-window average";
 
     function modalHandler () {
-        handleChange(!isModalShow);
+        handleChange();
     }
 
     return (
