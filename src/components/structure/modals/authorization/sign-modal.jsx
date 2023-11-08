@@ -4,7 +4,7 @@ import SignUpModal from "../../modals/authorization/sign-up/sign-up-modal.jsx";
 
 const SignModal = () => {
 
-    const [isSignIn, setSignIn] = useState(false);
+    const [isSignIn, setSignIn] = useState(true);
 
     const handleChangeWindow = () => {
         setSignIn(!isSignIn);
