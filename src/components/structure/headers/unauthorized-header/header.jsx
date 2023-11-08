@@ -2,6 +2,7 @@ import "./header.component.scss";
 import Images from "../../../common/local-images.jsx";
 import Modal from "../../modals/modal-window.jsx";
 import React, { useState } from "react";
+import SignInModal from "../../modals/authorization/sign-in/sign-in-modal.jsx";
 
 const Header = () => {
   const [isVisible, setIsVisible] = useState(true);
@@ -30,38 +31,7 @@ const Header = () => {
         handleChange={handleShowModal}
         width="average"
         content={
-          <form className="modal-sign-in">
-            <div className="modal-sign-in-header">
-              <p>ВХОД</p>
-            </div>
-            <div className="modal-sign-in-inputs">
-              <div className="modal-sign-in-input">
-                <label>E-mail</label>
-                <input placeholder="example@mail.ru" />
-              </div>
-
-              <div className="modal-sign-in-input">
-                <label>Password</label>
-                <input type="password" placeholder="your password here" />
-              </div>
-            </div>
-            <div className="modal-sign-in-remember-me">
-              <label>
-                <input type="checkbox" name="remember" />
-                Запомнить меня
-              </label>
-            </div>
-            <div className="modal-sign-in-buttons">
-              <button className="default-button">ВХОД</button>
-              <button className="default-button alt-btn">
-                СОЗДАТЬ АККАУНТ
-              </button>
-            </div>
-            <div className="modal-sign-in-forgot-password">
-              <p>ЗАБЫЛИ ПАРОЛЬ?</p>
-              <a className="modal-sign-in-recovery-link" href="#">ВОССТАНОВИТЬ</a>
-            </div>
-          </form>
+          <SignInModal/>
         }
       />
       <div className="header-component">

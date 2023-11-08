@@ -1,0 +1,145 @@
+@import "../../../common/root.scss";
+
+.modal-sign-in {
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-sign-header {
+  font-size: 1.9em;
+  text-align: center;
+  margin: 0;
+}
+
+.modal-sign-header p {
+  text-align: center;
+  margin: 0;
+}
+
+.modal-sign-input {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.modal-sign-inputs label {
+  font-family: $all-font-family;
+  margin-bottom: 10px;
+}
+
+.modal-sign-input {
+  margin-bottom: 10px;
+}
+
+.modal-sign-input input {
+  font-family: $all-font-family;
+  font-size: 1em;
+  border-radius: 5px;
+  border: 2px solid #3c3c3c;
+  padding: 1em 1em;
+  width: auto;
+}
+
+.modal-sign-input input::placeholder {
+  font-family: $all-font-family;
+}
+
+.modal-sign-buttons {
+  text-align: center;
+}
+
+.modal-sign-remember-me {
+  text-align: center;
+  margin: 10px 0;
+}
+
+.modal-sign-remember-me label {
+  font-family: $all-font-family;
+}
+
+.modal-sign-forgot-password {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-sign-forgot-password p {
+  font-size: 1em;
+}
+
+.modal-sign-recovery-link {
+  font-family: $all-font-family;
+  margin-left: 10px;
+  font-size: 1em;
+  color: $alt-foreground-color;
+}
+
+@media (max-width: 800px) {
+  .auth {
+    display: none;
+  }
+
+  .modal-sign-header {
+    font-size: 1.2em;
+    text-align: center;
+    margin: 0;
+  }
+
+  .modal-sign-header p {
+    text-align: center;
+    margin: 0;
+  }
+
+  .modal-sign-input {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .modal-sign-inputs label {
+    font-family: $all-font-family;
+    margin-bottom: 5px;
+  }
+
+  .modal-sign-input {
+    margin-bottom: 5px;
+  }
+
+  .modal-sign-input input {
+    font-family: $all-font-family;
+    font-size: 0.7em;
+    border-radius: 5px;
+    border: 2px solid #3c3c3c;
+    padding: 1em 1em;
+    width: auto;
+  }
+
+  .modal-sign-input input::placeholder {
+    font-family: $all-font-family;
+  }
+
+  .modal-sign-buttons {
+    text-align: center;
+    font-size: 0.7em;
+  }
+
+  .modal-sign-remember-me {
+    text-align: center;
+    margin: 10px 0;
+  }
+
+  .modal-sign-remember-me label {
+    font-family: $all-font-family;
+  }
+
+  .modal-sign-forgot-password p {
+    font-size: 0.7em;
+  }
+
+  .modal-sign-recovery-link {
+    font-family: $all-font-family;
+    margin-left: 10px;
+    font-size: 0.7em;
+    color: $alt-foreground-color;
+  }
+}
