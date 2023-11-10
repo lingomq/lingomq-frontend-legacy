@@ -1,0 +1,143 @@
+@import "../../../common/root.scss";
+
+.auth-header {
+  position: fixed;
+  height: 8%;
+  border-top: 1px solid #000000;
+  background: $background-white-color;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+}
+
+.auth-profile-section {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  margin-left: $margin-desktop;
+  margin-top: 0.5em;
+}
+
+.auth-header-content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-section img {
+  width: 50px;
+  border-radius: 50%;
+}
+
+.profile-section .nickname {
+  font-size: 0.8em;
+  margin: 0;
+  font-weight: 800;
+}
+
+.action-section {
+  display: flex;
+  flex-direction: row;
+  margin-top: 1em;
+}
+
+.action-section .action {
+  font-size: 0.5em;
+}
+
+.action {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 10px;
+}
+
+.rounded-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 10px;
+}
+
+.rounded-button button {
+  border: none;
+  border-radius: 50%;
+  background: $alt-foreground-color;
+  color: $alt-white-foreground-color;
+  font-size: 1.2em;
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+}
+
+.rounded-button p {
+  font-size: 0.8em;
+  margin: 0;
+  user-select: none;
+}
+
+@media screen and (max-width: 1100px) {
+  .desk-content {
+    display: none;
+  }
+
+  .auth-header {
+    height: auto;
+  }
+
+  .profile-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 10px;
+  }
+
+  .profile-section img {
+    width: 30px;
+    border-radius: 50%;
+  }
+
+  .profile-section p {
+    font-size: 0.9em;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .action-section .action {
+    font-size: 0.3em;
+    justify-content: center;
+  }
+
+  .rounded-button {
+    margin: 5px 10px;
+  }
+
+  .rounded-button p {
+    display: none;
+  }
+
+  .rounded-button button {
+    width: 40px;
+    height: 40px;
+  }
+
+  .action img {
+    width: 30px;
+  }
+
+  .profile-section img {
+    width: 30px;
+    border-radius: 50%;
+  }
+
+  .profile-section p {
+    font-size: 0.7em;
+  }
+
+  .profile-section {
+    justify-content: center;
+  }
+}

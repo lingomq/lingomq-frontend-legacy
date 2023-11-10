@@ -1,6 +1,7 @@
 import React from "react";
 import Router from "../routing/router.jsx";
 import UnauthorizedHeader from "../structure/headers/unauthorized-header/header.jsx";
+import AuthorizedHeader from "../structure/headers/authorized-header/header.jsx";
 import Footer from "../structure/footers/default-footer/footer.jsx";
 
 const App = () => {
