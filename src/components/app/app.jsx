@@ -4,11 +4,15 @@ import UnauthorizedHeader from "../structure/headers/unauthorized-header/header.
 import AuthorizedHeader from "../structure/headers/authorized-header/header.jsx";
 import Footer from "../structure/footers/default-footer/footer.jsx";
 import Notifications from "../structure/notify/notifications.jsx";
+import { Cookies } from "react-cookie";
 
 const App = () => {
+    const cookies = new Cookies();
+    const at = cookies.get("access-token");
+
     return (
         <div className="wrapper">
-            <UnauthorizedHeader/>
+            { at === undefined? <UnauthorizedHeader/> : <AuthorizedHeader/>}
             <Notifications/>
             <Router/>
             <Footer isShow={true}/>

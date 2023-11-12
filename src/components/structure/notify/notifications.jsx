@@ -19,7 +19,7 @@ const Notifications = () => {
     notifications.map((item) =>
       <Notification title={item.title} message={item.message} level={item.level ?? "info"} key={item.id} />
     )}
-    <button>add notify</button></div>;
+    </div>;
 };
 
 export default Notifications;
