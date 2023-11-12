@@ -2,6 +2,7 @@ const path = require("path");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const devMode = process.env.NODE_ENV !== "production";
+const fs = require('node:fs');
 
 module.exports = {
   mode: "development",
@@ -20,6 +21,7 @@ module.exports = {
     },
   },
   devServer: {
+    https: true,
     compress: true,
     port: 9000,
     client: {
@@ -29,6 +31,10 @@ module.exports = {
         runtimeErrors: true,
       },
       progress: true,
+    },
+    https: {
+      key: fs.readFileSync(".cert/key.pem"),
+      cert: fs.readFileSync(".cert/cert.pem")
     },
     hot: true,
   },

@@ -1,10 +1,12 @@
 import "./home.component.scss";
 import Images from "../../common/local-images.jsx";
 import InfoBlockAll from "../../structure/blocks/info-block-all/info-block.jsx";
+import Notification from "../../structure/notify/notification.jsx";
 
 const Home = () => {
     return (
         <div className="content">
+            <Notification/>
             <div className="content-main-section">
                 <h1>УЧИ СЛОВА ВМЕСТЕ С</h1>
                 <div className="logo-big-section">
