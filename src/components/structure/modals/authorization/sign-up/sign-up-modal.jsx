@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "../sign-modal.component.scss";
 import { signUp } from "../../../../../services/api/authentication/authentication.js";
-import notificationManager from "../../../notify/notificationManager.js";
+import notificationManager, {notificationModel} from "../../../notify/notificationManager.js";
 
 const SignUpModal = ({ method }) => {
   const [nickname, setNickname] = useState("");
@@ -15,11 +15,11 @@ const SignUpModal = ({ method }) => {
       password: password 
     });
 
-    notificationManager.addNotification({level: result.level, title: result.title, message: result.message });
+    notificationManager.addNotification(notificationModel({level: result.level, title: result.title, message: result.message }));
   }
 
   return (
-    <div className="modal-sign">
+    <form className="modal-sign">
       <div className="modal-sign-header">
         <p>РЕГИСТРАЦИЯ</p>
       </div>
@@ -50,6 +50,7 @@ const SignUpModal = ({ method }) => {
             placeholder="your password here"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            autoComplete="on"
           />
         </div>
       </div>
@@ -64,7 +65,7 @@ const SignUpModal = ({ method }) => {
           ВОЙТИ
         </a>
       </div>
-    </div>
+    </form>
   );
 };
 

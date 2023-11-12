@@ -6,6 +6,7 @@ const Notifications = () => {
   function onArrayChange() {
     const updateNotifications = [ ...NotificationManager.notificationData];
     setNotifications(updateNotifications);
+
   }
 
   const [notifications, setNotifications] = useState(NotificationManager.notificationData);

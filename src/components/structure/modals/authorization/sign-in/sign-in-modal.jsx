@@ -14,7 +14,7 @@ const SignInModal = ({method}) => {
 
               <div className="modal-sign-input">
                 <label>Password</label>
-                <input type="password" placeholder="your password here" />
+                <input type="password" placeholder="your password here"  autoComplete="on"/>
               </div>
             </div>
             <div className="modal-sign-remember-me">
