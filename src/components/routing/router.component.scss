@@ -17,6 +17,12 @@
     }
 }
 
+@media screen and (max-width: 950px) {
+    .auth-component {
+        margin-bottom: 12vh;
+    }
+}
+
 @media (max-width: 770px) {
     .component {
         margin-left: 25px;

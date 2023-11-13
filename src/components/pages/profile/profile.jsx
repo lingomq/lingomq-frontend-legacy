@@ -28,7 +28,7 @@ export const Profile = () => {
             <div className='profile-navigation'>
                 <div className='profile-navigation-header'>
                     <img src="https://sun9-1.userapi.com/impg/dj3WYrOiE8J-68z3a6X4dR9n3AGqHC9rOXmxKA/9QqJCuMnCu8.jpg?size=736x784&quality=95&sign=02e0bd410785a3ff09f6fff13c389e41&type=album"/>
-                    <p>zmqpkyf</p>
+                    <p>{data.nickname}</p>
                 </div>
                 <div className='profile-navigation-content'>
                     <div className='profile-navigation-content-submenu'>
