@@ -4,13 +4,10 @@ import UnauthorizedHeader from "../structure/headers/unauthorized-header/header.
 import AuthorizedHeader from "../structure/headers/authorized-header/header.jsx";
 import Footer from "../structure/footers/default-footer/footer.jsx";
 import Notifications from "../structure/notify/notifications.jsx";
-import { Cookies } from "react-cookie";
 import { isAuthenticated } from "../../services/authentication.js";
 
 const App = () => {
     const [isAuthenticate, setIsAuthenticate] = useState(false);
-    const cookies = new Cookies();
-    const at = cookies.get("access-token");
 
     useEffect(() => {
         async function checkAuth() {

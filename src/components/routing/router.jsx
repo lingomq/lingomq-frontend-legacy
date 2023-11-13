@@ -1,16 +1,24 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 import Home from "../pages/home/home.jsx";
 import "./router.component.scss";
 import { Wrapper } from "../pages/wrapper.jsx";
-import { Cookies } from "react-cookie";
+import { isAuthenticated } from "../../services/authentication.js";
 
 const Router = () => {
-  const cookies = new Cookies();
-  const at = cookies.get("access-token");
-  const homeElement = at === undefined ? <Home/> : <Wrapper/>
-  
+
+  const [isAuthenticate, setIsAuthenticate] = useState(false);
+  const homeElement = !isAuthenticate ? <Home /> : <Wrapper />;
+
+  useEffect(() => {
+    async function checkAuth() {
+      setIsAuthenticate(await isAuthenticated());
+    }
+    checkAuth();
+  }, []);
+
   return (
-    <div className={"component" + (at === undefined? "" : " auth-component")}>
+    <div className={"component" + (!isAuthenticate ? "" : " auth-component")}>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={homeElement} />
