@@ -26,7 +26,7 @@ const SignInModal = ({ method }) => {
         console.log(infDate);
         cookies.set("access-token", result.data.data.accessToken, { path: "/", expires: date});
         cookies.set("refresh-token", result.data.data.refreshToken, { path: "/", expires: infDate});
-      }, 5000);
+      }, 1000);
     }
 
     notificationManager.addNotification(
@@ -80,7 +80,7 @@ const SignInModal = ({ method }) => {
         </label>
       </div>
       <div className="modal-sign-buttons">
-        <button className="default-button" onClick={sign}>
+        <button className="default-button" type="button" onClick={sign}>
           ВХОД
         </button>
         <button className="default-button alt-btn" onClick={method}>

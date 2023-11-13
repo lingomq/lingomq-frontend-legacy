@@ -6,6 +6,10 @@
     margin-right: $margin-desktop;
 }
 
+.auth-component {
+    padding-top: 0;
+}
+
 @media screen and (max-width: 1400px) {
     .component {
         margin-left: 50px;

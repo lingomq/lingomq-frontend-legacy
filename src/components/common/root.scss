@@ -60,6 +60,10 @@ $margin-mobile: 50px;
     color: #FFFFFF;
 }
 
+.danger-p {
+    color: $error-color;
+}
+
 // root
 body {
     margin: 0;
