@@ -1,8 +1,29 @@
 import './profile.component.scss';
+import { ProfileGeneral } from './sections/general.jsx';
+import { useEffect, useState } from "react";
+import { getUserData } from "../../../services/api/identity/identity";
+import { Cookies } from "react-cookie";
+import { clearAuthCookies } from '../../../services/authentication.js';
 
 export const Profile = () => {
+    const [data, setData] = useState();
 
-    return(
+    useEffect(() => {
+        const fetchUserData = async () => {
+            const cookies = new Cookies();
+            const token = cookies.get("access-token");
+            const result = await getUserData(token);
+            setData(result.data.data);
+        }
+        fetchUserData();
+    }, []);
+
+    function exit() {
+        clearAuthCookies();
+        window.location.reload();
+    }
+
+    return data && (
         <div className='wrapper-profile-section'>
             <div className='profile-navigation'>
                 <div className='profile-navigation-header'>
@@ -26,42 +47,13 @@ export const Profile = () => {
                         <p>Безопасность</p>
                     </div>
 
-                    <div className='profile-navigation-content-submenu without-line'>
+                    <div className='profile-navigation-content-submenu without-line' onClick={exit}>
                         <p className='danger-p'>Выход</p>
                     </div>
 
                 </div>
             </div>
-            <div className='profile-general-section'>
-                <div className='profile-info'>
-                    <img src='https://sun9-1.userapi.com/impg/dj3WYrOiE8J-68z3a6X4dR9n3AGqHC9rOXmxKA/9QqJCuMnCu8.jpg?size=736x784&quality=95&sign=02e0bd410785a3ff09f6fff13c389e41&type=album'/>
-                    <p className='profile-info-name'>zmqpkyf</p>
-                    <p className='profile-description'>Описание аофывждалофывждалфы</p>
-                    <button className='default-button'>ИЗМЕНИТЬ</button>
-                </div>
-                <div className='profile-data'>
-                    <div className='profile-data-card'>
-                        <p className='profile-data-card-name'>Никнейм</p>
-                        <p className='profile-data-card-content'>zmqpkyf</p>
-                    </div>
-                    <div className='profile-data-card'>
-                        <p className='profile-data-card-name'>Email</p>
-                        <p className='profile-data-card-content'>zmqpkyf@yandex.ru</p>
-                    </div>
-                    <div className='profile-data-card'>
-                        <p className='profile-data-card-name'>Телефон</p>
-                        <p className='profile-data-card-content'>не указан</p>
-                    </div>
-                    <div className='profile-data-card'>
-                        <p className='profile-data-card-name'>Описание</p>
-                        <p className='profile-data-card-content'>Описание аофывждалофывждалфы</p>
-                    </div>
-                    <div className='profile-data-card'>
-                        <p className='profile-data-card-name'>Дата создания</p>
-                        <p className='profile-data-card-content'>11:11:11</p>
-                    </div>
-                </div>
-            </div>
+            <ProfileGeneral data={data}/>
         </div>
     );
 }

@@ -47,6 +47,24 @@ export const get = async (uri) => {
     }
 }
 
+export const getWithAuth = async (uri, token) => {
+    try {
+        const res = await axios.get(apiUrl + uri,
+            {
+                headers: {
+                    "Content-Type": "application/json;charset=UTF-8",
+                    "Access-Control-Allow-Origin": "https://192.168.0.101:9000",
+                    "Access-Control-Allow-Credentials": true,
+                    "Authorization": "Bearer " + token
+                },
+            });
+        return handleRequest(res);
+    }
+    catch (err) {
+        return handleRequest(err);
+    }
+}
+
 export function handleRequest(model) {
     if (model.code === "ERR_NETWORK_ERROR")
         return { level: resultTitleMap.get(500), title: "Проблемы с интернетом", message: "Проверьте интернет соединение" };

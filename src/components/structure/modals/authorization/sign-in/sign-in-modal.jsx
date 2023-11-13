@@ -23,9 +23,9 @@ const SignInModal = ({ method }) => {
       setTimeout(() => {
         let date = new Date(result.data.data.accessExpiredAt);
         let infDate = new Date(2024, 0, 1);
-        console.log(infDate);
         cookies.set("access-token", result.data.data.accessToken, { path: "/", expires: date});
         cookies.set("refresh-token", result.data.data.refreshToken, { path: "/", expires: infDate});
+        window.location.reload();
       }, 1000);
     }
 

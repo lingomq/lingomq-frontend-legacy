@@ -42,3 +42,8 @@ function rewriteTokens(tokens) {
     cookies.set("access-token", tokens.accessToken, { path: "/", expires: date});
     cookies.set("refresh-token", tokens.refreshToken, { path: "/", expires: infDate});
 }
+
+export function clearAuthCookies() {
+    cookies.remove("access-token");
+    cookies.remove("refresh-token");
+}
