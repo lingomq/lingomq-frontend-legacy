@@ -2,7 +2,7 @@
 
 .auth-header {
   position: fixed;
-  height: 8%;
+  height: 9%;
   border-top: 1px solid #000000;
   background: $background-white-color;
   width: 100%;
@@ -27,6 +27,7 @@
 
 .profile-section img {
   width: 50px;
+  height: 50px;
   border-radius: 50%;
 }
 
@@ -97,6 +98,7 @@
 
   .profile-section img {
     width: 30px;
+    height: 30px;
     border-radius: 50%;
   }
 

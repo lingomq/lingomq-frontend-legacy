@@ -47,6 +47,25 @@ export const get = async (uri) => {
     }
 }
 
+export const putWithToken = async (uri, model, token) => {
+    try {
+        const res = await axios.put(apiUrl + uri,
+            model,
+            {
+                headers: {
+                    "Content-Type": "application/json;charset=UTF-8",
+                    "Access-Control-Allow-Origin": "https://192.168.0.101:9000",
+                    "Access-Control-Allow-Credentials": true,
+                    "Authorization": "Bearer " + token 
+                },
+            });
+        return handleRequest(res);
+    }
+    catch (err) {
+        return handleRequest(err);
+    }
+}
+
 export const getWithAuth = async (uri, token) => {
     try {
         const res = await axios.get(apiUrl + uri,

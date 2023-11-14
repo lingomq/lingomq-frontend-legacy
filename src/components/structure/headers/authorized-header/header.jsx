@@ -1,14 +1,29 @@
 import "./header.component.scss";
 import Images from "../../../common/local-images.jsx";
+import { useEffect, useState } from "react";
+import { Cookies } from "react-cookie";
+import { getUserData } from "../../../../services/api/identity/identity";
 
 const Header = () => {
-  return (
+  const [data, setData] = useState();
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+        const cookies = new Cookies();
+        const token = cookies.get("access-token");
+        const result = await getUserData(token);
+        setData(result.data.data);
+    }
+    fetchUserData();
+}, []);
+
+  return data && (
     <div className="auth-header">
       <div className="desk-content">
         <div className="auth-profile-section">
           <a className="profile-section" href="">
-            <img src="https://sun9-30.userapi.com/impg/_U9i-fvgkQBGgL3W0AU9Cw4JmXz2mS3SPepkSg/L0sbl1Uc0pc.jpg?size=720x720&quality=95&sign=8b9bc5f2f83977c44275f1797ea4540a&type=album" />
-            <p className="nickname">zmqpkyf</p>
+            <img src={data.imageUri} />
+            <p className="nickname">{data.nickname}</p>
           </a>
           <a className="notification-section">
             <img src={Images.Bell} />
@@ -74,7 +89,7 @@ const Header = () => {
               <p>Сервисы</p>
             </a>
             <a className="profile-section" href="">
-              <img src="https://sun9-30.userapi.com/impg/_U9i-fvgkQBGgL3W0AU9Cw4JmXz2mS3SPepkSg/L0sbl1Uc0pc.jpg?size=720x720&quality=95&sign=8b9bc5f2f83977c44275f1797ea4540a&type=album" />
+              <img src={data.imageUri} />
               <p>Профиль</p>
             </a>
           </div>
