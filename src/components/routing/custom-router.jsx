@@ -1,12 +1,12 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import Home from "../pages/home/home.jsx";
 import "./router.component.scss";
 import { Wrapper } from "../pages/wrapper.jsx";
 import { isAuthenticated } from "../../services/authentication.js";
+import { Confirm } from "../pages/confirm/confirm.jsx";
 
-const Router = () => {
-
+const CustomRouter = () => {
   const [isAuthenticate, setIsAuthenticate] = useState(false);
   const homeElement = !isAuthenticate ? <Home /> : <Wrapper />;
 
@@ -19,13 +19,12 @@ const Router = () => {
 
   return (
     <div className={"component" + (!isAuthenticate ? "" : " auth-component")}>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={homeElement} />
-        </Routes>
-      </BrowserRouter>
+      <Routes>
+          <Route exact path="/" element={homeElement} />
+          <Route path="confirm" element={<Confirm />} />
+      </Routes>
     </div>
   );
 };
 
-export default Router;
+export default CustomRouter;

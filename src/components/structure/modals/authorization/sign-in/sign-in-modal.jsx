@@ -25,7 +25,7 @@ const SignInModal = ({ method }) => {
         let infDate = new Date(2024, 0, 1);
         cookies.set("access-token", result.data.data.accessToken, { path: "/", expires: date});
         cookies.set("refresh-token", result.data.data.refreshToken, { path: "/", expires: infDate});
-        window.location.reload();
+        window.location.href = '..';
       }, 1000);
     }
 

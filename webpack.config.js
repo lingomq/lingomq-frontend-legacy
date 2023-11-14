@@ -24,6 +24,7 @@ module.exports = {
     https: true,
     compress: true,
     port: 9000,
+    historyApiFallback: true,
     client: {
       overlay: {
         errors: true,
