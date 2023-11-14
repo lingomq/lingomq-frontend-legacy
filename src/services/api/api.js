@@ -10,7 +10,41 @@ resultTitleMap.set(200, "success");
 resultTitleMap.set(400, "warning");
 resultTitleMap.set(500, "error");
 
+const headers = {
+    "Content-Type": "application/json;charset=UTF-8",
+    "Access-Control-Allow-Origin": "https://192.168.0.101:9000",
+    "Access-Control-Allow-Credentials": true,
+};
+
+const authHeaders = (token) => {
+    return {
+        "Content-Type": "application/json;charset=UTF-8",
+        "Access-Control-Allow-Origin": "https://192.168.0.101:9000",
+        "Access-Control-Allow-Credentials": true,
+        "Authorization": "Bearer " + token
+    };
+}
+
 export const apiUrl = "https://192.168.0.105:9999/";
+
+export const requestAsync = async(type, uri, model = {}, token = undefined) => {
+    let result;
+
+    try {
+        const response = await axios({
+            method: type, 
+            url: apiUrl + uri,
+            headers: token === undefined ? headers : authHeaders(token),
+            data: model
+        });
+
+        result = response;
+    } catch (err) {
+        result = err;
+    }
+
+    return result;
+}
 
 export const post = async (uri, model) => {
     try {
