@@ -1,7 +1,8 @@
 @import "../../common/root.scss";
 
 .notification {
-  position: absolute;
+  position: fixed;
+  z-index: 1000;
   right: 0;
   top: 0;
   margin: 30px;
