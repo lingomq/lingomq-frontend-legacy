@@ -20,6 +20,11 @@ export async function isAuthenticated() {
     return true;
 }
 
+export async function refreshTokens(refreshToken) {
+    const newTokens = await getNewToken(refreshToken);
+    rewriteTokens(newTokens);
+}
+
 async function getNewToken(refreshToken) {
     const result = await requestAsync("get", "api.lingomq/auth/refresh-token/" + refreshToken);
     if (result.data.code === 0)
@@ -55,4 +60,8 @@ export function getUserId() {
 
 export function getAccessToken() {
     return cookies.get("access-token");
+}
+
+export function getRefreshToken() {
+    return cookies.get("refresh-token");
 }

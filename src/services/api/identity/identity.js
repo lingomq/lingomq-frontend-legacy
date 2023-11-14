@@ -1,4 +1,4 @@
-import { getAccessToken } from "../../authentication";
+import { getAccessToken, getRefreshToken, refreshTokens } from "../../authentication";
 import { requestAsync } from "../api";
 
 export const getUserData = async (token) => {
@@ -7,5 +7,8 @@ export const getUserData = async (token) => {
 
 export const updateUserInfo = async (model) => {
     const token = getAccessToken();
-    return await requestAsync("put", "api.lingomq/identity/user/info", model, token);
+    const refreshToken = getRefreshToken();
+    const result = await requestAsync("put", "api.lingomq/identity/user/info", model, token)
+    await refreshTokens(refreshToken);
+    return result;
 }
