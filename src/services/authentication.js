@@ -1,6 +1,6 @@
 import { jwtDecode } from "jwt-decode";
 import { Cookies } from "react-cookie";
-import { get } from "./api/api";
+import { requestAsync } from "./api/api";
 
 const cookies = new Cookies();
 export async function isAuthenticated() {
@@ -21,7 +21,7 @@ export async function isAuthenticated() {
 }
 
 async function getNewToken(refreshToken) {
-    const result = await get("api.lingomq/auth/refresh-token/" + refreshToken);
+    const result = await requestAsync("get", "api.lingomq/auth/refresh-token/" + refreshToken);
     if (result.data.code === 0)
         return result.data.data;
 }
