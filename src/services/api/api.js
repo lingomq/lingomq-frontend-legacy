@@ -38,9 +38,9 @@ export const requestAsync = async(type, uri, model = {}, token = undefined) => {
             data: model
         });
 
-        result = response;
+        result = handleRequest(response);
     } catch (err) {
-        result = err;
+        result = handleRequest(err);
     }
 
     return result;
