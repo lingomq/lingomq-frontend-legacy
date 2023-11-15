@@ -1,0 +1,99 @@
+@import '../../../common/root.scss';
+
+.notifications-section {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    height: 50vh;
+    border-radius: 15px;
+    padding: 0 10px;
+    box-shadow: 1px 1px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.notification-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 15px;
+    padding: 15px 10px;
+    margin: 10px 0;
+    box-shadow: 1px 1px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.notification-card-main {
+    display: flex;
+    align-items: center;
+}
+
+.circle {
+    background: #5d5d5d;
+    border-radius: 50%;
+    width: 15px;
+    height: 15px;
+}
+
+.notification-card-content-title {
+    margin-left: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.notification-card-content-title p {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.notification-card-content-title-header {
+    font-size: 1em;
+    font-weight: 550;
+}
+
+.notification-card-content-title-date {
+    margin-left: 10px;
+    font-size: 0.8em;
+    color: #5d5d5d;
+}
+
+.notification-card-content-message {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    max-width: 40vw;
+    margin-left: 20px;
+    font-size: 1em;
+    margin-top: 5px;
+    margin-bottom: 0;
+}
+
+.close-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: $error-color;
+    width: 30px;
+    height: 30px;
+    color: #ffffff;
+    border-radius: 50%;
+    user-select: none;
+    cursor: pointer;
+}
+
+.close-button p{
+    margin: 0;
+}
+
+.notification-info {
+    background-color: $alt-foreground-color;
+}
+
+.notification-important {
+    background-color: $error-color;
+} 
+
+@media screen and (max-width: 950px) {
+    .notifications-section {
+        margin-top: 5%;
+        flex-direction: column;
+        width: 100%;
+    }
+}

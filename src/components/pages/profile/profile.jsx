@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { getUserData } from "../../../services/api/identity/identity";
 import { Cookies } from "react-cookie";
 import { clearAuthCookies } from '../../../services/authentication.js';
+import { Notifications } from './sections/notifications.jsx';
 
 export const Profile = () => {
     const [data, setData] = useState();
@@ -53,7 +54,8 @@ export const Profile = () => {
 
                 </div>
             </div>
-            <ProfileGeneral data={data}/>
+            {/* <ProfileGeneral data={data}/> */}
+            <Notifications/>
         </div>
     );
 }
