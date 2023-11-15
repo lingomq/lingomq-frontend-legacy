@@ -4,11 +4,13 @@ import { useState, useEffect } from "react";
 import { clearAuthCookies } from '../../../services/authentication.js';
 import { getUserData } from "../../../services/api/identity/identity";
 import { Notifications } from './sections/notifications.jsx';
+import { Statistics } from './sections/statistics.jsx';
 
 export const Profile = ({ changeSubTitleMethod = undefined }) => {
     const sections = new Map();
     sections.set("Общие", <ProfileGeneral />);
     sections.set("Уведомления", <Notifications/>);
+    sections.set("Статистика", <Statistics/>)
 
     const [data, setData] = useState();
     const [currentSection, setCurrentSection] = useState();
@@ -49,7 +51,7 @@ export const Profile = ({ changeSubTitleMethod = undefined }) => {
                         <p>Уведомления</p>
                     </div>
 
-                    <div className='profile-navigation-content-submenu'>
+                    <div className='profile-navigation-content-submenu' onClick={() => changeSection("Статистика")}>
                         <p>Статистика</p>
                     </div>
 
