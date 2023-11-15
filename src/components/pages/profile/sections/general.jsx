@@ -1,16 +1,26 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "../profile.component.scss";
 import Modal from "../../../structure/modals/modal-window.jsx";
+import { getUserData } from "../../../../services/api/identity/identity";
 import ChangeInfo from "../../../structure/modals/identity/profile/change-info.jsx";
 
-export const ProfileGeneral = ({ data }) => {
+export const ProfileGeneral = () => {
 	const [isChanging, setIsChanging] = useState(false);
+	const [data, setData] = useState();
+
+    useEffect(() => {
+        const fetchUserData = async () => {
+            const result = await getUserData();
+            setData(result.data.data);
+        }
+        fetchUserData();
+    }, []);
 
 	const handleShowChangeInfoModal = () => {
 		setIsChanging(!isChanging);
 	};
 
-	return (
+	return data &&(
 		<div className="profile-general-section">
 			<Modal
 				isModalShow={isChanging}

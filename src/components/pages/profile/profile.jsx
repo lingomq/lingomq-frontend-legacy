@@ -1,23 +1,32 @@
 import './profile.component.scss';
 import { ProfileGeneral } from './sections/general.jsx';
-import { useEffect, useState } from "react";
-import { getUserData } from "../../../services/api/identity/identity";
-import { Cookies } from "react-cookie";
+import { useState, useEffect } from "react";
 import { clearAuthCookies } from '../../../services/authentication.js';
+import { getUserData } from "../../../services/api/identity/identity";
 import { Notifications } from './sections/notifications.jsx';
 
-export const Profile = () => {
+export const Profile = ({ changeSubTitleMethod = undefined }) => {
+    const sections = new Map();
+    sections.set("Общие", <ProfileGeneral />);
+    sections.set("Уведомления", <Notifications/>);
+
     const [data, setData] = useState();
+    const [currentSection, setCurrentSection] = useState();
 
     useEffect(() => {
         const fetchUserData = async () => {
-            const cookies = new Cookies();
-            const token = cookies.get("access-token");
-            const result = await getUserData(token);
+            const result = await getUserData();
             setData(result.data.data);
         }
         fetchUserData();
+        setCurrentSection(sections.get("Общие"));
+        changeSubTitleMethod("Общие");
     }, []);
+
+    function changeSection(sectionName) {
+        setCurrentSection(sections.get(sectionName));
+        changeSubTitleMethod(sectionName);
+    }
 
     function exit() {
         clearAuthCookies();
@@ -32,11 +41,11 @@ export const Profile = () => {
                     <p>{data.nickname}</p>
                 </div>
                 <div className='profile-navigation-content'>
-                    <div className='profile-navigation-content-submenu'>
+                    <div className='profile-navigation-content-submenu' onClick={() => changeSection("Общие")}>
                         <p>Общие</p>
                     </div>
 
-                    <div className='profile-navigation-content-submenu'>
+                    <div className='profile-navigation-content-submenu' onClick={() => changeSection("Уведомления")}>
                         <p>Уведомления</p>
                     </div>
 
@@ -54,8 +63,7 @@ export const Profile = () => {
 
                 </div>
             </div>
-            {/* <ProfileGeneral data={data}/> */}
-            <Notifications/>
+            {currentSection}
         </div>
     );
 }
