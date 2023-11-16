@@ -73,12 +73,12 @@ const SignInModal = ({ method }) => {
           />
         </div>
       </div>
-      <div className="modal-sign-remember-me">
+      {/* <div className="modal-sign-remember-me">
         <label>
           <input type="checkbox" name="remember" />
           Запомнить меня
         </label>
-      </div>
+      </div> */}
       <div className="modal-sign-buttons">
         <button className="default-button" type="button" onClick={sign}>
           ВХОД
