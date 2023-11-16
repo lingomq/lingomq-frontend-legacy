@@ -60,6 +60,16 @@ $margin-mobile: 50px;
     color: #FFFFFF;
 }
 
+.danger-btn {
+    background-color: $error-color;
+    color: #FFFFFF;
+}
+
+.danger-btn:hover {
+    background-color: #ffffff;
+    color: $error-color;
+}
+
 .danger-p {
     color: $error-color;
 }

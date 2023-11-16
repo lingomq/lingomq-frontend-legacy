@@ -5,12 +5,14 @@ import { clearAuthCookies } from '../../../services/authentication.js';
 import { getUserData } from "../../../services/api/identity/identity";
 import { Notifications } from './sections/notifications.jsx';
 import { Statistics } from './sections/statistics.jsx';
+import { Security } from './sections/security.jsx';
 
 export const Profile = ({ changeSubTitleMethod = undefined }) => {
     const sections = new Map();
     sections.set("Общие", <ProfileGeneral />);
     sections.set("Уведомления", <Notifications/>);
     sections.set("Статистика", <Statistics/>)
+    sections.set("Безопасность", <Security/>);
 
     const [data, setData] = useState();
     const [currentSection, setCurrentSection] = useState();
@@ -55,7 +57,7 @@ export const Profile = ({ changeSubTitleMethod = undefined }) => {
                         <p>Статистика</p>
                     </div>
 
-                    <div className='profile-navigation-content-submenu'>
+                    <div className='profile-navigation-content-submenu' onClick={() => changeSection("Безопасность")}>
                         <p>Безопасность</p>
                     </div>
 
