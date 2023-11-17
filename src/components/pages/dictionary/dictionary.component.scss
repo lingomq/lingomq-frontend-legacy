@@ -1,0 +1,72 @@
+.dictionary-content-section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.word-card-native {
+    font-size: 1.7em;
+    border-radius: 1px solid #000000;
+    margin: 0;
+}
+
+.word-card-translated {
+    font-size: 1.5em;
+    color: #7e7d7d;
+    margin: 0;
+}
+
+.word-card-language {
+    font-size: 1em;
+    color: #7e7d7d;
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin: 5px;
+}
+
+.word-card {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 15px;
+    padding: 5px 100px;
+    margin: 10px 10px;
+    position: relative;
+    box-shadow: 1px 1px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.dictionary-filter {
+    display: flex;
+    align-items: center;
+    margin: 0 10px;
+}
+
+.dictionary-filter-section {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.dictionary-filter p {
+    font-size: 1.1em;
+    color: #7e7d7d;
+}
+
+.dictionary-filter select {
+    font-size: 1.1em;
+    border: 0;
+    font-family: 'IBM Plex Mono';
+    color: #00a3ff;
+}
+
+@media screen and (max-width: 650px) {
+    .dictionary-filter-section {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .dictionary-content-section {
+        flex-direction: column;
+    }
+}

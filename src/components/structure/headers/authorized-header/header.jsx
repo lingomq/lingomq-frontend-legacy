@@ -3,6 +3,7 @@ import Images from "../../../common/local-images.jsx";
 import { useEffect, useState } from "react";
 import { Cookies } from "react-cookie";
 import { getUserData } from "../../../../services/api/identity/identity";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const [data, setData] = useState();
@@ -50,10 +51,10 @@ const Header = () => {
           </div>
         </div>
         <div className="auth-profile-section">
-          <a className="profile-section" href="">
+          <Link className="profile-section" to="profile">
             <img src={data.imageUri} />
             <p className="nickname">{data.nickname}</p>
-          </a>
+          </Link>
           <a className="notification-section">
             <img src={Images.Bell} />
             <div className="notification-counter"></div>
