@@ -60,35 +60,6 @@ const Header = () => {
           </a>
         </div>
       </div>
-      <div className="mobile-content">
-        <div className="auth-header-content">
-          <div className="action-section">
-            <a className="action" href="">
-              <img src={Images.Home} />
-              <p>Главная</p>
-            </a>
-
-            <a className="action" href="">
-              <img src={Images.Practice} />
-              <p>Практика</p>
-            </a>
-
-            <div className="rounded-button">
-              <button>+</button>
-              <p>Добавить слово</p>
-            </div>
-
-            <a className="action" href="">
-              <img src={Images.Dictionary} />
-              <p>Сервисы</p>
-            </a>
-            <a className="profile-section" href="">
-              <img src={data.imageUri} />
-              <p>Профиль</p>
-            </a>
-          </div>
-        </div>
-      </div>
     </div>
   );
 };
