@@ -20,16 +20,7 @@ const Header = () => {
   return data && (
     <div className="auth-header">
       <div className="desk-content">
-        <div className="auth-profile-section">
-          <a className="profile-section" href="">
-            <img src={data.imageUri} />
-            <p className="nickname">{data.nickname}</p>
-          </a>
-          <a className="notification-section">
-            <img src={Images.Bell} />
-            <div className="notification-counter"></div>
-          </a>
-        </div>
+        
         <div className="auth-header-content">
           <div className="action-section">
             <a className="action" href="">
@@ -42,28 +33,31 @@ const Header = () => {
               <p>Практика</p>
             </a>
 
-            <a className="action" href="">
-              <img src={Images.Rating} />
-              <p>Рейтинг</p>
-            </a>
             <div className="rounded-button">
               <button>+</button>
               <p>Добавить слово</p>
             </div>
 
+            <a className="action only-pc" href="">
+              <img src={Images.Rating} />
+              <p>Рейтинг</p>
+            </a>
+
             <a className="action" href="">
               <img src={Images.Dictionary} />
               <p>Словарь</p>
             </a>
-            <a className="action" href="">
-              <img src={Images.Statistics} />
-              <p>Статистика</p>
-            </a>
-            <a className="action" href="">
-              <img src={Images.Settings} />
-              <p>Настройка</p>
-            </a>
           </div>
+        </div>
+        <div className="auth-profile-section">
+          <a className="profile-section" href="">
+            <img src={data.imageUri} />
+            <p className="nickname">{data.nickname}</p>
+          </a>
+          <a className="notification-section">
+            <img src={Images.Bell} />
+            <div className="notification-counter"></div>
+          </a>
         </div>
       </div>
       <div className="mobile-content">
