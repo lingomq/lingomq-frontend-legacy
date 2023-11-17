@@ -24,10 +24,10 @@ const Header = () => {
         
         <div className="auth-header-content">
           <div className="action-section">
-            <a className="action" href="">
+            <Link className="action" to="/">
               <img src={Images.Home} />
               <p>Главная</p>
-            </a>
+            </Link>
 
             <a className="action" href="">
               <img src={Images.Practice} />
@@ -44,10 +44,10 @@ const Header = () => {
               <p>Рейтинг</p>
             </a>
 
-            <a className="action" href="">
+            <Link className="action" to="dict">
               <img src={Images.Dictionary} />
               <p>Словарь</p>
-            </a>
+            </Link>
           </div>
         </div>
         <div className="auth-profile-section">

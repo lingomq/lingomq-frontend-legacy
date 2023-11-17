@@ -7,6 +7,7 @@ import { isAuthenticated } from "../../services/authentication.js";
 import { Confirm } from "../pages/confirm/confirm.jsx";
 import { Profile } from '../pages/profile/profile.jsx';
 import { Dictionary } from "../pages/dictionary/dictionary.jsx";
+import { Main } from "../pages/main/Main.jsx";
 
 const CustomRouter = () => {
     const [isAuthenticate, setIsAuthenticate] = useState(false);
@@ -18,7 +19,7 @@ const CustomRouter = () => {
         setSubTitle(title);
     }
 
-    const homeElement = !isAuthenticate ? <Home /> : <Wrapper title="СЛОВАРЬ" element={<Dictionary/>}/>;
+    const homeElement = !isAuthenticate ? <Home /> : <Wrapper title="ГЛАВНАЯ" element={<Main/>}/>;
 
     useEffect(() => {
         async function checkAuth() {
@@ -35,6 +36,7 @@ const CustomRouter = () => {
                 <Route exact path="/" element={homeElement} />
                 <Route path="confirm" element={<Confirm />} />
                 <Route path="profile" element={profileElement}/>
+                <Route path="dict" element={<Wrapper title="СЛОВАРЬ" element={<Dictionary/>}/>}/>
             </Routes>
         </div>
     );
