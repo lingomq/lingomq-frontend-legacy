@@ -8,6 +8,7 @@ import { Confirm } from "../pages/confirm/confirm.jsx";
 import { Profile } from '../pages/profile/profile.jsx';
 import { Dictionary } from "../pages/dictionary/dictionary.jsx";
 import { Main } from "../pages/main/Main.jsx";
+import { Notifications } from "../pages/notifications/notifications.jsx";
 
 const CustomRouter = () => {
     const [isAuthenticate, setIsAuthenticate] = useState(false);
@@ -37,6 +38,7 @@ const CustomRouter = () => {
                 <Route path="confirm" element={<Confirm />} />
                 <Route path="profile" element={profileElement}/>
                 <Route path="dict" element={<Wrapper title="СЛОВАРЬ" element={<Dictionary/>}/>}/>
+                <Route path="notifications" element={<Wrapper title="УВЕДОМЛЕНИЯ" element={<Notifications/>}/>}/>
             </Routes>
         </div>
     );

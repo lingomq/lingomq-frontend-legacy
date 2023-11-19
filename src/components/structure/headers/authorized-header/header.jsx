@@ -39,10 +39,10 @@ const Header = () => {
               <p>Добавить слово</p>
             </div>
 
-            <a className="action only-pc" href="">
+            <Link className="action only-pc" to="notifications">
               <img src={Images.Bell} />
               <p>Уведомления</p>
-            </a>
+            </Link>
 
             <Link className="action" to="dict">
               <img src={Images.Dictionary} />
