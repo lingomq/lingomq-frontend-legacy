@@ -8,6 +8,7 @@
 .today-statistics-card {
     display: flex;
     flex-direction: column;
+    text-align: center;
     align-items: center;
     width: 20%;
     justify-content: center;
@@ -22,4 +23,16 @@
 
 .today-statistics-card-content {
     font-size: 3em;
+}
+
+@media screen and (max-width: 950px) {
+    .today-statistics-section {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .today-statistics-card {
+        width: 100%;
+        margin: 50px;
+    }
 }
