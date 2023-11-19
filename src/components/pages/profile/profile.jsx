@@ -34,7 +34,7 @@ export const Profile = ({ changeSubTitleMethod = undefined }) => {
 
     function exit() {
         clearAuthCookies();
-        window.location.reload();
+        window.location.href = '..';
     }
 
     return data && (
