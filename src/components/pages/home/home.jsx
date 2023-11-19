@@ -2,11 +2,25 @@ import "./home.component.scss";
 import Images from "../../common/local-images.jsx";
 import InfoBlockAll from "../../structure/blocks/info-block-all/info-block.jsx";
 import Notification from "../../structure/notify/notification.jsx";
+import Modal from "../../structure/modals/modal-window.jsx";
+import React, { useState } from "react";
+import SignModal from "../../structure/modals/authorization/sign-modal.jsx";
 
 const Home = () => {
+    const [isShowModal, setIsShowModal] = useState(false);
+
+    const handleShowModal = () => {
+        setIsShowModal(!isShowModal);
+    };
     return (
         <div className="content">
-            <Notification/>
+            <Modal
+                isModalShow={isShowModal}
+                handleChange={handleShowModal}
+                width="average"
+                content={<SignModal />}
+            />
+            <Notification />
             <div className="content-main-section">
                 <h1>УЧИ СЛОВА ВМЕСТЕ С</h1>
                 <div className="logo-big-section">
@@ -16,7 +30,9 @@ const Home = () => {
                         <p className="logo-sub">mq</p>
                     </div>
                 </div>
-                <a className="default-button" href="#secondary-section">ПОДРОБНЕЕ</a>
+                <a className="default-button" href="#secondary-section">
+                    ПОДРОБНЕЕ
+                </a>
             </div>
             <div className="content-secondary-section">
                 <h1 id="secondary-section"></h1>
@@ -54,7 +70,7 @@ const Home = () => {
                         }
                         image={Images.Success}
                     />
-                    <InfoBlockAll 
+                    <InfoBlockAll
                         isLeft={false}
                         headText={"ЧИТАЙ ТЕМАТИЧЕСКИЕ СТАТЬИ"}
                         contentText={
@@ -65,10 +81,10 @@ const Home = () => {
                 </div>
             </div>
             <div className="content-bye-section">
-                <h1 id="start">НАЧИНАЙ УЧИТЬ ЯЗЫКИ <br/> ВМЕСТЕ С <b>LINGO.MQ</b></h1>
-                <button className="default-button">
-                    НАЧАТЬ
-                </button>
+                <h1 id="start">
+                    НАЧИНАЙ УЧИТЬ ЯЗЫКИ <br /> ВМЕСТЕ С <b>LINGO.MQ</b>
+                </h1>
+                <button className="default-button" onClick={handleShowModal}>НАЧАТЬ</button>
             </div>
         </div>
     );
