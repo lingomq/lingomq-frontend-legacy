@@ -37,6 +37,7 @@
     height: 100%;
     user-select: none;
     object-fit: cover;
+    pointer-events: none;
 }
 
 .topic-section-card-content {
