@@ -40,8 +40,8 @@ const Header = () => {
             </div>
 
             <a className="action only-pc" href="">
-              <img src={Images.Rating} />
-              <p>Рейтинг</p>
+              <img src={Images.Bell} />
+              <p>Уведомления</p>
             </a>
 
             <Link className="action" to="dict">
@@ -55,10 +55,6 @@ const Header = () => {
             <img src={data.imageUri} />
             <p className="nickname">{data.nickname}</p>
           </Link>
-          <a className="notification-section">
-            <img src={Images.Bell} />
-            <div className="notification-counter"></div>
-          </a>
         </div>
       </div>
     </div>
