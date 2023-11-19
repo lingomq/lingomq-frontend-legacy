@@ -9,25 +9,15 @@ const Footer = (props) => {
                     <p className="footer-navigation-main-p">КАРТА САЙТА</p>
                     <ul className="footer-navigation-ul">
                         <li className="footer-navigation-li">
-                            <a className="footer-navigation-li-a" href="">
+                            <a className="footer-navigation-li-a" href="#start">
                                 НАЧАТЬ
                             </a>
                         </li>
                         <li className="footer-navigation-li">
-                            <a className="footer-navigation-li-a" href="">
+                            <a className="footer-navigation-li-a" href="#secondary-section">
                                 О НАС
                             </a>
-                        </li>
-                        <li className="footer-navigation-li">
-                            <a className="footer-navigation-li-a" href="">
-                                ПОДДЕРЖКА
-                            </a>
-                        </li>
-                        <li className="footer-navigation-li">
-                            <a className="footer-navigation-li-a" href="">
-                                РЕЙТИНГ
-                            </a>
-                        </li>
+                        </li>         
                         <li className="footer-navigation-li">
                             <a className="footer-navigation-li-a" href="">
                                 ПОЛИТИКА КОНФИДЕНЦИАЛЬНОСТИ

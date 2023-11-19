@@ -16,9 +16,10 @@ const Home = () => {
                         <p className="logo-sub">mq</p>
                     </div>
                 </div>
-                <button className="default-button">ПОДРОБНЕЕ</button>
+                <a className="default-button" href="#secondary-section">ПОДРОБНЕЕ</a>
             </div>
             <div className="content-secondary-section">
+                <h1 id="secondary-section"></h1>
                 <p className="secondary-section-route-p">НАЧАЛО / О НАС</p>
                 <div className="secondary-section">
                     <InfoBlockAll
@@ -64,7 +65,7 @@ const Home = () => {
                 </div>
             </div>
             <div className="content-bye-section">
-                <h1>НАЧИНАЙ УЧИТЬ ЯЗЫКИ <br/> ВМЕСТЕ С <b>LINGO.MQ</b></h1>
+                <h1 id="start">НАЧИНАЙ УЧИТЬ ЯЗЫКИ <br/> ВМЕСТЕ С <b>LINGO.MQ</b></h1>
                 <button className="default-button">
                     НАЧАТЬ
                 </button>

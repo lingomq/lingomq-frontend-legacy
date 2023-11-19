@@ -42,17 +42,11 @@ const Header = () => {
           </div>
         </div>
         <div className="header-navigation">
-          <a href="" className="header-link">
+          <a href="#start" className="header-link">
             НАЧАТЬ
           </a>
-          <a href="" className="header-link">
+          <a href="#secondary-section" className="header-link">
             О НАС
-          </a>
-          <a href="" className="header-link">
-            ПОДДЕРЖКА
-          </a>
-          <a href="" className="header-link">
-            РЕЙТИНГ
           </a>
         </div>
         <div className="auth">
