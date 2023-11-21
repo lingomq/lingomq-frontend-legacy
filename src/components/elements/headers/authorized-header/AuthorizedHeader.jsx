@@ -1,7 +1,7 @@
 import "./AuthorizedHeader.scss";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { BellImage, DictionaryImage, HomeImage, PracticeImage } from "../../../general/Images.jsx";
+import { BellImage, DictionaryImage, HomeImage, PracticeImage } from "../../../general/images.jsx";
 
 const AuthorizedHeader = ({data}) => {
   const [user, setUser] = useState(null);

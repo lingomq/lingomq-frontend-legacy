@@ -1,4 +1,4 @@
-import { CloseImage } from "../../general/Images.jsx";
+import { CloseImage } from "../../general/images.jsx";
 import styles from "./Modal.module.scss";
 import { modalSize } from "./modalSize";
 
