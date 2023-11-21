@@ -1,10 +1,10 @@
-import './dictionary.component.scss';
+import styles from './Dictionary.module.scss';
 
 export const Dictionary = () => {
     return (
-        <div className='dictionary-section'>
-            <div className='dictionary-filter-section'>
-                <div className='dictionary-filter'>
+        <div className={styles.dictionarySection}>
+            <div className={styles.dictionaryContentSection}>
+                <div className={styles.dictionaryFilter}>
                     <p>Тип:</p>
                     <select defaultValue="Все">
                         <option value="Все">Все</option>
@@ -13,7 +13,7 @@ export const Dictionary = () => {
                         <option value="Иди нахуй">Иди нахуй</option>
                     </select>
                 </div>
-                <div className='dictionary-filter'>
+                <div className={styles.dictionaryFilter}>
                     <p>Язык:</p>
                     <select defaultValue="Все">
                         <option value="Все">Все</option>
@@ -23,11 +23,11 @@ export const Dictionary = () => {
                     </select>
                 </div>
             </div>
-            <div className='dictionary-content-section'>
-                <div className='word-card'>
-                    <p className='word-card-native'>House</p>
-                    <p className='word-card-translated'>Дом</p>
-                    <p className='word-card-language'>en</p>
+            <div className={styles.dictionaryContentSection}>
+                <div className={styles.wordCard}>
+                    <p className={styles.wordCardNative}>House</p>
+                    <p className={styles.wordCardTranslated}>Дом</p>
+                    <p className={styles.wordCardLanguage}>en</p>
                 </div>
             </div>
         </div>

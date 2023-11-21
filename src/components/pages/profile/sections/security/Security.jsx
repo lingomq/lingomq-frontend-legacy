@@ -1,4 +1,4 @@
-import "./Security.scss";
+import styles from "./Security.module.scss";
 import { useState, useEffect } from "react";
 import Modal from "../../../../ui/modal/Modal.jsx";
 import { ChangePassword } from "../../../../elements/modals/change-password/ChangePassword.jsx";
@@ -41,31 +41,31 @@ export const Security = ({ data }) => {
 
     return (
         data && (
-            <div className="security-section">
+            <div className={styles.securitySection}>
                 <Modal
                     isShow={showModal}
                     showModalFunction={handleShowModal}
                     content={modal}
                 />
-                <div className="security-section-content">
-                    <div className="security-change-section">
-                        <p className="security-data-title">
+                <div className={styles.securitySectionContent}>
+                    <div className={styles.securityChangeSection}>
+                        <p className={styles.securityDataTitle}>
                             Смена почты или номера телефона
                         </p>
-                        <div className="non-sensitive-data-content">
-                            <div className="non-sensitive-data-card">
-                                <p className="non-sensitive-data-card-name">
+                        <div className={styles.nonSensitiveDataContent}>
+                            <div className={styles.nonSensitiveDataCard}>
+                                <p className={styles.nonSensitiveDataCardName}>
                                     Email
                                 </p>
-                                <p className="non-sensitive-data-card-content">
+                                <p className={styles.nonSensitiveDataContent}>
                                     {user?.user?.email}
                                 </p>
                             </div>
-                            <div className="non-sensitive-data-card">
-                                <p className="non-sensitive-data-card-name">
+                            <div className={styles.nonSensitiveDataCard}>
+                                <p className={styles.nonSensitiveDataCardName}>
                                     Номер телефона
                                 </p>
-                                <p className="non-sensitive-data-card-content">
+                                <p className={styles.nonSensitiveDataContent}>
                                     {user?.user?.phone === ""
                                         ? "Не указан"
                                         : user?.user?.phone}
@@ -77,8 +77,8 @@ export const Security = ({ data }) => {
                             onClick={() => openModal("non-credentials")}
                         />
                     </div>
-                    <div className="security-change-section">
-                        <p className="security-data-title">
+                    <div className={styles.securityChangeSection}>
+                        <p className={styles.securityDataSection}>
                             Смена пароля и удаление аккаунта
                         </p>
                         <RoundedButton

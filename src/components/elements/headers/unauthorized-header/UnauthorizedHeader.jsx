@@ -1,4 +1,4 @@
-import './UnauthorizedHeader.scss';
+import styles from './UnauthorizedHeader.module.scss';
 import React, { useState } from "react";
 import { HamburgerMenuPictureImage } from '../../../general/images.jsx';
 import Modal from '../../../ui/modal/Modal.jsx';
@@ -11,9 +11,9 @@ const Header = () => {
     const [isShowModal, setIsShowModal] = useState(false);
 
     function showHamburger() {
-        let hamburger = document.getElementsByClassName("hamburger-button")[0];
+        let hamburger = document.getElementsByClassName(styles["hamburger-button"])[0];
         let hamburgerMenu = document.getElementsByClassName(
-            "hamburger-component"
+            styles["hamburger-component"]
         )[0];
 
         hamburger.onclick = function () {
@@ -24,7 +24,7 @@ const Header = () => {
 
     function hideHamburger() {
         let hamburgerMenu = document.getElementsByClassName(
-            "hamburger-component"
+            styles["hamburger-component"]
         )[0];
 
         setIsVisible(false);
@@ -41,51 +41,51 @@ const Header = () => {
     };
 
     return (
-        <div className="unauthorized-header">
+        <div className={styles["unauthorized-header"]}>
             <Modal
                 isShow={isShowModal}
                 showModalFunction={handleShowModal}
                 size={modalSize.AVERAGE}
                 content={<SignModal />}
             />
-            <div className="header-component">
-                <div className="logo-section">
-                    <div className="logo">
-                        <p className="logo-main">Lingo</p>
-                        <p className="logo-sub">mq</p>
+            <div className={styles["header-component"]}>
+                <div className={styles["logo-section"]}>
+                    <div className={styles["logo"]}>
+                        <p className={styles["logo-main"]}>Lingo</p>
+                        <p className={styles["logo-sub"]}>mq</p>
                     </div>
                 </div>
-                <div className="header-navigation">
-                    <a href="#start" className="header-link">
+                <div className={styles["header-navigation"]}>
+                    <a href="#start" className={styles["header-link"]}>
                         НАЧАТЬ
                     </a>
-                    <a href="#secondary-section" className="header-link">
+                    <a href="#secondary-section" className={styles["header-link"]}>
                         О НАС
                     </a>
                 </div>
-                <div className="auth">
+                <div className={styles["auth"]}>
                     <RoundedButton
                         text="ВХОД"
                         onClick={handleShowModal}
                    />
                 </div>
                 <div
-                    className="hamburger-button"
+                    className={styles["hamburger-button"]}
                     onClick={() => showHamburger()}
                 >
                     <img src={HamburgerMenuPictureImage} />
                 </div>
             </div>
-            <div className="hamburger-component">
-                <div className="header-hamburger-navigation">
+            <div className={styles["hamburger-component"]}>
+                <div className={styles["header-hamburger-navigation"]}>
                     <a
-                        className="header-link"
+                        className={styles["header-link"]}
                         onClick={() => mobileHamburgerNavigation("#start")}
                     >
                         НАЧАТЬ
                     </a>
                     <a
-                        className="header-link"
+                        className={styles["header-link"]}
                         onClick={() =>
                             mobileHamburgerNavigation("#secondary-section")
                         }
@@ -93,7 +93,7 @@ const Header = () => {
                         О НАС
                     </a>
                 </div>
-                <div className="auth-hamburger">
+                <div className={styles["auth-hamburger"]}>
                     <RoundedButton
                         text="ВХОД"
                         onClick={handleShowModal}

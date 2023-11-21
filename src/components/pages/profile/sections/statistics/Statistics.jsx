@@ -1,5 +1,5 @@
-import { Line, Pie } from "react-chartjs-2";
-import "./Statistics.scss";
+import { Line } from "react-chartjs-2";
+import styles from "./Statistics.module.scss";
 import { Chart } from "chart.js/auto";
 import { useEffect, useState } from "react";
 
@@ -31,20 +31,6 @@ export const Statistics = () => {
 		],
 	};
 
-    const languagesData = {
-        labels: [ "English", 'Japanese'],
-        datasets: [
-            {
-                label: "Количество слов",
-                data: [ 75, 25 ],
-                backgroundColor: [
-                    "rgba(255, 99, 132)",
-                    "rgba(54, 162, 235)"
-                ]
-            }
-        ]
-    }
-
     const config = (title) => {
         return {
             responsive: true,
@@ -61,39 +47,39 @@ export const Statistics = () => {
     }
 
 	return (
-		<div className="statistics-section">
-			<div className="statistics-line-section">
+		<div className={styles.statisticsSection}>
+			<div className={styles.statisticsLineSection}>
 				<Line data={data} options={config("Статистика по словам")}/>
 			</div>
-            <div className="statistics-summary-section">
-				<div className="statistics-data-card">
-					<p className="statistics-data-card-name">Слов добавлено</p>
-					<p className="statistics-data-card-content">228</p>
+            <div className={styles.statisticsSummarySection}>
+				<div className={styles.statisticsDataCard}>
+					<p className={styles.statisticsDataCardName}>Слов добавлено</p>
+					<p className={styles.statisticsDataCardContent}>228</p>
 				</div>
 
-				<div className="statistics-data-card">
-					<p className="statistics-data-card-name">Повторений</p>
-					<p className="statistics-data-card-content">228</p>
+				<div className={styles.statisticsDataCard}>
+					<p className={styles.statisticsDataCardName}>Повторений</p>
+					<p className={styles.statisticsDataCardContent}>228</p>
 				</div>
 
-				<div className="statistics-data-card">
-					<p className="statistics-data-card-name">Популярное слово</p>
-					<p className="statistics-data-card-content">ауе</p>
+				<div className={styles.statisticsDataCard}>
+					<p className={styles.statisticsDataCardName}>Популярное слово</p>
+					<p className={styles.statisticsDataCardContent}>ауе</p>
 				</div>
 
-				<div className="statistics-data-card">
-					<p className="statistics-data-card-name">Часов проведено</p>
-					<p className="statistics-data-card-content">228</p>
+				<div className={styles.statisticsDataCard}>
+					<p className={styles.statisticsDataCardName}>Часов проведено</p>
+					<p className={styles.statisticsDataCardContent}>228</p>
 				</div>
 
-				<div className="statistics-data-card">
-					<p className="statistics-data-card-name">Дней подряд</p>
-					<p className="statistics-data-card-content">228</p>
+				<div className={styles.statisticsDataCard}>
+					<p className={styles.statisticsDataCardName}>Дней подряд</p>
+					<p className={styles.statisticsDataCardContent}>228</p>
 				</div>
 
-				<div className="statistics-data-card">
-					<p className="statistics-data-card-name">Слов в день</p>
-					<p className="statistics-data-card-content">228</p>
+				<div className={styles.statisticsDataCard}>
+					<p className={styles.statisticsDataCardName}>Слов в день</p>
+					<p className={styles.statisticsDataCardContent}>228</p>
 				</div>
             </div>
 		</div>

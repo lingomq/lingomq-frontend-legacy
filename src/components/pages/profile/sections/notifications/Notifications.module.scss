@@ -1,6 +1,6 @@
 @import '../../../../general/root.scss';
 
-.notifications-section {
+.notificationsSection {
     display: flex;
     flex-direction: column;
     width: 70%;
@@ -10,7 +10,7 @@
     box-shadow: 1px 1px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
-.notification-card {
+.notificationCard {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -20,7 +20,7 @@
     box-shadow: 1px 1px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
-.notification-card-main {
+.notificationCardMain {
     display: flex;
     align-items: center;
 }
@@ -32,29 +32,29 @@
     height: 15px;
 }
 
-.notification-card-content-title {
+.notificationCardContentTitle {
     margin-left: 20px;
     display: flex;
     align-items: center;
 }
 
-.notification-card-content-title p {
+.notificationCardContentTitle p {
     margin-top: 0;
     margin-bottom: 0;
 }
 
-.notification-card-content-title-header {
+.notificationCardContentTitleHeader {
     font-size: 1em;
     font-weight: 550;
 }
 
-.notification-card-content-title-date {
+.notificationCardContentTitleDate {
     margin-left: 10px;
     font-size: 0.8em;
     color: #5d5d5d;
 }
 
-.notification-card-content-message {
+.notificationCardContentMessage {
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
@@ -65,7 +65,7 @@
     margin-bottom: 0;
 }
 
-.close-button {
+.closeButton {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -78,20 +78,20 @@
     cursor: pointer;
 }
 
-.close-button p{
+.closeButton p{
     margin: 0;
 }
 
-.notification-info {
+.notificationInfo {
     background-color: $alt-foreground-color;
 }
 
-.notification-important {
+.notificationImportant {
     background-color: $error-color;
 } 
 
 @media screen and (max-width: 950px) {
-    .notifications-section {
+    .notificationsSection {
         margin-top: 5%;
         flex-direction: column;
         width: 100%;

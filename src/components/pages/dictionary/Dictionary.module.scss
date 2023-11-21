@@ -1,22 +1,22 @@
-.dictionary-content-section {
+.dictionaryContentSection {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
 }
 
-.word-card-native {
+.wordCardNative {
     font-size: 1.7em;
     border-radius: 1px solid #000000;
     margin: 0;
 }
 
-.word-card-translated {
+.wordCardTranslated {
     font-size: 1.5em;
     color: #7e7d7d;
     margin: 0;
 }
 
-.word-card-language {
+.wordCardLanguage {
     font-size: 1em;
     color: #7e7d7d;
     position: absolute;
@@ -25,7 +25,7 @@
     margin: 5px;
 }
 
-.word-card {
+.wordCard {
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -37,23 +37,23 @@
     cursor: pointer;
 }
 
-.dictionary-filter {
+.dictionaryFilter {
     display: flex;
     align-items: center;
     margin: 0 10px;
 }
 
-.dictionary-filter-section {
+.dictionaryFilterSection {
     display: flex;
     justify-content: flex-end;
 }
 
-.dictionary-filter p {
+.dictionaryFilter p {
     font-size: 1.1em;
     color: #7e7d7d;
 }
 
-.dictionary-filter select {
+.dictionaryFilter select {
     font-size: 1.1em;
     border: 0;
     font-family: 'IBM Plex Mono';
@@ -61,13 +61,13 @@
 }
 
 @media screen and (max-width: 650px) {
-    .dictionary-filter-section {
+    .dictionaryFilterSection {
         flex-direction: column;
         align-items: center;
         justify-content: center;
     }
 
-    .dictionary-content-section {
+    .dictionaryContentSection {
         flex-direction: column;
     }
 }

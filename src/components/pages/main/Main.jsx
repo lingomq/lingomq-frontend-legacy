@@ -9,7 +9,7 @@ export const Main = () => {
                     <p className={styles.todayStatisticsCardTitle}>
                         Добавленных слов за сегодня
                     </p>
-                    <p className={styles.todayStatisticsContent}>
+                    <p className={styles.todayStatisticsCardContent}>
                         20
                     </p>
                 </div>
@@ -17,7 +17,7 @@ export const Main = () => {
                     <p className={styles.todayStatisticsCardTitle}>
                         Дней подряд
                     </p>
-                    <p className={styles.todayStatisticsContent}>
+                    <p className={styles.todayStatisticsCardContent}>
                         20
                     </p>
                 </div>
@@ -25,7 +25,7 @@ export const Main = () => {
                     <p className={styles.todayStatisticsCardTitle}>
                         Повторений за сегодня
                     </p>
-                    <p className={styles.todayStatisticsContent}>
+                    <p className={styles.todayStatisticsCardContent}>
                         20
                     </p>
                 </div>
@@ -33,7 +33,7 @@ export const Main = () => {
                     <p className={styles.todayStatisticsCardTitle}>
                         Слово дня
                     </p>
-                    <p className={styles.todayStatisticsContent}>
+                    <p className={styles.todayStatisticsCardContent}>
                         ауе
                     </p>
                 </div>

@@ -1,4 +1,5 @@
-import './notification.scss';
+import styels from './Notification.module.scss';
+import styles from './Notification.module.scss';
 import React, { useEffect, useState } from 'react';
 import { v4 as uuid } from 'uuid';
 
@@ -12,10 +13,10 @@ const Notification = ({ title, message, level = ""}) => {
     });
 
     return(
-        <div key={uuid()} className={'notification' + (isVisible ? ' visible' : ' hidden') + (isNone ? ' none' : '')} >
-            <div className={'notification-content ' + level}>
-                <p className='notification-context-title'>{title}</p>
-                <p className='notification-context-description'>{message}</p>
+        <div key={uuid()} className={`${styles.notification} ${(isVisible ? styles.visible : styles.hidden)} ${(isNone ? styles.none : '')}`} >
+            <div className={`${styles.notificationContent} ${styles[level]}`}>
+                <p className={styles.notificationContentTitle}>{title}</p>
+                <p className={styles.notificationContentDescription}>{message}</p>
             </div>
         </div>
     )

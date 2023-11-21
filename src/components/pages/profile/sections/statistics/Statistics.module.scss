@@ -1,4 +1,4 @@
-.statistics-section {
+.statisticsSection {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -11,7 +11,7 @@
     margin-bottom: 10vh;
 }
 
-.statistics-summary-section {
+.statisticsSummarySection {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -19,11 +19,11 @@
     width: 35%;
 }
 
-.statistics-line-section {
+.statisticsLineSection {
     width: 35%;
     margin: 50px 0;
 }
-.statistics-data-card {
+.statisticsDataCard {
     display: flex;
     justify-content: space-between;
     width: 100%;
@@ -33,29 +33,29 @@
     box-shadow: 1px 1px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
-.statistics-data-card p {
+.statisticsDataCard p {
     font-size: 1em;
     margin: 0;
 }
 
-.statistics-data-card-content {
+.statisticsDataCardContent {
     color: #4d4d4d;
 }
 
 @media screen and (max-width: 950px) {
-    .statistics-section {
+    .statisticsSection {
         margin-top: 5%;
         flex-direction: column;
         width: 100%;
     }
 
-    .statistics-line-section {
+    .statisticsLineSection {
         width: 100%;
         min-height: 350px;
         margin: 50px 0;
     }
 
-    .statistics-summary-section {
+    .statisticsSummarySection {
         width: 90%;
     }
 }

@@ -4,6 +4,8 @@ import { clearAuthCookies } from "../../../../services/authentication.js";
 import notificationManager, { getNotificationModel } from "../../../services/notification/notificationManager";
 import { buttonTypes } from "../../../ui/buttons/buttonTypes.js";
 import RoundedButton from "../../../ui/buttons/rounded/RoundedButton.jsx";
+import styles from "../Credentials.module.scss";
+import TextField from "../../../ui/fields/text/TextField.jsx";
 
 export const RemoveAccount = ({verificationText}) => {
     const [text, setText] = useState("");
@@ -26,26 +28,19 @@ export const RemoveAccount = ({verificationText}) => {
     }
 
     return (
-        <div className="change-password-modal">
+        <>
             <p>УДАЛЕНИЕ АККАУНТА</p>
-            <p className="attention-content">
+            <p className={styles.attentionContent}>
                 Внимание! Вы пытаетесь удалить аккаунт. Для того,
                 чтобы подтвердить операцию, введите ниже : <b>{verificationText}</b>
             </p>
-            <div className="modal-sign-inputs">
-                <div className="modal-sign-input">
-                    <label>Текст подтверждения</label>
-                    <input
-                        placeholder="verification text"
-                        type="text"
-                        value={text}
-                        onChange={(e) =>
-                            setText(e.target.value)
-                        }
-                    />
-                </div>
-            </div>
+            <TextField
+                name="text"
+                labelText="Текст подтверждения"
+                placeholder="verification text"
+                textStateFunction={(e) => setText(e.target.value)}
+            />
             <RoundedButton text="ПОДТВЕРДИТЬ УДАЛЕНИЕ" buttonType={buttonTypes.ERROR} onClick={removeProfile}/>
-        </div>
+        </>
     );
 };

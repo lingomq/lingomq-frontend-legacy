@@ -12,7 +12,7 @@
     display: none;
 }
 
-.notification-content {
+.notificationContent {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -22,7 +22,7 @@
   max-width: 350px;
 }
 
-.notification-context-title {
+.notificationContentTitle {
   font-size: 1.3em;
   font-variant: all-petite-caps;
   margin: 0;
@@ -30,7 +30,7 @@
   text-decoration: underline;
 }
 
-.notification-context-description {
+.notificationContentDescription {
   font-size: 1em;
   margin: 0;
 }

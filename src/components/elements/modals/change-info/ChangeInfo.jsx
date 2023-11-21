@@ -1,5 +1,4 @@
-import "./change-info.component.scss";
-import "../sign-modal.component.scss";
+import stylesInfo from "./ChangeInfo.module.scss";
 import { useState } from "react";
 import { updateUserInfo } from "../../../../services/api/identity/identity.js";
 import TextField from "../../../ui/fields/text/TextField.jsx";
@@ -45,19 +44,18 @@ const ChangeInfo = ({ userData }) => {
     }
 
     return (
-        <div className="change-info-modal">
-            <p className="change-info-modal-header">ИЗМЕНЕНИЕ ПРОФИЛЯ</p>
+        <div className={stylesInfo.changeInfoModal}>
+            <p className={stylesInfo.changeInfoModalHeader}>ИЗМЕНЕНИЕ ПРОФИЛЯ</p>
 
             <input
                 type="file"
-                id="profile-photo"
+                className={stylesInfo.profilePhoto}
                 name="image"
                 accept="image/jpeg,image/png"
                 onChange={uploadImage}
             />
-            <label htmlFor="profile-photo" className="input-file-button">
+            <label htmlFor={stylesInfo.profilePhoto} className="input-file-button">
                 <img
-                    id="profile-photo-preview"
                     src={image === "" ? userData?.imageUri : image}
                 />
             </label>

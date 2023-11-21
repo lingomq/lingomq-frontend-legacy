@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "../sign-modal.component.scss";
+import styles from "../SignModal.module.scss";
 import RoundedButton from "../../../ui/buttons/rounded/RoundedButton.jsx";
 import TextField from "../../../ui/fields/text/TextField.jsx";
 import { signUp } from "../../../../services/api/authentication/authentication.js";
@@ -30,11 +30,11 @@ const SignUpModal = ({ method }) => {
     }
 
     return (
-        <form className="modal-sign" method="POST">
-            <div className="modal-sign-header">
+        <form className={styles["modal-sign"]} method="POST">
+            <div className={styles["modal-sign-header"]}>
                 <p>РЕГИСТРАЦИЯ</p>
             </div>
-            <div className="modal-sign-inputs">
+            <div className={styles["modal-sign-inputs"]}>
                 <TextField name="nickname" labelText="Никнейм" placeholder="nickname" textStateFunction={(e) => handleChange(e)}/>
                 <TextField name="email" labelText="E-mail" placeholder="email" textStateFunction={(e) => handleChange(e)}/>
                 <TextField name="password" labelText="Пароль" placeholder="password" textStateFunction={(e) => handleChange(e)}
@@ -42,12 +42,12 @@ const SignUpModal = ({ method }) => {
                     autoComplete="on"
                 />
             </div>
-            <div className="modal-sign-buttons">
+            <div className={styles["modal-sign-buttons"]}>
                 <RoundedButton text="ЗАРЕГИСТРИРОВАТЬСЯ" type="button" onClick={signUpAsync}/>
             </div>
-            <div className="modal-sign-forgot-password">
+            <div className={styles["modal-sign-forgot-password"]}>
                 <p>УЖЕ ЕСТЬ АККАУНТ?</p>
-                <a className="modal-sign-recovery-link" href="#" onClick={method}>
+                <a className={styles["modal-sign-recovery-link"]} href="#" onClick={method}>
                     ВОЙТИ
                 </a>
             </div>

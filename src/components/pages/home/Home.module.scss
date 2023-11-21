@@ -1,10 +1,10 @@
-@import "../../general/colors.scss";
+@import "../../general/root.scss";
 
-.home-content {
+.homeContent {
     margin-top: 70px;
 }
 
-.content-main-section {
+.contentMainSection {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -12,47 +12,69 @@
     border-bottom: 1px solid #000000;
 }
 
-.content-main-section h1 {
+.contentMainSection h1 {
     font-weight: 300;
 }
 
-.content-main-section .default-button {
-    margin-top: 2em;
+.logo {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
-.logo-big-section {
+.logoMain {
+    font-family: $alt-font-family;
+    color: $foreground-color;
+    font-size: $default-font-size;
+}
+
+.logoSub {
+    font-family: $alt-font-family;
+    color: $alt-foreground-color;
+    // font-weight: bold;
+    font-size: $default-font-size - 0.3em;
+    margin-top: -28px;
+}
+
+.logoBigSection {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.logo-big-section .logo-main {
+.logoBigSection .logoMain {
     font-size: 5em;
     color: $alt-white-foreground-color;
 }
 
-.logo-big-section .logo-sub {
+.logoBigSection .logoSub {
     font-size: 3em;
     margin-top: -2em;
     color: $foreground-color;
 }
 
-.logo-big-section img {
+.logoBigSection img {
     position: absolute;
     z-index: -1;
 }
 
-.logo-big-section img {
+.logoBigSection img {
     position: absolute;
     z-index: -1;
 }
 
-.secondary-section-route-p {
+.secondarySectionRouteP {
     text-align: left;
     font-size: 1.1em;
 }
 
-.content-bye-section {
+.contentByeSection {
     display: flex;
     text-align: center;
     flex-direction: column;
@@ -62,22 +84,22 @@
     margin-bottom: 10em;
 }
 
-.content-bye-section h1 {
+.contentByeSection h1 {
     font-weight: 300;
 }
 
-.content-bye-section b {
+.contentByeSection b {
     color: $alt-foreground-color;
 }
 
 @media screen and (max-width: 700px) {
-    .logo-big-section img {
+    .logoBigSection img {
         width: 20em;
     }
 }
 
 @media screen and (max-width: 500px) {
-    .content-main-section h1 {
+    .contentMainSection h1 {
         font-size: 1.5em;
     }
 }

@@ -19,15 +19,6 @@
     align-items: center;
 }
 
-.auth-profile-section {
-    position: absolute;
-    display: flex;
-    align-items: center;
-    margin-left: $margin-desktop;
-    margin-top: 0.5em;
-    left: 0;
-    top: 0;
-}
 
 .auth-header-content {
     display: flex;
@@ -36,9 +27,18 @@
     justify-content: center;
 }
 
+
+.profile-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 10px;
+}
+
 .profile-section img {
-    width: 50px;
-    height: 50px;
+    width: 25px;
+    height: 25px;
     border-radius: 50%;
 }
 

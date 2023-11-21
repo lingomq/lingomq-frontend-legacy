@@ -1,7 +1,7 @@
-import "./home.component.scss";
+import styles from "./Home.module.scss";
 import React, { useState } from "react";
 import { AnalyticsImageImage, ApplicationImage, CollaborationImage, SpreadImage, SuccessImage } from "../../general/images.jsx";
-import InfoBlockAll from "./blocks/info-block-all/info-block.jsx";
+import InfoBlockAll from "./blocks/info-block-all/InfoBlock.jsx";
 import RoundedButton from "../../ui/buttons/rounded/RoundedButton.jsx";
 import Modal from "../../ui/modal/Modal.jsx";
 import SignModal from "../../elements/modals/SignModal.jsx";
@@ -14,28 +14,28 @@ const Home = () => {
         setIsShowModal(!isShowModal);
     };
     return (
-        <div className="home-content">
+        <div className={styles.homeContent}>
             <Modal
                 isShow={isShowModal}
                 showModalFunction={handleShowModal}
                 size={modalSize.AVERAGE}
                 content={<SignModal />}
             />
-            <div className="content-main-section">
+            <div className={styles.contentMainSection}>
                 <h1>УЧИ СЛОВА ВМЕСТЕ С</h1>
-                <div className="logo-big-section">
+                <div className={styles.logoBigSection}>
                     <img src={SpreadImage} />
-                    <div className="logo">
-                        <p className="logo-main">Lingo</p>
-                        <p className="logo-sub">mq</p>
+                    <div className={styles.logo}>
+                        <p className={styles.logoMain}>Lingo</p>
+                        <p className={styles.logoSub}>mq</p>
                     </div>
                 </div>
                 <RoundedButton text=" ПОДРОБНЕЕ" onClick={() => window.location.href = '#secondary-section'}/>
             </div>
-            <div className="content-secondary-section">
+            <div>
                 <h1 id="secondary-section"></h1>
-                <p className="secondary-section-route-p">НАЧАЛО / О НАС</p>
-                <div className="secondary-section">
+                <p className={styles.secondarySectionRouteP}>НАЧАЛО / О НАС</p>
+                <div>
                     <InfoBlockAll
                         isLeft={true}
                         headText={"ПРИСОЕДИНЯЙСЯ К НАМ"}
@@ -76,7 +76,7 @@ const Home = () => {
                     />
                 </div>
             </div>
-            <div className="content-bye-section">
+            <div className={styles.contentByeSection}>
                 <h1 id="start">
                     НАЧИНАЙ УЧИТЬ ЯЗЫКИ <br /> ВМЕСТЕ С <b>LINGO.MQ</b>
                 </h1>

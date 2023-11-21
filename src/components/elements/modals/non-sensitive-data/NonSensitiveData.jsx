@@ -2,7 +2,7 @@ import { useState } from "react";
 import { updateUserData } from "../../../../services/api/identity/identity";
 import notificationManager, { getNotificationModel } from "../../../services/notification/notificationManager";
 import RoundedButton from "../../../ui/buttons/rounded/RoundedButton.jsx";
-import { buttonTypes } from "../../../ui/buttons/buttonTypes.js";
+import TextField from "../../../ui/fields/text/TextField.jsx";
 
 export const NonSensitiveData = ({ userData }) => {
     const [email, setEmail] = useState(userData.email);
@@ -17,29 +17,23 @@ export const NonSensitiveData = ({ userData }) => {
     }
 
     return (
-        <div className="security-change-non-sensitive-modal">
+        <>
             <p>Смена почты или телефона</p>
-            <div className="modal-sign-inputs">
-                <div className="modal-sign-input">
-                    <label>E-mail</label>
-                    <input
-                        placeholder="example@gmail.com"
-                        type="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                    />
-                </div>
-                <div className="modal-sign-input">
-                    <label>Телефон</label>
-                    <input
-                        placeholder="8 (987) 654 32 10"
-                        type="phone"
-                        value={phone}
-                        onChange={(e) => setPhone(e.target.value)}
-                    />
-                </div>
-            </div>
+            <TextField
+                name="email"
+                labelText="E-mail"
+                type="email"
+                placeholder="example@gmail.com"
+                textStateFunction={(e) => setEmail(e.target.value)}
+            />
+            <TextField
+                name="phone"
+                labelText="Телефон"
+                type="tel"
+                placeholder="8 (987) 654 32 10"
+                textStateFunction={(e) => setPhone(e.target.value)}
+            />
             <RoundedButton text="ИЗМЕНИТЬ" onClick={changeUserData}/>
-        </div>
+        </>
     );
 };

@@ -1,4 +1,4 @@
-import "./AuthorizedHeader.scss";
+import styles from "./AuthorizedHeader.module.scss";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { BellImage, DictionaryImage, HomeImage, PracticeImage } from "../../../general/images.jsx";
@@ -9,41 +9,36 @@ const AuthorizedHeader = ({data}) => {
   useEffect(() => setUser(data), [user]);
 
   return (
-    <div className="auth-header">
-      <div className="desk-content">
+    <div className={styles["auth-header"]}>
+      <div className={styles["desk-content"]}>
         
-        <div className="auth-header-content">
-          <div className="action-section">
-            <Link className="action" to="/">
+        <div className={styles["auth-header-content"]}>
+          <div className={styles["action-section"]}>
+            <Link className={styles["action"]} to="/">
               <img src={HomeImage} />
               <p>Главная</p>
             </Link>
 
-            <a className="action" href="">
+            <a className={styles["action"]} href="">
               <img src={PracticeImage} />
               <p>Практика</p>
             </a>
 
-            <div className="rounded-button">
+            <div className={styles["rounded-button"]}>
               <button>+</button>
               <p>Добавить слово</p>
             </div>
 
-            <Link className="action only-pc" to="notifications">
-              <img src={BellImage} />
-              <p>Уведомления</p>
-            </Link>
-
-            <Link className="action" to="dict">
+            <Link className={styles["action"]} to="dict">
               <img src={DictionaryImage} />
               <p>Словарь</p>
             </Link>
           </div>
         </div>
-        <div className="auth-profile-section">
-          <Link className="profile-section" to="profile">
+        <div className={styles["auth-profile-section"]}>
+          <Link className={styles["profile-section"]} to="profile">
             <img src={data?.imageUri} />
-            <p className="nickname">{data?.nickname}</p>
+            <p className={styles["nickname"]}>{data?.nickname}</p>
           </Link>
         </div>
       </div>

@@ -1,9 +1,12 @@
 import { useState } from "react";
 import { updatePassword } from "../../../../services/api/identity/identity";
-import "../credentials.scss";
-import notificationManager, { getNotificationModel } from "../../../services/notification/notificationManager";
+import styles from "../Credentials.module.scss";
+import notificationManager, {
+    getNotificationModel,
+} from "../../../services/notification/notificationManager";
 import RoundedButton from "../../../ui/buttons/rounded/RoundedButton.jsx";
 import { buttonTypes } from "../../../ui/buttons/buttonTypes.js";
+import TextField from "../../../ui/fields/text/TextField.jsx";
 
 export const ChangePassword = ({ verificationText }) => {
     const [text, setText] = useState("");
@@ -13,10 +16,18 @@ export const ChangePassword = ({ verificationText }) => {
         let notifyModel;
 
         if (!(verificationText === text)) {
-            notifyModel = getNotificationModel("error", "Ошибка", "Вы ввели неправильное слово");
+            notifyModel = getNotificationModel(
+                "error",
+                "Ошибка",
+                "Вы ввели неправильное слово"
+            );
         } else {
             const result = await updatePassword(password);
-            notifyModel = getNotificationModel(result.level, result.title, result.message);
+            notifyModel = getNotificationModel(
+                result.level,
+                result.title,
+                result.message
+            );
         }
 
         setInterval(() => (window.location.href = ".."), 3000);
@@ -24,34 +35,31 @@ export const ChangePassword = ({ verificationText }) => {
         notificationManager.addNotification(notifyModel);
     }
     return (
-        <div>
+        <>
             <p>Смена пароля</p>
-            <p className="attention-content">
+            <p className={styles.attentionContent}>
                 Внимание! Вы пытаетесь поменять пароль от аккаунта. Для того,
                 чтобы подтвердить операцию, введите ниже :{" "}
                 <b>{verificationText}</b>
             </p>
-            <div className="modal-sign-inputs">
-                <div className="modal-sign-input">
-                    <label>Текст подтверждения</label>
-                    <input
-                        placeholder="verification text"
-                        type="text"
-                        value={text}
-                        onChange={(e) => setText(e.target.value)}
-                    />
-                </div>
-                <div className="modal-sign-input">
-                    <label>Новый пароль: </label>
-                    <input
-                        placeholder="your password here"
-                        type="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                    />
-                </div>
-            </div>
-            <RoundedButton text="ПОДТВЕРДИТЬ ИЗМЕНЕНИЕ" buttonType={buttonTypes.ERROR} onClick={changeUserPassword}/>
-        </div>
+            <TextField
+                name="text"
+                labelText="Текст подтверждения"
+                placeholder="verification text"
+                textStateFunction={(e) => setText(e.target.value)}
+            />
+            <TextField
+                name="password"
+                labelText="Новый пароль:"
+                placeholder="verification text"
+                type="password"
+                textStateFunction={(e) => setPassword(e.target.value)}
+            />
+            <RoundedButton
+                text="ПОДТВЕРДИТЬ ИЗМЕНЕНИЕ"
+                buttonType={buttonTypes.ERROR}
+                onClick={changeUserPassword}
+            />
+        </>
     );
 };

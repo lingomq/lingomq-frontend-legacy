@@ -1,4 +1,4 @@
-import "./confirm.component.scss";
+import styles from "./Confirm.module.scss";
 import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { confirmEmail } from "../../../services/api/authentication/authentication";
@@ -26,7 +26,7 @@ export const Confirm = () => {
 	}, []);
 
 	return (
-		<div className="confirm">
+		<div className={styles.confirm}>
 			<p>
 				{isValid
 					? "Ваш аккаунт подтвержден. Вы можете закрыть эту страницу и войти в свой аккаунт"

@@ -1,4 +1,4 @@
-import "../sign-modal.component.scss";
+import styles from "../SignModal.module.scss";
 import { useState } from "react";
 import { signIn } from "../../../../services/api/authentication/authentication.js";
 import TextField from "../../../ui/fields/text/TextField.jsx";
@@ -33,11 +33,11 @@ const SignInModal = ({ method }) => {
     }
 
     return (
-        <form className="modal-sign" method="POST">
-            <div className="modal-sign-header">
+        <form className={styles["modal-sign"]} method="POST">
+            <div className={styles["modal-sign-header"]}>
                 <p>ВХОД</p>
             </div>
-            <div className="modal-sign-inputs">
+            <div className={styles["modal-sign-inputs"]}>
                 <TextField
                     name="nickname"
                     labelText="Никнейм"
@@ -59,7 +59,7 @@ const SignInModal = ({ method }) => {
                     autoComplete="on"
                 />
             </div>
-            <div className="modal-sign-buttons">
+            <div className={styles["modal-sign-buttons"]}>
                 <RoundedButton text="ВХОД" type="button" onClick={signInAsync}/>
                 <RoundedButton
                     text="СОЗДАТЬ АККАУНТ"
@@ -67,9 +67,9 @@ const SignInModal = ({ method }) => {
                     buttonType={buttonTypes.ALTERNATIVE}
                 />
             </div>
-            <div className="modal-sign-forgot-password">
+            <div className={styles["modal-sign-forgot-password"]}>
                 <p>ЗАБЫЛИ ПАРОЛЬ?</p>
-                <a className="modal-sign-recovery-link" href="#">
+                <a className={styles["modal-sign-recovery-link"]} href="#">
                     ВОССТАНОВИТЬ
                 </a>
             </div>
