@@ -1,43 +1,43 @@
 import { useState } from "react";
-import "./main.component.scss";
+import styles from "./Main.module.scss";
 
 export const Main = () => {
     return (
-        <div className="main-section">
-           <div className="today-statistics-section">
-                <div className="today-statistics-card">
-                    <p className="today-statistics-card-title">
+        <>
+           <div className={styles.todayStatisticsSection}>
+                <div className={styles.todayStatisticsCard}>
+                    <p className={styles.todayStatisticsCardTitle}>
                         Добавленных слов за сегодня
                     </p>
-                    <p className="today-statistics-card-content">
+                    <p className={styles.todayStatisticsContent}>
                         20
                     </p>
                 </div>
-                <div className="today-statistics-card">
-                    <p className="today-statistics-card-title">
+                <div className={styles.todayStatisticsCard}>
+                    <p className={styles.todayStatisticsCardTitle}>
                         Дней подряд
                     </p>
-                    <p className="today-statistics-card-content">
+                    <p className={styles.todayStatisticsContent}>
                         20
                     </p>
                 </div>
-                <div className="today-statistics-card">
-                    <p className="today-statistics-card-title">
+                <div className={styles.todayStatisticsCard}>
+                    <p className={styles.todayStatisticsCardTitle}>
                         Повторений за сегодня
                     </p>
-                    <p className="today-statistics-card-content">
+                    <p className={styles.todayStatisticsContent}>
                         20
                     </p>
                 </div>
-                <div className="today-statistics-card">
-                    <p className="today-statistics-card-title">
+                <div className={styles.todayStatisticsCard}>
+                    <p className={styles.todayStatisticsCardTitle}>
                         Слово дня
                     </p>
-                    <p className="today-statistics-card-content">
+                    <p className={styles.todayStatisticsContent}>
                         ауе
                     </p>
                 </div>
            </div>
-        </div>
+        </>
     );
 };

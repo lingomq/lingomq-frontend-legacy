@@ -1,0 +1,166 @@
+@import "../../../general/root.scss";
+
+.auth-header {
+    position: fixed;
+    height: 9%;
+    z-index: 1;
+    border-top: 1px solid #000000;
+    background: $background-white-color;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.desk-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.auth-profile-section {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    margin-left: $margin-desktop;
+    margin-top: 0.5em;
+    left: 0;
+    top: 0;
+}
+
+.auth-header-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile-section img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.profile-section .nickname {
+    font-size: 0.8em;
+    margin: 0;
+    font-weight: 800;
+}
+
+.action-section {
+    display: flex;
+    flex-direction: row;
+}
+
+.action-section .action {
+    font-size: 0.5em;
+}
+
+.action {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 10px;
+}
+
+.action p {
+    margin: 0;
+}
+
+.rounded-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 10px;
+}
+
+.rounded-button button {
+    border: none;
+    border-radius: 50%;
+    background: $alt-foreground-color;
+    color: $alt-white-foreground-color;
+    font-size: 1.2em;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+}
+
+.rounded-button p {
+    font-size: 0.8em;
+    margin: 0;
+    user-select: none;
+}
+
+.mobile-content {
+    display: none;
+}
+
+.only-mobile {
+    display: none;
+}
+
+@media screen and (max-width: 1100px) {
+    .only-pc {
+        display: none;
+    }
+    .profile-section {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        margin: 0 10px;
+    }
+
+    .profile-section img {
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+    }
+
+    .auth-profile-section {
+        position: relative;
+        margin-left: 0;
+        margin-top: 0;
+    }
+
+    .auth-profile-section .notification-section {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    .action-section .action {
+        font-size: 0.3em;
+        justify-content: center;
+    }
+
+    .rounded-button {
+        margin: 5px 10px;
+    }
+
+    .rounded-button p {
+        display: none;
+    }
+
+    .rounded-button button {
+        width: 40px;
+        height: 40px;
+    }
+
+    .profile-section img {
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+    }
+
+    .profile-section .nickname {
+        font-size: 0.6em;
+        font-weight: 400;
+    }
+
+    .profile-section {
+        justify-content: center;
+    }
+}

@@ -31,6 +31,13 @@ async function getNewToken(refreshToken) {
         return result.data.data;
 }
 
+export const writeTokens = (tokens) => {
+    let date = new Date(tokens.accessExpiredAt);
+    let infDate = new Date(2024, 0, 1);
+    cookies.set("access-token", tokens.accessToken, { path: "/", expires: date });
+    cookies.set("refresh-token", tokens.refreshToken, { path: "/", expires: infDate });
+}
+
 function validToken(token) {
     const decodedToken = jwtDecode(token);
     const date = new Date();

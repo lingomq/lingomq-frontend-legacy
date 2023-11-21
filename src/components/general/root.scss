@@ -1,0 +1,42 @@
+@import './colors.scss';
+@import './fonts.scss';
+
+// sizes
+$default-font-size: 1.8em;
+$default-font-ru-size: 1.6em;
+$default-h2-font-size: 3em;
+$default-button-text-size: 1.3em;
+
+// margins
+$margin-desktop: 100px;
+$margin-landscape: 80px;
+$margin-mobile: 50px;
+
+// root
+body {
+    margin: 0;
+    box-sizing: border-box;
+    background-color: $background-white-color;
+}
+
+p{
+    font-family: $all-font-family;
+    font-size: $default-font-size;
+    color: $foreground-color;
+}
+
+h1, h2, h3, h4, h5  {
+    font-family: $all-font-family;
+}
+
+a {
+    color: $link;
+    font-family: $default-font-family;
+    font-weight: 330;
+    text-decoration: none;
+    transition: 0.15s ease-in;
+}
+
+a:hover {   
+    color: $link-alternative;
+}

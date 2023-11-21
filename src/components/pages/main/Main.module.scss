@@ -1,0 +1,38 @@
+.todayStatisticsSection {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    margin-top: 20vh;
+}
+
+.todayStatisticsCard {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    width: 20%;
+    justify-content: center;
+    border-radius: 15px;
+    box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.todayStatisticsCardTitle {
+    font-size: 1em;
+    color: #7e7d7d;
+}
+
+.todayStatisticsCardContent {
+    font-size: 3em;
+}
+
+@media screen and (max-width: 950px) {
+    .todayStatisticsSection {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .todayStatisticsCard {
+        width: 100%;
+        margin: 50px;
+    }
+}

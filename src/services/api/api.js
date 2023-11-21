@@ -47,7 +47,7 @@ export const requestAsync = async(type, uri, model = {}, token = undefined) => {
 }
 
 export function handleRequest(model) {
-    if (model.code === "ERR_NETWORK_ERROR")
+    if (model.code === "ERR_NETWORK")
         return { level: resultTitleMap.get(500), title: "Проблемы с интернетом", message: "Проверьте интернет соединение" };
     else if (model.response === undefined)
         return {

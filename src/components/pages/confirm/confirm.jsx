@@ -2,9 +2,8 @@ import "./confirm.component.scss";
 import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { confirmEmail } from "../../../services/api/authentication/authentication";
-import notificationManager, {
-	notificationModel,
-} from "../../structure/notify/notificationManager.js";
+import notificationManager, { getNotificationModel } from "../../services/notification/notificationManager";
+import { writeTokens } from "../../../services/authentication";
 
 export const Confirm = () => {
 	const search = useLocation().search;
@@ -18,15 +17,10 @@ export const Confirm = () => {
 			if (!(result.data.code === 3)) 
             {
                 setIsValid(result.data.data);
+				writeTokens(result.data.data);
                 setInterval(() => window.location.href = '..', 4000);
             }
-			notificationManager.addNotification(
-				notificationModel({
-					level: result.level,
-					title: result.title,
-					message: result.message,
-				})
-			);
+			notificationManager.addNotification(getNotificationModel(result.level, result.title, result.message));
 		};
 		confirmAccount();
 	}, []);

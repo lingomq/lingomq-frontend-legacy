@@ -29,66 +29,6 @@ export const Dictionary = () => {
                     <p className='word-card-translated'>Дом</p>
                     <p className='word-card-language'>en</p>
                 </div>
-                <div className='word-card'>
-                    <p className='word-card-native'>House</p>
-                    <p className='word-card-translated'>Дом</p>
-                    <p className='word-card-language'>en</p>
-                </div>
-                <div className='word-card'>
-                    <p className='word-card-native'>House</p>
-                    <p className='word-card-translated'>Дом</p>
-                    <p className='word-card-language'>en</p>
-                </div>
-                <div className='word-card'>
-                    <p className='word-card-native'>House</p>
-                    <p className='word-card-translated'>Дом</p>
-                    <p className='word-card-language'>en</p>
-                </div>
-                <div className='word-card'>
-                    <p className='word-card-native'>House</p>
-                    <p className='word-card-translated'>Дом</p>
-                    <p className='word-card-language'>en</p>
-                </div>
-                <div className='word-card'>
-                    <p className='word-card-native'>House</p>
-                    <p className='word-card-translated'>Дом</p>
-                    <p className='word-card-language'>en</p>
-                </div>
-                <div className='word-card'>
-                    <p className='word-card-native'>House</p>
-                    <p className='word-card-translated'>Дом</p>
-                    <p className='word-card-language'>en</p>
-                </div>
-                <div className='word-card'>
-                    <p className='word-card-native'>House</p>
-                    <p className='word-card-translated'>Дом</p>
-                    <p className='word-card-language'>en</p>
-                </div>
-                <div className='word-card'>
-                    <p className='word-card-native'>House</p>
-                    <p className='word-card-translated'>Дом</p>
-                    <p className='word-card-language'>en</p>
-                </div>
-                <div className='word-card'>
-                    <p className='word-card-native'>House</p>
-                    <p className='word-card-translated'>Дом</p>
-                    <p className='word-card-language'>en</p>
-                </div>
-                <div className='word-card'>
-                    <p className='word-card-native'>House</p>
-                    <p className='word-card-translated'>Дом</p>
-                    <p className='word-card-language'>en</p>
-                </div>
-                <div className='word-card'>
-                    <p className='word-card-native'>House</p>
-                    <p className='word-card-translated'>Дом</p>
-                    <p className='word-card-language'>en</p>
-                </div>
-                <div className='word-card'>
-                    <p className='word-card-native'>House</p>
-                    <p className='word-card-translated'>Дом</p>
-                    <p className='word-card-language'>en</p>
-                </div>
             </div>
         </div>
     )

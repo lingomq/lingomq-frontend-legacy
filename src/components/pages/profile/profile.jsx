@@ -1,31 +1,27 @@
-import './profile.component.scss';
-import { ProfileGeneral } from './sections/general.jsx';
+import styles from './Profile.module.scss';
+import { ProfileGeneral } from './sections/general/General.jsx';
 import { useState, useEffect } from "react";
 import { clearAuthCookies } from '../../../services/authentication.js';
-import { getUserData } from "../../../services/api/identity/identity";
-import { Notifications } from './sections/notifications.jsx';
-import { Statistics } from './sections/statistics.jsx';
-import { Security } from './sections/security.jsx';
+import { Notifications } from './sections/notifications/Notifications.jsx';
+import { Statistics } from './sections/statistics/Statistics.jsx';
+import { Security } from './sections/security/Security.jsx';
 
-export const Profile = ({ changeSubTitleMethod = undefined }) => {
-    const sections = new Map();
-    sections.set("Общие", <ProfileGeneral />);
-    sections.set("Уведомления", <Notifications/>);
-    sections.set("Статистика", <Statistics/>)
-    sections.set("Безопасность", <Security/>);
+export const Profile = ({ data, changeSubTitleMethod = undefined }) => {
 
-    const [data, setData] = useState();
+    const [user, setUser] = useState(null);
     const [currentSection, setCurrentSection] = useState();
 
     useEffect(() => {
-        const fetchUserData = async () => {
-            const result = await getUserData();
-            setData(result.data.data);
-        }
-        fetchUserData();
-        setCurrentSection(sections.get("Общие"));
+        setUser(data);
+        setCurrentSection(<ProfileGeneral data={data}/>);
         changeSubTitleMethod("Общие");
-    }, []);
+    }, [setUser]);
+
+    const sections = new Map();
+    sections.set("Общие", <ProfileGeneral data={user}/>);
+    sections.set("Уведомления", <Notifications/>);
+    sections.set("Статистика", <Statistics/>)
+    sections.set("Безопасность", <Security data={user}/>);
 
     function changeSection(sectionName) {
         setCurrentSection(sections.get(sectionName));
@@ -37,32 +33,33 @@ export const Profile = ({ changeSubTitleMethod = undefined }) => {
         window.location.href = '..';
     }
 
-    return data && (
-        <div className='wrapper-profile-section'>
-            <div className='profile-navigation'>
-                <div className='profile-navigation-header'>
-                    <img src={data.imageUri}/>
-                    <p>{data.nickname}</p>
+
+    return (
+        <div className={styles.profileSection}>
+            <div className={styles.profileNavigation}>
+                <div className={styles.profileNavigationHeader}>
+                    <img className={styles.profileNavigationHeaderImage} src={user?.imageUri}/>
+                    <p className={styles.profileNavigationHeaderName}>{user?.nickname}</p>
                 </div>
                 <div className='profile-navigation-content'>
-                    <div className='profile-navigation-content-submenu' onClick={() => changeSection("Общие")}>
+                    <div className={styles.profileNavigationContentSubmenu} onClick={() => changeSection("Общие")}>
                         <p>Общие</p>
                     </div>
 
-                    <div className='profile-navigation-content-submenu' onClick={() => changeSection("Уведомления")}>
+                    <div className={styles.profileNavigationContentSubmenu} onClick={() => changeSection("Уведомления")}>
                         <p>Уведомления</p>
                     </div>
 
-                    <div className='profile-navigation-content-submenu' onClick={() => changeSection("Статистика")}>
+                    <div className={styles.profileNavigationContentSubmenu} onClick={() => changeSection("Статистика")}>
                         <p>Статистика</p>
                     </div>
 
-                    <div className='profile-navigation-content-submenu' onClick={() => changeSection("Безопасность")}>
+                    <div className={styles.profileNavigationContentSubmenu} onClick={() => changeSection("Безопасность")}>
                         <p>Безопасность</p>
                     </div>
 
-                    <div className='profile-navigation-content-submenu without-line' onClick={exit}>
-                        <p className='danger-p'>Выход</p>
+                    <div className={`${styles.profileNavigationContentSubmenu} ${styles.withoutLine} ${styles.danger}`} onClick={exit}>
+                        <p>Выход</p>
                     </div>
 
                 </div>

@@ -1,10 +1,11 @@
 import "./home.component.scss";
-import Images from "../../common/local-images.jsx";
-import InfoBlockAll from "../../structure/blocks/info-block-all/info-block.jsx";
-import Notification from "../../structure/notify/notification.jsx";
-import Modal from "../../structure/modals/modal-window.jsx";
 import React, { useState } from "react";
-import SignModal from "../../structure/modals/authorization/sign-modal.jsx";
+import { AnalyticsImageImage, ApplicationImage, CollaborationImage, SpreadImage, SuccessImage } from "../../general/images.jsx";
+import InfoBlockAll from "./blocks/info-block-all/info-block.jsx";
+import RoundedButton from "../../ui/buttons/rounded/RoundedButton.jsx";
+import Modal from "../../ui/modal/Modal.jsx";
+import SignModal from "../../elements/modals/SignModal.jsx";
+import { modalSize } from "../../ui/modal/modalSize.js";
 
 const Home = () => {
     const [isShowModal, setIsShowModal] = useState(false);
@@ -13,26 +14,23 @@ const Home = () => {
         setIsShowModal(!isShowModal);
     };
     return (
-        <div className="content">
+        <div className="home-content">
             <Modal
-                isModalShow={isShowModal}
-                handleChange={handleShowModal}
-                width="average"
+                isShow={isShowModal}
+                showModalFunction={handleShowModal}
+                size={modalSize.AVERAGE}
                 content={<SignModal />}
             />
-            <Notification />
             <div className="content-main-section">
                 <h1>УЧИ СЛОВА ВМЕСТЕ С</h1>
                 <div className="logo-big-section">
-                    <img src={Images.Spread} />
+                    <img src={SpreadImage} />
                     <div className="logo">
                         <p className="logo-main">Lingo</p>
                         <p className="logo-sub">mq</p>
                     </div>
                 </div>
-                <a className="default-button" href="#secondary-section">
-                    ПОДРОБНЕЕ
-                </a>
+                <RoundedButton text=" ПОДРОБНЕЕ" onClick={() => window.location.href = '#secondary-section'}/>
             </div>
             <div className="content-secondary-section">
                 <h1 id="secondary-section"></h1>
@@ -46,13 +44,11 @@ const Home = () => {
                         }
                         buttons={
                             <div className="info-block-buttons">
-                                <button className="default-button">
-                                    GOOGLE PLAY
-                                </button>
-                                <button className="default-button">САЙТ</button>
+                                <RoundedButton className="default-button" text='GOOGLE PLAY'/>
+                                <RoundedButton className="default-button" text='САЙТ'/>
                             </div>
                         }
-                        image={Images.Collaboration}
+                        image={CollaborationImage}
                     />
                     <InfoBlockAll
                         isLeft={false}
@@ -60,7 +56,7 @@ const Home = () => {
                         contentText={
                             "Добавляя каждое новое слово, повторяя добавленные слова, проводя время в приложении ты сможешь отследить свой прогресс, который будет мотивировать тебя изучать языки в удовольствие"
                         }
-                        image={Images.Analytics}
+                        image={AnalyticsImageImage}
                     />
                     <InfoBlockAll
                         isLeft={true}
@@ -68,7 +64,7 @@ const Home = () => {
                         contentText={
                             "Вы можете посмотреть успехи людей, или стать обьектом наблюдения на доске рекордсменов"
                         }
-                        image={Images.Success}
+                        image={SuccessImage}
                     />
                     <InfoBlockAll
                         isLeft={false}
@@ -76,7 +72,7 @@ const Home = () => {
                         contentText={
                             "Время от времени наша команда будет выкладывать тематические статьи для разных языков, дневники разработчика или общие статьи"
                         }
-                        image={Images.Application}
+                        image={ApplicationImage}
                     />
                 </div>
             </div>
@@ -84,7 +80,7 @@ const Home = () => {
                 <h1 id="start">
                     НАЧИНАЙ УЧИТЬ ЯЗЫКИ <br /> ВМЕСТЕ С <b>LINGO.MQ</b>
                 </h1>
-                <button className="default-button" onClick={handleShowModal}>НАЧАТЬ</button>
+                <RoundedButton text="НАЧАТЬ" onClick={handleShowModal}/>
             </div>
         </div>
     );

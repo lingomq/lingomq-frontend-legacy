@@ -1,0 +1,96 @@
+@import '../../general/root.scss';
+
+.profileSection {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-top: 10%;
+}
+
+.profileNavigation {
+    display: flex;
+    flex-direction: column;
+    width: 17vw;
+    border-radius: 15px;
+    padding: 0 10px;
+    box-shadow: 1px 1px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.profileNavigationHeader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: 2px solid #5a5a5a;
+}
+
+
+.profileNavigationContentSubmenu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 15px;
+    border-bottom: 1px solid #000000;
+    user-select: none;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.profileNavigationContentSubmenu p {
+    font-size: 1.2em;
+}
+
+.profileNavigationContentSubmenu:hover {
+    border-bottom-color: $alt-foreground-color;
+}
+
+.withoutLine {
+    border: none;
+}
+
+.danger p{
+    color: $error-color;
+}
+
+
+.profileGeneralSection {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.profileNavigationHeaderImage {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+
+.profileNavigationHeaderName {
+    font-size: 1em;
+    margin-left: 5px;
+}
+
+@media screen and (max-width: 1280px) {
+    .profileNavigation {
+        width: 20vw;
+    }
+}
+
+@media screen and (max-width: 950px) {
+    .profileSection {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .profileNavigation {
+        width: 100%;
+        margin: 0 20px;
+    }
+
+    .profileGeneralSection {
+        margin-top: 5%;
+        flex-direction: column;
+        width: 100%;
+    }
+}

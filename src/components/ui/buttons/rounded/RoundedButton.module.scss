@@ -1,0 +1,54 @@
+@import '../../../general/colors.scss';
+@import '../../../general/fonts.scss';
+@import '../../../general/root.scss';
+
+.roundedButton {
+    border-radius: 5px;
+    border-style: none;
+    padding: 0.5em 2.5em;
+    font-family: $ru-font-family;
+    font-size: $default-button-text-size;
+    transition: 0.2s ease-in;
+    margin: 5px;
+    cursor: pointer;
+}
+
+.primary {
+    background-color: $alt-foreground-color;
+    color: #FFFFFF;
+}
+
+.primary:hover {
+    background-color: #F1F1F1;
+    color: $alt-foreground-color;
+}
+
+.warning {
+    background-color: $warning-color;
+    color: #c7c7c7;
+}
+
+.warning:hover {
+    background-color: #c7c7c7;
+    color: $warning-color;
+}
+
+.alt {
+    background-color: #F1F1F1;
+    color: $alt-foreground-color;
+}
+
+.alt:hover {
+    background-color: $alt-foreground-color;
+    color: #FFFFFF;
+}
+
+.error {
+    background-color: $error-color;
+    color: #FFFFFF;
+}
+
+.error:hover {
+    background-color: #ffffff;
+    color: $error-color;
+}

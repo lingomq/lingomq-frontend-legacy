@@ -1,0 +1,31 @@
+@import '../../general/root.scss';
+
+.wrapper {
+    padding-top: 115px;
+    margin-left: $margin-desktop;
+    margin-right: $margin-desktop;
+}
+
+.authWrapper {
+    padding-top: 0;
+}
+
+@media screen and (max-width: 1400px) {
+    .wrapper {
+        margin-left: 50px;
+        margin-right: 50px;
+    }
+}
+
+@media screen and (max-width: 950px) {
+    .authWrapper {
+        margin-bottom: 12vh;
+    }
+}
+
+@media (max-width: 770px) {
+    .wrapper {
+        margin-left: 25px;
+        margin-right: 25px;
+    }
+}
