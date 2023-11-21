@@ -1,6 +1,6 @@
 import './UnauthorizedHeader.scss';
 import React, { useState } from "react";
-import { HamburgerMenuPictureImage } from '../../../general/images.jsx';
+import { HamburgerMenuPictureImage } from '../../../general/Images.jsx';
 import Modal from '../../../ui/modal/Modal.jsx';
 import SignModal from '../../modals/SignModal.jsx';
 import RoundedButton from '../../../ui/buttons/rounded/RoundedButton.jsx';
