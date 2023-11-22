@@ -1,7 +1,6 @@
 import styles from "./Notifications.module.scss";
 
 export const Notifications = () => {
-	console.log(styles);
 	return (
 		<div className={styles.notificationsSection}>
 			<div className={styles.notificationCard}>

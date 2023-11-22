@@ -1,0 +1,23 @@
+@import "../../../general/fonts.scss";
+
+.setWordSection {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.selectLanguage {
+    font-family: $all-font-family;
+    font-size: 1em;
+    border-radius: 5px;
+    border: 2px solid #3c3c3c;
+    padding: 1em 1em;
+    width: auto;
+    margin-bottom: 5px;
+}
+
+@media screen and (max-width: 500px) {
+    .setWordSection {
+        flex-direction: column;
+    }
+}

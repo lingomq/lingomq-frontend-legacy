@@ -2,7 +2,7 @@ import { CloseImage } from "../../general/images.jsx";
 import styles from "./Modal.module.scss";
 import { modalSize } from "./modalSize";
 
-const Modal = ({ isShow, showModalFunction, size = modalSize.AVERAGE, content = "" }) => {
+const Modal = ({ isShow, showModalFunction, size = modalSize.AVERAGE, content = ""  }) => {
 
     function modalHandler () {
         showModalFunction();
@@ -18,7 +18,7 @@ const Modal = ({ isShow, showModalFunction, size = modalSize.AVERAGE, content = 
                         onClick={modalHandler}
                     />
                 </div>
-                <div>{content}</div>
+                <div className={ styles.modalWindowContent }>{content}</div>
             </div>
         </div>
     );
