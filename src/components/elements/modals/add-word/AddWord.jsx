@@ -16,7 +16,6 @@ const AddWord = ({userId}) => {
             ...wordModel,
             [e.target.name]: e.target.value
         });
-        console.log(wordModel);
     }
 
     const languages = [{name: "EN", value: "guid-en"}, {name: "RU", value: "guid-ru"}];
