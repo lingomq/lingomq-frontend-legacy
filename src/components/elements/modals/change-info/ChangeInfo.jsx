@@ -48,14 +48,15 @@ const ChangeInfo = ({ userData }) => {
             <p className={stylesInfo.changeInfoModalHeader}>ИЗМЕНЕНИЕ ПРОФИЛЯ</p>
 
             <input
+                id="profile-photo"
                 type="file"
                 className={stylesInfo.profilePhoto}
                 name="image"
                 accept="image/jpeg,image/png"
                 onChange={uploadImage}
             />
-            <label htmlFor={stylesInfo.profilePhoto} className="input-file-button">
-                <img
+            <label htmlFor="profile-photo" className="input-file-button">
+                <img 
                     src={image === "" ? userData?.imageUri : image}
                 />
             </label>

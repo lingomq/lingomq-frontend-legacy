@@ -9,7 +9,8 @@ const SelectField = ({
     autoComplete = null,
     values = [],
 }) => {
-    const [selectValue, setSelectValue] = useState(values[0].value);
+
+    const [selectValue, setSelectValue] = useState("none");
     function onChange(e) {
         if (selectStateFunction === undefined) {
             console.warn("You forgot to declare a textState method");
@@ -19,12 +20,13 @@ const SelectField = ({
         }
     }
 
-    const listLanguages = values.map((item) => (
+    const listLanguages = [<option key="0" value="none">Выберите</option>];
+    listLanguages.push(values.map((item) => (
         <option key={uuid()} value={item.value}>
             {item.name}
         </option>
-    ));
-
+    )));
+    
     return (
         <div className={styles.selectFieldComponent}>
             <label>{labelText}</label>
