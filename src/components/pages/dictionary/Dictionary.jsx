@@ -48,10 +48,6 @@ export const Dictionary = () => {
     }
 
     const fetchData = async () => {
-        function handleSelectWord(item) {
-            setSelectedWord(item);
-            handleShowEdit();
-        }
 
         const toArray = (data, name = "name") => {
             const array = [];
@@ -93,7 +89,10 @@ export const Dictionary = () => {
             });
             setWords(newWords);
         }
-        
+    }
+
+    function removeFromDictionary (id) {
+        setWords(words.filter((item) => item.props["data-key"] != id));
     }
 
     return (
@@ -105,7 +104,7 @@ export const Dictionary = () => {
                     isShow={showEdit}
                     showModalFunction={handleShowEdit}
                     size={modalSize.SMALL}
-                    content={<EditWord data={selectedWord} />}
+                    content={<EditWord data={selectedWord} remove={removeFromDictionary}/>}
                 />
                 <div className={styles.filters}>
                     <SelectField

@@ -24,3 +24,9 @@ export const getUserWords = async () => {
     const result = await requestAsync("get", "api.lingomq/words/user-words/user", {}, token);
     return result;
 }
+
+export const removeUserWord = async (id) => { 
+    const token = getAccessToken();
+    const result = await requestAsync("delete", "api.lingomq/words/user-words/" + id, {}, token);
+    return result;
+}

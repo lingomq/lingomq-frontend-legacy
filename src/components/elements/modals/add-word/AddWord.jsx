@@ -55,6 +55,7 @@ const AddWord = ({userId}) => {
             setRightWord(result.data.errors.rightWord);
             handleWrongWordChanged();
         }
+        setInterval(() => window.location.href = "dict", 2000);
         notificationManager.addNotification(getNotificationModel(result.level, result.title, result.message));
     }
 
@@ -74,7 +75,7 @@ const AddWord = ({userId}) => {
                 <TextField labelText="Слово" name="word" placeholder="word" textStateFunction={(e) => handleChange(e)}/>
             <div className={styles.setWordSection}>
                 <SelectField labelText="Язык" name="languageId" values={languages} selectStateFunction={(e) => handleChange(e)}/>
-                <SelectField labelText="Тип" name="userWordTypeId" values={wordTypes} selectStateFunction={(e) => handleChange(e)}/>
+                {/* <SelectField labelText="Тип" name="userWordTypeId" values={wordTypes} selectStateFunction={(e) => handleChange(e)}/> */}
             </div>
             <TextField labelText="Перевод" name="translated" placeholder="translated" textStateFunction={(e) => handleChange(e)}/>
             <RoundedButton text="ДОБАВИТЬ" onClick={addWordAsync}/>
