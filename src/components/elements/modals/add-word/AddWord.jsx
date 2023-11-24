@@ -45,7 +45,6 @@ const AddWord = ({userId}) => {
             ...wordModel,
             [e.target.name]: e.target.value
         });
-        console.log(wordModel);
     }
 
     const addWordAsync = async () => {
