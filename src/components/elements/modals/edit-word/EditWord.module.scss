@@ -1,0 +1,31 @@
+.nativeWord {
+    font-size: 4.5vh;
+    margin: 0;
+    user-select: none;
+}
+
+.translatedWord {
+    font-size: 3vh;
+    color: #7e7d7d;
+    margin: 0;
+    user-select: none;
+}
+
+.language {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 30px;
+    font-size: 1.5vh;
+    user-select: none;
+}
+
+.repeats {
+    margin-top: 30px;
+    font-size: 2.5vh;
+    user-select: none;
+}
+
+.repeats b {
+    color: #7e7d7d;
+}

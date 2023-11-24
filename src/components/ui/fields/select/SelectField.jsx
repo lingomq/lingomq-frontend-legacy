@@ -6,11 +6,11 @@ const SelectField = ({
     labelText = "",
     selectStateFunction = undefined,
     name = null,
-    autoComplete = null,
+    selectedValue = null,
     values = [],
 }) => {
 
-    const [selectValue, setSelectValue] = useState("none");
+    const [selectValue, setSelectValue] = useState(selectValue != null ? selectValue : "none");
     function onChange(e) {
         if (selectStateFunction === undefined) {
             console.warn("You forgot to declare a textState method");
