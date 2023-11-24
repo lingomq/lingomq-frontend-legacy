@@ -53,20 +53,12 @@
     justify-content: flex-end;
 }
 
-.dictionaryFilter p {
-    font-size: 1.1em;
-    color: #7e7d7d;
-}
-
-.dictionaryFilter select {
-    font-size: 1.1em;
-    border: 0;
-    font-family: 'IBM Plex Mono';
-    color: #00a3ff;
+.filters {
+    display: flex;
 }
 
 @media screen and (max-width: 650px) {
-    .dictionaryFilterSection {
+    .filters {
         flex-direction: column;
         align-items: center;
         justify-content: center;
