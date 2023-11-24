@@ -1,0 +1,14 @@
+@import '../../../general/root.scss';
+
+.attentionContent {
+    font-size: 0.9em;
+}
+
+.attentionContent b {
+    color: $error-color;
+    user-select: none;
+}
+
+.buttonContent {
+    display: block;
+}

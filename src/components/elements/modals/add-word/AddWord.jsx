@@ -4,9 +4,14 @@ import { useEffect, useState } from "react";
 import RoundedButton from "../../../ui/buttons/rounded/RoundedButton.jsx";
 import SelectField from "../../../ui/fields/select/SelectField.jsx";
 import { addWord, getLanguages, getTypes } from "../../../../services/api/words/words.js";
+import Modal from "../../../ui/modal/Modal.jsx";
 import notificationManager, { getNotificationModel } from "../../../services/notification/notificationManager";
+import WrongWordConfirm from "../wrong-word-confirm/WrongWordConfirm.jsx";
+import { modalSize } from "../../../ui/modal/modalSize.js";
 
 const AddWord = ({userId}) => {
+    const [showWrongWordModal, setShowWrongWordModal] = useState(false);
+    const [rightWord, setRightWord] = useState("");
     const [languages, setLanguages] = useState();
     const [wordTypes, setWordTypes] = useState();
     const [wordModel, setWordModel] = useState({
@@ -45,11 +50,26 @@ const AddWord = ({userId}) => {
 
     const addWordAsync = async () => {
         const result = await addWord(wordModel, false, false);
+        if (result.data.message === "wrong word")
+        {
+            setRightWord(result.data.errors.rightWord);
+            handleWrongWordChanged();
+        }
         notificationManager.addNotification(getNotificationModel(result.level, result.title, result.message));
+    }
+
+    const handleWrongWordChanged = () => {
+        setShowWrongWordModal(!showWrongWordModal);
     }
 
     return languages && wordTypes && (
         <>
+            <Modal 
+                isShow={showWrongWordModal}
+                showModalFunction={handleWrongWordChanged}
+                size={modalSize.AVERAGE}
+                content={<WrongWordConfirm rightWord={rightWord} wordModel={wordModel}/>}
+                useAutoContent={true} />
             <p>ДОБАВИТЬ СЛОВО</p>
                 <TextField labelText="Слово" name="word" placeholder="word" textStateFunction={(e) => handleChange(e)}/>
             <div className={styles.setWordSection}>

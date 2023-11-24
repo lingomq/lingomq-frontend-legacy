@@ -1,23 +1,22 @@
 .dictionaryContentSection {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
 }
 
 .wordCardNative {
-    font-size: 1.7em;
+    font-size: 2vh;
     border-radius: 1px solid #000000;
     margin: 0;
 }
 
 .wordCardTranslated {
-    font-size: 1.5em;
+    font-size: 1.8vh;
     color: #7e7d7d;
     margin: 0;
 }
 
 .wordCardLanguage {
-    font-size: 1em;
+    font-size: 1vw;
     color: #7e7d7d;
     position: absolute;
     right: 0;

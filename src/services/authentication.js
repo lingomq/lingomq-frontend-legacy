@@ -3,7 +3,7 @@ import { Cookies } from "react-cookie";
 import { requestAsync } from "./api/api";
 
 const cookies = new Cookies();
-export async function isAuthenticated() {
+export function isAuthenticated() {
     const accessToken = cookies.get("access-token");
     const refreshToken = cookies.get("refresh-token");
 
@@ -11,11 +11,6 @@ export async function isAuthenticated() {
         return false;
 
     if (!validToken(refreshToken)) return false;
-
-    if (accessToken === undefined) {
-        let tokens = await getNewToken(refreshToken);
-        rewriteTokens(tokens);
-    }
 
     return true;
 }
@@ -25,7 +20,13 @@ export async function refreshTokens(refreshToken) {
     rewriteTokens(newTokens);
 }
 
-async function getNewToken(refreshToken) {
+export async function getNewTokens (refreshToken) {
+    const result = await requestAsync("get", "api.lingomq/auth/refresh-token/" + refreshToken);
+    if (result.data.code === 0)
+        rewriteTokens(result.data.data);
+}
+
+export async function getNewToken(refreshToken) {
     const result = await requestAsync("get", "api.lingomq/auth/refresh-token/" + refreshToken);
     if (result.data.code === 0)
         return result.data.data;
@@ -47,7 +48,7 @@ function validToken(token) {
     return true;
 }
 
-function rewriteTokens(tokens) {
+export function rewriteTokens(tokens) {
     let date = new Date(tokens.accessExpiredAt);
     let infDate = new Date(2024, 0, 1);
     cookies.set("access-token", tokens.accessToken, { path: "/", expires: date });

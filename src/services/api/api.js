@@ -1,4 +1,5 @@
 import axios from "axios";
+import { getAccessToken, getRefreshToken, isAuthenticated, rewriteTokens } from "../authentication";
 
 const resultMap = new Map();
 resultMap.set(200, "Успешно");
@@ -29,8 +30,18 @@ export const apiUrl = "https://192.168.0.105:9999/";
 
 export const requestAsync = async(type, uri, model = {}, token = undefined) => {
     let result;
-
     try {
+        if (isAuthenticated()) {
+            const refreshToken = getRefreshToken();
+            const response = await axios({
+                method: "get", 
+                url: apiUrl + "api.lingomq/auth/refresh-token/" + refreshToken,
+                headers: headers,
+            });
+            rewriteTokens(response.data.data);
+            token = getAccessToken();
+        }
+
         const response = await axios({
             method: type, 
             url: apiUrl + uri,
