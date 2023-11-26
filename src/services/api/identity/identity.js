@@ -1,16 +1,34 @@
 import notificationManager, { getNotificationModel } from "../../../components/services/notification/notificationManager";
-import { getAccessToken, getRefreshToken, getUserId, isAuthenticated, refreshTokens } from "../../authentication";
+import { addLastHour, getAccessToken, getRefreshToken, getUserId, hasLastHour, isAuthenticated, refreshTokens } from "../../authentication";
 import { requestAsync } from "../api";
 
 export const getUserData = async () => {
-    await isAuthenticated();
     const token = getAccessToken();
     const result = await requestAsync("get", "api.lingomq/identity/user/info", {}, token);
     if (result.data === undefined) {
         notificationManager.addNotification(getNotificationModel(result.level, result.title, result.message));
         return { data: { data: { }}};
     }
+    await addHour();
+    await addVisit();
     return result; 
+}
+
+export const addHour = async () => {
+    const token = getAccessToken();
+    const doUpdate = await hasLastHour();
+    if (doUpdate === true)
+    {
+        await addLastHour();
+        await requestAsync("put", "api.lingomq/identity/user/statistics/hour/add", {}, token);
+    }
+
+}
+
+export const addVisit = async () => {
+    const token = getAccessToken();
+    const result = await requestAsync("put", "api.lingomq/identity/user/statistics/visit", {}, token);
+    return result;
 }
 
 export const updateUserInfo = async (model) => {

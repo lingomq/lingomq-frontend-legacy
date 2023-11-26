@@ -1,16 +1,33 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./Main.module.scss";
+import { getFamousWord, getUserStatistics } from "../../../services/api/words/words";
 
 export const Main = () => {
-    return (
+    const [famousWord, setFamousWord] = useState();
+    const [userStatistics, setUserStatistics] = useState();
+
+    useEffect(() => {
+        const fetchUserStatistics = async () => {
+            const result = await getUserStatistics();
+            setUserStatistics(result.data.data);
+        }
+        const fetchFamousWord = async () => {
+            const result = await getFamousWord();
+            setFamousWord(result.data.data);
+        }
+        fetchFamousWord();
+        fetchUserStatistics();
+    }, []);
+
+    return (famousWord && userStatistics) && (
         <>
            <div className={styles.todayStatisticsSection}>
                 <div className={styles.todayStatisticsCard}>
                     <p className={styles.todayStatisticsCardTitle}>
-                        Добавленных слов за сегодня
+                        Добавленных слов за все время
                     </p>
                     <p className={styles.todayStatisticsCardContent}>
-                        20
+                        {userStatistics.totalWords}
                     </p>
                 </div>
                 <div className={styles.todayStatisticsCard}>
@@ -18,15 +35,15 @@ export const Main = () => {
                         Дней подряд
                     </p>
                     <p className={styles.todayStatisticsCardContent}>
-                        20
+                        {userStatistics.visitStreak}
                     </p>
                 </div>
                 <div className={styles.todayStatisticsCard}>
                     <p className={styles.todayStatisticsCardTitle}>
-                        Повторений за сегодня
+                        Всего часов
                     </p>
                     <p className={styles.todayStatisticsCardContent}>
-                        20
+                        {userStatistics.totalHours}
                     </p>
                 </div>
                 <div className={styles.todayStatisticsCard}>
@@ -34,7 +51,7 @@ export const Main = () => {
                         Слово дня
                     </p>
                     <p className={styles.todayStatisticsCardContent}>
-                        ауе
+                        {famousWord?.word}
                     </p>
                 </div>
            </div>

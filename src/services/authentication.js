@@ -34,7 +34,7 @@ export async function getNewToken(refreshToken) {
 
 export const writeTokens = (tokens) => {
     let date = new Date(tokens.accessExpiredAt);
-    let infDate = new Date(2024, 0, 1);
+    let infDate = new Date(2028, 0, 1);
     cookies.set("access-token", tokens.accessToken, { path: "/", expires: date });
     cookies.set("refresh-token", tokens.refreshToken, { path: "/", expires: infDate });
 }
@@ -46,6 +46,18 @@ function validToken(token) {
         return false;
 
     return true;
+}
+
+export function addLastHour() {
+    let currentDate = new Date();
+    let dateAfterHour = new Date();
+    dateAfterHour.setHours(currentDate.getHours() + 1);
+    cookies.set("last-hour", currentDate, { path: "/", expires: dateAfterHour});
+}
+
+export function hasLastHour() {
+    const lastHour = cookies.get("last-hour");
+    return lastHour === undefined;
 }
 
 export function rewriteTokens(tokens) {
