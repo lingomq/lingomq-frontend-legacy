@@ -1,6 +1,7 @@
 import { jwtDecode } from "jwt-decode";
 import { Cookies } from "react-cookie";
 import { requestAsync } from "./api/api";
+import { getUserData } from "./api/identity/identity";
 
 const cookies = new Cookies();
 export function isAuthenticated() {
@@ -72,10 +73,9 @@ export function clearAuthCookies() {
     cookies.remove("refresh-token");
 }
 
-export function getUserId() {
-    const accessToken = cookies.get("access-token");
-    const decodedToken = jwtDecode(accessToken);
-    return decodedToken["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"];
+export async function getUserId() {
+    const result = await getUserData();
+    return result.data.data.userId;
 }
 
 export function getAccessToken() {

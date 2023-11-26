@@ -9,14 +9,29 @@ export const getLanguages = async (count) => {
 
 export const getUserStatistics = async () => {
     const token = getAccessToken();
-    const id = getUserId()
+    const id = await getUserId()
     const result = await requestAsync("get", "api.lingomq/identity/user/statistics/id/" + id, {}, token);
     return result;
 }
 
+export const getWordsCountPerDays = async (datesArray) => {
+    const token = getAccessToken();
+    const id = await getUserId()
+    let countArray = [];
+    
+    for (let i = 0; i < datesArray.length; i++)
+    {
+        let date = datesArray[i];
+        let result = await requestAsync("get", `api.lingomq/words/user-words/word/count/${id}/${date}`, {}, token);
+        countArray.push(result.data.data.count);
+    }
+
+    return countArray;
+}
+
 export const getFamousWord = async () => {
     const token = getAccessToken();
-    const result = await requestAsync("get", "api.lingomq/words/user-words/famous");
+    const result = await requestAsync("get", "api.lingomq/words/user-words/famous", {}, token);
     return result;
 }
 

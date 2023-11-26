@@ -1,5 +1,5 @@
 import notificationManager, { getNotificationModel } from "../../../components/services/notification/notificationManager";
-import { addLastHour, getAccessToken, getRefreshToken, getUserId, hasLastHour, isAuthenticated, refreshTokens } from "../../authentication";
+import { addLastHour, getAccessToken, getRefreshToken, getUserId, hasLastHour, refreshTokens } from "../../authentication";
 import { requestAsync } from "../api";
 
 export const getUserData = async () => {
@@ -40,7 +40,7 @@ export const updateUserInfo = async (model) => {
 }
 
 export const updateUserData = async (email, phone) => {
-    const userId = getUserId();
+    const userId = await getUserId();
     const requestModel = {
         id: userId,
         email: email,   
