@@ -60,3 +60,22 @@ export const removeUserWord = async (id) => {
     const result = await requestAsync("delete", "api.lingomq/words/user-words/" + id, {}, token);
     return result;
 }
+
+export const getWordsArray = async (languageId) => {
+    const result = [];
+    const wordsArray = [];
+    const words = await getUserWords();
+    words.data.data.map((item) => { wordsArray.push(item) });
+    if (languageId === "none")
+    {
+        wordsArray.map((item) => { result.push(item); console.log(item); });
+    }
+    else {
+        const newWords = wordsArray.filter((item) => {
+            return item.languageId === languageId;
+        });
+        newWords.map((item) => { result.push(item) });
+    }
+
+    return result;
+}

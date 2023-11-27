@@ -3,7 +3,6 @@ import styles from "./Translate.module.scss";
 
 const Translate = ({wordModel, checkFunction}) => {
 
-
     return (
         <>
             <p>

@@ -3,8 +3,9 @@ import styles from "./Practice.module.scss";
 import { useEffect } from "react";
 import { useState } from "react";
 import Translate from "./sections/translate/Translate.jsx";
-import { getUserWords } from "../../../services/api/words/words";
+import { getUserWords, getWordsArray } from "../../../services/api/words/words";
 import RoundedButton from "../../ui/buttons/rounded/RoundedButton.jsx";
+import { getRandomNumbers } from "../../../services/random.js";
 
 const Practice = () => {
     let { l, c } = useParams();
@@ -13,35 +14,15 @@ const Practice = () => {
     const [subCount, setSubCount] = useState(0);
     const [exercises, setExercises] = useState();
 
-    const getWords = async () => {
-        const result = [];
-        const wordsArray = [];
-        const words = await getUserWords();
-        words.data.data.map((item) => { wordsArray.push(item) });
-        if (l === "none")
-        {
-            wordsArray.map((item) => { result.push(item); console.log(item); });
-        }
-        else {
-            const newWords = wordsArray.filter((item) => {
-                return item.languageId === l;
-            });
-            newWords.map((item) => { result.push(item) });
-        }
-
-        return result;
-    }
-
     const fillExercises = async () => {
-        const words = await getWords();
+        const words = await getWordsArray(l);
         if (c > words.length) c = words.length;
         let exercisesMap = new Map();
-        let wordIdsExisted = Array.from({length: words.length}, () => Math.floor(Math.random() * words.length));
-        let wordIdsSet = new Set(wordIdsExisted);
+        let randomArray = getRandomNumbers(words.length);
 
         for (let i = 0; i < c; i++)
         {
-            let randomInt = [...wordIdsSet.values()][i];
+            let randomInt = randomArray[i];
             let word = words[randomInt];
 
             exercisesMap.set(i, [
@@ -64,8 +45,6 @@ const Practice = () => {
         if (exercises.get(count + 1) === undefined) return;
         if (exercises.get(count)[subCount + 1] === undefined) handleUpdateCounter();
         else handleUpdateSubCounter();
-        console.log(count + " " + subCount);
-        
     }
 
     useEffect(() => {
