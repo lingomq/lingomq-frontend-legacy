@@ -5,13 +5,19 @@ import { DictionaryImage, HomeImage, PracticeImage, } from "../../../general/ima
 import Modal from "../../../ui/modal/Modal.jsx";
 import AddWord from "../../modals/add-word/AddWord.jsx";
 import { modalSize } from '../../../ui/modal/modalSize.js';
+import Practice from "../../modals/practice/Practice.jsx";
 
 const AuthorizedHeader = ({ data }) => {
     const [user, setUser] = useState(null);
     const [addWord, setAddWord] = useState(false);
+    const [startPractice, setStartPractice] = useState(false);
 
     function handleAddWordChanged() {
         setAddWord(!addWord);
+    }
+
+    function handleStartPractice() {
+        setStartPractice(!startPractice);
     }
 
     useEffect(() => setUser(data), [setUser]);
@@ -24,6 +30,12 @@ const AuthorizedHeader = ({ data }) => {
                 content={<AddWord userId={data?.userId}
                 useAutoContent={true}/>}
             />
+            <Modal 
+                isShow={startPractice}
+                showModalFunction={handleStartPractice}
+                size={modalSize.SMALL}
+                content={<Practice/>}
+            />
             <div className={styles["desk-content"]}>
                 <div className={styles["auth-header-content"]}>
                     <div className={styles["action-section"]}>
@@ -32,10 +44,10 @@ const AuthorizedHeader = ({ data }) => {
                             <p>Главная</p>
                         </Link>
 
-                        <a className={styles["action"]} href="">
+                        <div className={styles["action"]} onClick={handleStartPractice}>
                             <img src={PracticeImage} />
                             <p>Практика</p>
-                        </a>
+                        </div>
 
                         <div className={styles["rounded-button"]}>
                             <button onClick={handleAddWordChanged}>+</button>
