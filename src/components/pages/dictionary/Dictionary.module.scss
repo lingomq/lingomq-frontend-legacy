@@ -1,3 +1,5 @@
+@import "../../general/fonts.scss";
+
 .dictionaryContentSection {
     display: flex;
     flex-wrap: wrap;
@@ -55,6 +57,13 @@
 
 .filters {
     display: flex;
+}
+
+.emptyDict {
+    font-size: 2em;
+    color: #7e7d7d;
+    text-align: center;
+    font-family: $all-font-family;
 }
 
 @media screen and (max-width: 650px) {

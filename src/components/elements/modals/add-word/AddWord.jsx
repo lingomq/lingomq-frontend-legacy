@@ -54,7 +54,9 @@ const AddWord = ({userId}) => {
             setRightWord(result.data.errors.rightWord);
             handleWrongWordChanged();
         }
-        setInterval(() => window.location.href = "dict", 2000);
+        else {
+            setInterval(() => window.location.href = "dict", 2000);
+        }
         notificationManager.addNotification(getNotificationModel(result.level, result.title, result.message));
     }
 

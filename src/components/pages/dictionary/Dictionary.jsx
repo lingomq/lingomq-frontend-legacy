@@ -114,7 +114,9 @@ export const Dictionary = () => {
                         selectStateFunction={(e) => handleChange(e)}
                     />
                 </div>
-                <div className={styles.dictionaryContentSection}>{words}</div>
+                <div className={styles.dictionaryContentSection}>
+                {words.length === 0 ? <div className={styles.emptyDict}>Вы еще не добавили слова в данный список</div> : words}
+                </div>
             </div>
         )
     );
