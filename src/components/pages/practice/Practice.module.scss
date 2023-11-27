@@ -1,0 +1,18 @@
+.progressBar {
+    background: #e2e2e2;
+    height: 10px;
+}
+
+.progress {
+    background: green;
+    height: 10px;
+    width: 0%;
+    transition: 0.3s ease-in-out;
+}
+
+.practiceSection {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

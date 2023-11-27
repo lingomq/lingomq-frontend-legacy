@@ -1,0 +1,9 @@
+@import "../../../general/colors.scss";
+
+.practiceResultsText {
+    font-size: 1.5em;
+}
+
+.practiceResultsText b{
+    color: $alt-foreground-color;
+}

@@ -49,7 +49,7 @@ const Application = () => {
                     <Route path="dict" element={user && <Wrapper title="СЛОВАРЬ" element={<Dictionary/>}/>}/>
                     <Route path="profile" element={user && <Wrapper title="ПРОФИЛЬ" subTitle={subTitle} element={<Profile data={user} changeSubTitleMethod={changeSubTitle} /> }/>}/>
                     <Route path="notifications" element={user && <Wrapper title="УВЕДОМЛЕНИЯ" element={<Notifications /> }/>}/>
-                    <Route path="practice/:c/:l" element={user && <Practice/>}/>
+                    <Route path="practice/:c/:l" element={user && <Wrapper title="ПРАКТИКА" element={<Practice/> }/>}/>
                     <Route path = "*" element={<div>Not found page will be here</div>}/>
                 </Routes>
             </div>
