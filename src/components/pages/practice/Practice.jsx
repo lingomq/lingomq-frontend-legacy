@@ -3,7 +3,7 @@ import styles from "./Practice.module.scss";
 import { useEffect } from "react";
 import { useState } from "react";
 import Translate from "./sections/translate/Translate.jsx";
-import { getWordsArray } from "../../../services/api/words/words";
+import { addRepeatToWord, getWordsArray, updateUserWord } from "../../../services/api/words/words";
 import RoundedButton from "../../ui/buttons/rounded/RoundedButton.jsx";
 import { getRandomNumbers } from "../../../services/random.js";
 import notificationManager, {
@@ -23,6 +23,7 @@ const Practice = () => {
     const [mistakesCount, setMistakesCount] = useState(0);
     const [rightAnswer, setRightAnswer] = useState(false);
     const [showResults, setShowResults] = useState(false);
+    const [wordList, setWordsList] = useState();
 
     const fillExercises = async () => {
         const checkAnswer = (isValid = false) => {
@@ -38,9 +39,12 @@ const Practice = () => {
         let exercisesMap = new Map();
         let randomArray = getRandomNumbers(words.length);
         let i = 0;
+        let tempList = [];
         for (i = 0; i < c; i++) {
             let randomInt = randomArray[i];
             let word = words[randomInt];
+            tempList = [...tempList, word];
+            setWordsList(tempList);
 
             exercisesMap.set(i, [
                 <Translate
@@ -70,6 +74,14 @@ const Practice = () => {
     };
 
     const next = () => {
+        if (exercises.get(count + 1) === undefined) {
+            changeProgressBar();
+            setShowResults(true);
+            updateWordModel(count);
+            return;
+        }
+
+        updateWordModel(count);
         let notificationModel = getNotificationModel(
             "success",
             "ПРАВИЛЬНО",
@@ -82,11 +94,6 @@ const Practice = () => {
                 "Неверный ответ"
             );
             setMistakesCount(mistakesCount + 1);
-        }
-        if (exercises.get(count + 1) === undefined) {
-            changeProgressBar();
-            setShowResults(true);
-            return;
         }
         if (exercises.get(count)[subCount + 1] === undefined)
             handleUpdateCounter();
@@ -101,12 +108,18 @@ const Practice = () => {
         setShowResults(!showResults);
     }
 
+    const updateWordModel = async (index) => {
+        const word = wordList[index];
+        word.repeats = word.repeats + 1;
+        await addRepeatToWord(word.id);
+    }
+
     useEffect(() => {
         fillExercises();
     }, []);
 
     return (
-        exercises && (
+        (exercises && wordList) && (
             <>
                 <Modal 
                     isShow={showResults}

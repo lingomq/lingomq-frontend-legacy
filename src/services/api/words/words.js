@@ -61,6 +61,12 @@ export const removeUserWord = async (id) => {
     return result;
 }
 
+export const addRepeatToWord = async (id) => {
+    const token = getAccessToken();
+    const result = await requestAsync("put", `api.lingomq/words/user-words/add/repeats/${id}`, {}, token);
+    return result;
+}
+
 export const getWordsArray = async (languageId) => {
     const result = [];
     const wordsArray = [];
