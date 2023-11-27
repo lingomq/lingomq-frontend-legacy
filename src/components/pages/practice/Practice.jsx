@@ -45,7 +45,7 @@ const Practice = () => {
             let word = words[randomInt];
 
             exercisesMap.set(i, [
-                <Translate wordModel={word} />
+                <Translate wordModel={word} next={next}/>
             ]);
         }
         setExercises(exercisesMap);
@@ -61,17 +61,11 @@ const Practice = () => {
     }
 
     const next = () => {
-        if (exercises.get(count + 1) === undefined)
-            return;
-
-        if (exercises.get(count)[subCount + 1] === undefined)
-        {
-            handleUpdateCounter();
-        }
-        else 
-        {
-            handleUpdateSubCounter();
-        }
+        if (exercises.get(count + 1) === undefined) return;
+        if (exercises.get(count)[subCount + 1] === undefined) handleUpdateCounter();
+        else handleUpdateSubCounter();
+        console.log(count + " " + subCount);
+        
     }
 
     useEffect(() => {

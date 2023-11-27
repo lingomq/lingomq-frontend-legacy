@@ -1,7 +1,7 @@
 import RoundedButton from "../../../../ui/buttons/rounded/RoundedButton.jsx";
 import styles from "./Translate.module.scss";
 
-const Translate = ({wordModel, next}) => {
+const Translate = ({wordModel, checkFunction}) => {
 
 
     return (
