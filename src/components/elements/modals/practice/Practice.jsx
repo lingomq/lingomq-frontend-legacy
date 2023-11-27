@@ -36,7 +36,7 @@ const Practice = () => {
             return item.languageId === language;
         });
         console.log(wordsArray);
-        if (wordsArray.length === 0) {
+        if (wordsArray.length === 0 && language != "none") {
             notificationManager.addNotification(getNotificationModel("warning", "ПРЕДУПРЕЖДЕНИЕ", "Слов нет в данной коллекции"));
         }
         else {
