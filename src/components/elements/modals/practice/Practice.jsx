@@ -4,7 +4,7 @@ import styles from "./Practice.module.scss";
 import { useEffect } from "react";
 import { getLanguages, getUserWords } from "../../../../services/api/words/words.js";
 import SelectField from "../../../ui/fields/select/SelectField.jsx";
-import notificationManager, { getNotificationModel } from "../../../services/notification/notificationManager.js";
+import notificationManager from "../../../ui/notification/notificationManager.js";
 
 const Practice = () => {
     const [languages, setLanguages] = useState();
@@ -37,7 +37,7 @@ const Practice = () => {
         });
         console.log(wordsArray);
         if (wordsArray.length === 0 && language != "none") {
-            notificationManager.addNotification(getNotificationModel("warning", "ПРЕДУПРЕЖДЕНИЕ", "Слов нет в данной коллекции"));
+            notificationManager.addNotification("warning", "ПРЕДУПРЕЖДЕНИЕ", "Слов нет в данной коллекции");
         }
         else {
             window.location.href = `/practice/${repeatCount}/${language}`;

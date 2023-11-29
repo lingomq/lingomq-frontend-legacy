@@ -2,7 +2,7 @@ import styles from "./Confirm.module.scss";
 import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { confirmEmail } from "../../../services/api/authentication/authentication";
-import notificationManager, { getNotificationModel } from "../../services/notification/notificationManager";
+import notificationManager from "../../ui/notification/notificationManager.js";
 import { writeTokens } from "../../../services/authentication";
 
 export const Confirm = () => {
@@ -20,7 +20,7 @@ export const Confirm = () => {
 				writeTokens(result.data.data);
                 setInterval(() => window.location.href = '..', 4000);
             }
-			notificationManager.addNotification(getNotificationModel(result.level, result.title, result.message));
+			notificationManager.addNotification(result.level, result.title, result.message);
 		};
 		confirmAccount();
 	}, []);

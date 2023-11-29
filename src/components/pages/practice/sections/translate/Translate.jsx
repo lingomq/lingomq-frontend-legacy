@@ -1,11 +1,7 @@
-import { useState } from "react";
-import RoundedButton from "../../../../ui/buttons/rounded/RoundedButton.jsx";
 import TextField from "../../../../ui/fields/text/TextField.jsx";
 import styles from "./Translate.module.scss";
 
 const Translate = ({wordModel, checkFunction}) => {
-
-    const [value, setValue] = useState("");
 
     const handleChange = (e) => {
         let userWord = e.target.value.toLowerCase();
@@ -13,7 +9,6 @@ const Translate = ({wordModel, checkFunction}) => {
         if (new String(userWord).valueOf() === new String(correctWord).valueOf()){
             checkFunction(true);
         }
-        setValue(e.target.value);
     }
 
     return (

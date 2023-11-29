@@ -3,9 +3,7 @@ import styles from "../SignModal.module.scss";
 import RoundedButton from "../../../ui/buttons/rounded/RoundedButton.jsx";
 import TextField from "../../../ui/fields/text/TextField.jsx";
 import { signUp } from "../../../../services/api/authentication/authentication.js";
-import notificationManager, {
-    getNotificationModel,
-} from "../../../services/notification/notificationManager.js";
+import notificationManager from "../../../ui/notification/notificationManager.js";
 
 const SignUpModal = ({ method }) => {
     const [user, setUser] = useState({ nickname: "", email: "", password: ""});
@@ -20,13 +18,10 @@ const SignUpModal = ({ method }) => {
     async function signUpAsync() {
         const result = await signUp(user);
 
-        let notifyModel;
         if (result.level === "success")
-            notifyModel = getNotificationModel("success", "Успешно", "Подвердите аккаунт через почту");
+            notificationManager.addNotification("success", "Успешно", "Подвердите аккаунт через почту");
         else
-            notifyModel = getNotificationModel(result.level, result.title, result.message);
-
-        notificationManager.addNotification(notifyModel);
+            notificationManager.addNotification(result.level, result.title, result.message);
     }
 
     return (

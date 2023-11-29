@@ -4,6 +4,7 @@
     display: flex;
     flex-direction: column;
     width: 70%;
+    overflow-y: scroll;
     height: 50vh;
     border-radius: 15px;
     padding: 0 10px;
@@ -16,6 +17,7 @@
     align-items: center;
     border-radius: 15px;
     padding: 15px 10px;
+    cursor: pointer;
     margin: 10px 0;
     box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.25);
 }
@@ -41,6 +43,11 @@
 .notificationCardContentTitle p {
     margin-top: 0;
     margin-bottom: 0;
+}
+
+.emptyNotificationsText {
+    text-align: center;
+    color: #5d5d5d;
 }
 
 .notificationCardContentTitleHeader {
@@ -82,11 +89,11 @@
     margin: 0;
 }
 
-.notificationInfo {
+.attention {
     background-color: $alt-foreground-color;
 }
 
-.notificationImportant {
+.important {
     background-color: $error-color;
 } 
 

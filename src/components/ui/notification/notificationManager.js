@@ -10,7 +10,8 @@ class NotificationManager {
         this.subscribeMethods.push(method);
     }
 
-    addNotification(model) {
+    addNotification(level = "error", title = "ОШИБКА", message = "НЕОБРАБОТАННАЯ ОШИБКА") {
+        const model = { id: uuid(), level: level, title: title, message: message};
         const notifications = [ ... this.notificationData];
         notifications.push(model);
         this.notificationData = notifications;
@@ -23,10 +24,6 @@ class NotificationManager {
         this.notificationData.filter((n) => model.id !== n.id)
     }
 
-}
-
-export function getNotificationModel(level = "error", title = "ОШИБКА", message = "НЕОБРАБОТАННАЯ ОШИБКА") {
-    return { id: uuid(), level: level, title: title, message: message}
 }
 
 export default new NotificationManager;

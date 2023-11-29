@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { removeAccount } from "../../../../services/api/identity/identity.js";
 import { clearAuthCookies } from "../../../../services/authentication.js";
-import notificationManager, { getNotificationModel } from "../../../services/notification/notificationManager";
+import notificationManager, { getNotificationModel } from "../../../ui/notification/notificationManager.js";
 import { buttonTypes } from "../../../ui/buttons/buttonTypes.js";
 import RoundedButton from "../../../ui/buttons/rounded/RoundedButton.jsx";
 import styles from "../Credentials.module.scss";
@@ -11,19 +11,15 @@ export const RemoveAccount = ({verificationText}) => {
     const [text, setText] = useState("");
 
     async function removeProfile() {
-        let notifyModel;
-
         if (!(verificationText === text)) {
-            notifyModel = getNotificationModel("error", "Ошибка", "Вы ввели неправильное слово");
+            notificationManager.addNotification("error", "Ошибка", "Вы ввели неправильное слово");
         } else {
             const result = await removeAccount();
             clearAuthCookies();
-            notifyModel = getNotificationModel(result.level, result.title, result.message);
+            notificationManager.addNotification(result.level, result.title, result.message);
         }
 
         setInterval(() => (window.location.href = ".."), 3000);
-
-        notificationManager.addNotification(notifyModel);
 
     }
 

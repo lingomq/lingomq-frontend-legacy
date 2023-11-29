@@ -2,10 +2,10 @@ import { useState, useEffect } from "react";
 import styles from "./General.module.scss";
 import RoundedButton from "../../../../ui/buttons/rounded/RoundedButton.jsx";
 import ChangeInfo from "../../../../elements/modals/change-info/ChangeInfo.jsx";
-import Modal from "../../../../ui/modal/Modal.jsx";
+import ModalManager from "../../../../ui/modal/ModalManager.js";
+import { modalSize } from "../../../../ui/modal/modalSize.js";
 
 export const ProfileGeneral = ({data}) => {
-	const [isChanging, setIsChanging] = useState(false);
 	const [user, setUser] = useState(null);
 
     useEffect(() => {
@@ -13,17 +13,11 @@ export const ProfileGeneral = ({data}) => {
     }, [setUser]);
 
 	const handleShowChangeInfoModal = () => {
-		setIsChanging(!isChanging);
+		ModalManager.addModal(modalSize.AVERAGE, <ChangeInfo userData={user}/>);
 	};
 
 	return (
 		<div className={styles.profileGeneralSection}>
-			<Modal
-				isShow={isChanging}
-				showModalFunction={handleShowChangeInfoModal}
-				width="average"
-				content={<ChangeInfo userData={user} />}
-			/>
 			<div className={styles.profileInfo}>
 				<img className={styles.profileImage} src={user?.imageUri} />
 				<p className={styles.profileInfoName}>{user?.nickname}</p>

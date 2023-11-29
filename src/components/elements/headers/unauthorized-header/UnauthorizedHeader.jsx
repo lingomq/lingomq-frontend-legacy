@@ -5,6 +5,7 @@ import Modal from '../../../ui/modal/Modal.jsx';
 import SignModal from '../../modals/SignModal.jsx';
 import RoundedButton from '../../../ui/buttons/rounded/RoundedButton.jsx';
 import { modalSize } from '../../../ui/modal/modalSize.js';
+import ModalManager from '../../../ui/modal/ModalManager.js';
 
 const Header = () => {
     const [isVisible, setIsVisible] = useState(true);
@@ -37,17 +38,11 @@ const Header = () => {
     }
 
     const handleShowModal = () => {
-        setIsShowModal(!isShowModal);
+        ModalManager.addModal(modalSize.AVERAGE, <SignModal/>);
     };
 
     return (
         <div className={styles["unauthorized-header"]}>
-            <Modal
-                isShow={isShowModal}
-                showModalFunction={handleShowModal}
-                size={modalSize.AVERAGE}
-                content={<SignModal />}
-            />
             <div className={styles["header-component"]}>
                 <div className={styles["logo-section"]}>
                     <div className={styles["logo"]}>

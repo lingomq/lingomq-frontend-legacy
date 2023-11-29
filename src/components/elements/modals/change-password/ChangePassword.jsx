@@ -1,9 +1,7 @@
 import { useState } from "react";
 import { updatePassword } from "../../../../services/api/identity/identity";
 import styles from "../Credentials.module.scss";
-import notificationManager, {
-    getNotificationModel,
-} from "../../../services/notification/notificationManager";
+import notificationManager, { getNotificationModel } from "../../../ui/notification/notificationManager.js";
 import RoundedButton from "../../../ui/buttons/rounded/RoundedButton.jsx";
 import { buttonTypes } from "../../../ui/buttons/buttonTypes.js";
 import TextField from "../../../ui/fields/text/TextField.jsx";
@@ -13,26 +11,14 @@ export const ChangePassword = ({ verificationText }) => {
     const [password, setPassword] = useState("");
 
     async function changeUserPassword() {
-        let notifyModel;
-
-        if (!(verificationText === text)) {
-            notifyModel = getNotificationModel(
-                "error",
-                "Ошибка",
-                "Вы ввели неправильное слово"
-            );
-        } else {
+        if (!(verificationText === text)) 
+            notificationManager.addNotification("error","Ошибка","Вы ввели неправильное слово");
+        else {
             const result = await updatePassword(password);
-            notifyModel = getNotificationModel(
-                result.level,
-                result.title,
-                result.message
-            );
+            notificationManager.addNotification(result.level, result.title, result.message);
         }
 
         setInterval(() => (window.location.href = ".."), 3000);
-
-        notificationManager.addNotification(notifyModel);
     }
     return (
         <>

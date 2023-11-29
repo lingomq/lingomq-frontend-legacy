@@ -6,21 +6,16 @@ import RoundedButton from "../../ui/buttons/rounded/RoundedButton.jsx";
 import Modal from "../../ui/modal/Modal.jsx";
 import SignModal from "../../elements/modals/SignModal.jsx";
 import { modalSize } from "../../ui/modal/modalSize.js";
+import ModalManager from "../../ui/modal/ModalManager.js";
 
 const Home = () => {
     const [isShowModal, setIsShowModal] = useState(false);
 
     const handleShowModal = () => {
-        setIsShowModal(!isShowModal);
+        ModalManager.addModal(modalSize.AVERAGE, <SignModal/>);
     };
     return (
         <div className={styles.homeContent}>
-            <Modal
-                isShow={isShowModal}
-                showModalFunction={handleShowModal}
-                size={modalSize.AVERAGE}
-                content={<SignModal />}
-            />
             <div className={styles.contentMainSection}>
                 <h1>УЧИ СЛОВА ВМЕСТЕ С</h1>
                 <div className={styles.logoBigSection}>

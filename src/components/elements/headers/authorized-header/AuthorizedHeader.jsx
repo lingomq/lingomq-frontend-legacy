@@ -1,41 +1,22 @@
 import styles from "./AuthorizedHeader.module.scss";
-import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { DictionaryImage, HomeImage, PracticeImage, } from "../../../general/images.jsx";
-import Modal from "../../../ui/modal/Modal.jsx";
 import AddWord from "../../modals/add-word/AddWord.jsx";
 import { modalSize } from '../../../ui/modal/modalSize.js';
 import Practice from "../../modals/practice/Practice.jsx";
+import ModalManager from "../../../ui/modal/ModalManager.js";
 
 const AuthorizedHeader = ({ data }) => {
-    const [user, setUser] = useState(null);
-    const [addWord, setAddWord] = useState(false);
-    const [startPractice, setStartPractice] = useState(false);
-
     function handleAddWordChanged() {
-        setAddWord(!addWord);
+        ModalManager.addModal(modalSize.AVERAGE, <AddWord userId={data?.userId} useAutoContent={true}/>);
     }
 
     function handleStartPractice() {
-        setStartPractice(!startPractice);
+        ModalManager.addModal(modalSize.SMALL, <Practice/>);
     }
 
-    useEffect(() => setUser(data), [setUser]);
     return data && (
         <div className={styles["auth-header"]}>
-            <Modal
-                isShow={addWord}
-                showModalFunction={handleAddWordChanged}
-                size={modalSize.AVERAGE}
-                content={<AddWord userId={data?.userId}
-                useAutoContent={true}/>}
-            />
-            <Modal 
-                isShow={startPractice}
-                showModalFunction={handleStartPractice}
-                size={modalSize.SMALL}
-                content={<Practice/>}
-            />
             <div className={styles["desk-content"]}>
                 <div className={styles["auth-header-content"]}>
                     <div className={styles["action-section"]}>

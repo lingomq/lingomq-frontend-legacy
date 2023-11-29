@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { updateUserData } from "../../../../services/api/identity/identity";
-import notificationManager, { getNotificationModel } from "../../../services/notification/notificationManager";
+import notificationManager from "../../../ui/notification/notificationManager.js";
 import RoundedButton from "../../../ui/buttons/rounded/RoundedButton.jsx";
 import TextField from "../../../ui/fields/text/TextField.jsx";
 
@@ -13,7 +13,7 @@ export const NonSensitiveData = ({ userData }) => {
 
         setInterval(() => (window.location.href = ".."), 3000);
 
-        notificationManager.addNotification(getNotificationModel(result.level, result.title, result.message));
+        notificationManager.addNotification(result.level, result.title, result.message);
     }
 
     return (

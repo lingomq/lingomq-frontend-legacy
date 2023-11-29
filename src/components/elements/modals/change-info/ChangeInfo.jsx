@@ -2,7 +2,7 @@ import stylesInfo from "./ChangeInfo.module.scss";
 import { useState } from "react";
 import { updateUserInfo } from "../../../../services/api/identity/identity.js";
 import TextField from "../../../ui/fields/text/TextField.jsx";
-import notificationManager, { getNotificationModel } from "../../../services/notification/notificationManager";
+import notificationManager from "../../../ui/notification/notificationManager.js";
 import RoundedButton from "../../../ui/buttons/rounded/RoundedButton.jsx";
 
 const ChangeInfo = ({ userData }) => {
@@ -25,10 +25,10 @@ const ChangeInfo = ({ userData }) => {
         const result = await updateUserInfo(user);
 
         if (result.level === "success") {
-            setInterval(() => (window.location.href = ".."), 3000);
+            setInterval(() => (window.location.reload()), 3000);
         }
 
-        notificationManager.addNotification(getNotificationModel(result.level, result.title, result.message));
+        notificationManager.addNotification(result.level, result.title, result.message);
     }
 
     function uploadImage() {

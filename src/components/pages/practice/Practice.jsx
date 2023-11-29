@@ -3,15 +3,13 @@ import styles from "./Practice.module.scss";
 import { useEffect } from "react";
 import { useState } from "react";
 import Translate from "./sections/translate/Translate.jsx";
-import { addRepeatToWord, getWordsArray, updateUserWord } from "../../../services/api/words/words";
+import { addRepeatToWord, getWordsArray } from "../../../services/api/words/words";
 import RoundedButton from "../../ui/buttons/rounded/RoundedButton.jsx";
 import { getRandomNumbers } from "../../../services/random.js";
-import notificationManager, {
-    getNotificationModel,
-} from "../../services/notification/notificationManager.js";
-import Modal from "../../ui/modal/Modal.jsx";
+import notificationManager, { getNotificationModel } from "../../ui/notification/notificationManager.js";
 import { modalSize } from "../../ui/modal/modalSize.js";
 import PracticeResults from "../../elements/modals/practice-results/PracticeResults.jsx";
+import ModalManager from "../../ui/modal/ModalManager.js";
 
 const Practice = () => {
     let { l, c } = useParams();
@@ -22,7 +20,6 @@ const Practice = () => {
     const [exercises, setExercises] = useState();
     const [mistakesCount, setMistakesCount] = useState(0);
     const [rightAnswer, setRightAnswer] = useState(false);
-    const [showResults, setShowResults] = useState(false);
     const [wordList, setWordsList] = useState();
 
     const fillExercises = async () => {
@@ -34,7 +31,7 @@ const Practice = () => {
         if (c > words.length) {
             c = words.length;
             setSummary(words.length);
-            notificationManager.addNotification(getNotificationModel("warning", "ВНИМАНИЕ", "Количество слов было уменьшено"));
+            notificationManager.addNotification("warning", "ВНИМАНИЕ", "Количество слов было уменьшено");
         }
         let exercisesMap = new Map();
         let randomArray = getRandomNumbers(words.length);
@@ -76,37 +73,26 @@ const Practice = () => {
     const next = () => {
         if (exercises.get(count + 1) === undefined) {
             changeProgressBar();
-            setShowResults(true);
+            handleShowResults();
             updateWordModel(count);
             return;
         }
 
         updateWordModel(count);
-        let notificationModel = getNotificationModel(
-            "success",
-            "ПРАВИЛЬНО",
-            "Ответ правильный"
-        );
         if (rightAnswer === false) {
-            notificationModel = getNotificationModel(
-                "warning",
-                "ОШИБКА",
-                "Неверный ответ"
-            );
+            notificationManager.addNotification("warning","ОШИБКА","Неверный ответ");
             setMistakesCount(mistakesCount + 1);
         }
-        if (exercises.get(count)[subCount + 1] === undefined)
-            handleUpdateCounter();
+        else notificationManager.addNotification("success","ПРАВИЛЬНО","Ответ правильный");
+
+        if (exercises.get(count)[subCount + 1] === undefined) handleUpdateCounter();
         else handleUpdateSubCounter();
 
         changeProgressBar();
-        notificationManager.addNotification(notificationModel);
         setRightAnswer(false);
     };
 
-    const handleShowResults = () => {
-        setShowResults(!showResults);
-    }
+    const handleShowResults = () => ModalManager.addModal(modalSize.AVERAGE, <PracticeResults count={count} mistakes={mistakesCount}/>);
 
     const updateWordModel = async (index) => {
         const word = wordList[index];
@@ -121,12 +107,6 @@ const Practice = () => {
     return (
         (exercises && wordList) && (
             <>
-                <Modal 
-                    isShow={showResults}
-                    showModalFunction={handleShowResults}
-                    size={modalSize.AVERAGE}
-                    content={<PracticeResults count={count} mistakes={mistakesCount}/>}
-                />
                 <div className={styles.practice}>
                     <div className={styles.progressBar}>
                         <div className={styles.progress}></div>

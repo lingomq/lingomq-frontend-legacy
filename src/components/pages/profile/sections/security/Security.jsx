@@ -1,23 +1,22 @@
 import styles from "./Security.module.scss";
 import { useState, useEffect } from "react";
-import Modal from "../../../../ui/modal/Modal.jsx";
 import { ChangePassword } from "../../../../elements/modals/change-password/ChangePassword.jsx";
 import { NonSensitiveData } from "../../../../elements/modals/non-sensitive-data/NonSensitiveData.jsx";
 import { RemoveAccount } from "../../../../elements/modals/remove-account/RemoveAccount.jsx";
 import RoundedButton from "../../../../ui/buttons/rounded/RoundedButton.jsx";
 import { buttonTypes } from "../../../../ui/buttons/buttonTypes.js";
+import ModalManager from "../../../../ui/modal/ModalManager.js";
+import { modalSize } from "../../../../ui/modal/modalSize.js";
 
 export const Security = ({ data }) => {
-    const [showModal, setShowModal] = useState(false);
-    const [modal, setModal] = useState();
     const [user, setUser] = useState(null);
 
     useEffect(() => {
         setUser(data);
     }, []);
 
-    function handleShowModal() {
-        setShowModal(!showModal);
+    function handleShowModal(view) {
+        ModalManager.addModal(modalSize.AVERAGE, view);
     }
 
     function openModal(type) {
@@ -35,18 +34,12 @@ export const Security = ({ data }) => {
                 <RemoveAccount verificationText={"lingomq/" + user?.nickname} />
             );
 
-        setModal(view);
-        setShowModal(true);
+        handleShowModal(view);
     }
 
     return (
         data && (
             <div className={styles.securitySection}>
-                <Modal
-                    isShow={showModal}
-                    showModalFunction={handleShowModal}
-                    content={modal}
-                />
                 <div className={styles.securitySectionContent}>
                     <div className={styles.securityChangeSection}>
                         <p className={styles.securityDataTitle}>

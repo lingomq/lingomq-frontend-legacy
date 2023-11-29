@@ -5,9 +5,7 @@ import TextField from "../../../ui/fields/text/TextField.jsx";
 import RoundedButton from "../../../ui/buttons/rounded/RoundedButton.jsx";
 import { buttonTypes } from "../../../ui/buttons/buttonTypes.js";
 import { writeTokens } from "../../../../services/authentication.js";
-import notificationManager, {
-    getNotificationModel,
-} from "../../../services/notification/notificationManager.js";
+import notificationManager from "../../../ui/notification/notificationManager.js";
 
 const SignInModal = ({ method }) => {
     const [user, setUser] = useState(null);
@@ -29,7 +27,7 @@ const SignInModal = ({ method }) => {
             }, 1000);
         }
 
-        notificationManager.addNotification(getNotificationModel(result.level, result.title, result.message));
+        notificationManager.addNotification(result.level, result.title, result.message);
     }
 
     return (

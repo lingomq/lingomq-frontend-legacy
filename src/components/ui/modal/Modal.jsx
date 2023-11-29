@@ -2,20 +2,21 @@ import { CloseImage } from "../../general/images.jsx";
 import styles from "./Modal.module.scss";
 import { modalSize } from "./modalSize";
 
-const Modal = ({ isShow, showModalFunction, size = modalSize.AVERAGE, content = ""  }) => {
+const Modal = ({ id, closeModalFunction, size = modalSize.AVERAGE, content = ""  }) => {
 
-    function modalHandler () {
-        showModalFunction();
+    function modalHandler (e) {
+        closeModalFunction(e);
     }
 
     return (
-        <div className={`${styles.modal} ${isShow ? "" : styles["closed"]}`}>
-            <div className={`${styles.modalWindow} ${styles[size]} `}>
+        <div key="1" className={`${styles.modal}`} >
+            <div className={`${styles.modalWindow} ${styles[size]} `} key={id}>
                 <div className={styles.modalWindowNavigation}>
                     <img
                         src={CloseImage}
+                        data-key={id}
                         className={styles.modalWindowClose}
-                        onClick={modalHandler}
+                        onClick={(e) => modalHandler(e)}
                     />
                 </div>
                 <div className={ styles.modalWindowContent }>{content}</div>
