@@ -13,7 +13,7 @@ export const Main = () => {
         }
         const fetchFamousWord = async () => {
             const result = await getFamousWord();
-            setFamousWord(result.data.data);
+            setFamousWord(result.data.data ?? "");
         }
         fetchFamousWord();
         fetchUserStatistics();

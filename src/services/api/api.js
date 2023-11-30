@@ -26,7 +26,7 @@ const authHeaders = (token) => {
     };
 }
 
-export const apiUrl = "https://192.168.0.105:9999/";
+export const apiUrl = "https://localhost:9999/";
 
 export const requestAsync = async(type, uri, model = {}, token = undefined) => {
     let result;
