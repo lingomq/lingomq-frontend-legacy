@@ -4,8 +4,8 @@ import styles from "./Translate.module.scss";
 const Translate = ({wordModel, checkFunction}) => {
 
     const handleChange = (e) => {
-        let userWord = e.target.value.toLowerCase();
-        let correctWord = wordModel.translated.toLowerCase();
+        let userWord = e.target.value.toLowerCase().replace(/^\s+/, '').replace(/\s+$/, '');
+        let correctWord = wordModel.translated.toLowerCase().replace(/^\s+/, '').replace(/\s+$/, '');
         if (new String(userWord).valueOf() === new String(correctWord).valueOf()){
             checkFunction(true);
         }

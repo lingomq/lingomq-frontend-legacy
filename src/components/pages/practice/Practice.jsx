@@ -10,6 +10,7 @@ import notificationManager, { getNotificationModel } from "../../ui/notification
 import { modalSize } from "../../ui/modal/modalSize.js";
 import PracticeResults from "../../elements/modals/practice-results/PracticeResults.jsx";
 import ModalManager from "../../ui/modal/ModalManager.js";
+import Cards from "./sections/cards/Cards.jsx";
 
 const Practice = () => {
     let { l, c } = useParams();
@@ -49,19 +50,31 @@ const Practice = () => {
                     next={next}
                     checkFunction={checkAnswer}
                 />,
+                <Cards 
+                    words={words.filter((item) => item.id !== word.id)
+                    .sort(() => Math.random() - 0.5)
+                    .slice(0, 3)}
+                    rightWord={word}
+                    checkFunction={checkAnswer}
+                />,
+                undefined
             ]);
+
         }
 
+        console.log(exercisesMap);
         exercisesMap.set(i + 1, [<Translate />]);
         setExercises(exercisesMap);
     };
 
     const handleUpdateSubCounter = () => {
-        setSubCount(count + 1);
+        const num = subCount + 1;
+        setSubCount(num);
     };
 
     const handleUpdateCounter = () => {
-        setCount(count + 1);
+        const num = count + 1;
+        setCount(num);
         setSubCount(0);
     };
 
@@ -71,11 +84,18 @@ const Practice = () => {
     };
 
     const next = () => {
-        if (exercises.get(count + 1) === undefined) {
+        if (exercises.get(count)[subCount + 1] === undefined && exercises.get(count + 1) === undefined) {
             changeProgressBar();
             handleShowResults();
             updateWordModel(count);
             return;
+        }
+
+        if (exercises.get(count)[subCount + 1] === undefined){
+            handleUpdateCounter();
+        }
+        else {
+            handleUpdateSubCounter();
         }
 
         updateWordModel(count);
@@ -84,9 +104,6 @@ const Practice = () => {
             setMistakesCount(mistakesCount + 1);
         }
         else notificationManager.addNotification("success","ПРАВИЛЬНО","Ответ правильный");
-
-        if (exercises.get(count)[subCount + 1] === undefined) handleUpdateCounter();
-        else handleUpdateSubCounter();
 
         changeProgressBar();
         setRightAnswer(false);

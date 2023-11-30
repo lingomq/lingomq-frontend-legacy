@@ -4,10 +4,10 @@ const NotificationContent = ({data}) => {
     return (
         <>
             <p>УВЕДОМЛЕНИЕ</p>
-            <p className={styles.content}>Название:</p>
             <p className={styles.title}>{data.title}</p>
-            <p className={styles.content}>Контент:</p>
-            <p className={styles.content}>{data.content}</p>
+            <div className={styles.content}>
+                <p className={styles.contentText}>{data.content}</p>
+            </div>
         </>
     )
 }
