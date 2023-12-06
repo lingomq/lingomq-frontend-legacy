@@ -26,7 +26,7 @@ const ChangeInfo = ({ userData }) => {
         const result = await updateUserInfoAsync(user);
 
         if (result.level === 200) {
-            setInterval(() => (window.location.reload()), 333000);
+            setInterval(() => (window.location.reload()), 3000);
         }
 
         const content = notificationContents[result.level][result.data.code];
