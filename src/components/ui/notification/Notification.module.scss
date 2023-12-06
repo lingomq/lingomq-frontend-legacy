@@ -1,11 +1,11 @@
-@import '../../general/colors.scss';
+@import "../../general/colors.scss";
 
 .notification {
-  position: fixed;
-  z-index: 1000;
-  right: 0;
-  top: 0;
-  margin: 30px;
+    position: fixed;
+    z-index: 1000;
+    right: 0;
+    top: 0;
+    margin: 30px;
 }
 
 .none {
@@ -13,32 +13,47 @@
 }
 
 .notificationContent {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 10px 40px;
-  text-align: center;
-  border-radius: 10px;
-  max-width: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 30px 40px;
+    text-align: left;
+    border-radius: 5px;
+    max-width: 350px;
 }
 
 .notificationContentTitle {
-  font-size: 1.3em;
-  font-variant: all-petite-caps;
-  margin: 0;
-  font-variant: full-width;
-  text-decoration: underline;
+    font-size: 1.1em;
+    font-weight: 600;
+    font-variant: all-petite-caps;
+    margin: 0;
+    margin-bottom: 5px;
+    font-variant: full-width;
 }
 
 .notificationContentDescription {
-  font-size: 1em;
-  margin: 0;
+    font-size: 0.9em;
+    margin: 0;
 }
 
 .visible {
-  display: flex;
-  animation: fadeInFromNone 0.5s ease-in-out;
-  animation-fill-mode: forwards;
+    display: flex;
+    animation: fadeInFromNone 0.5s ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+.closeContent {
+    position: absolute;
+    right: 0;
+    top: 0;
+    display: flex;
+    justify-content: flex-end;
+    margin: 0.5em;
+}
+
+.modalWindowClose {
+    width: 1.5em;
+    cursor: pointer;
 }
 
 .hidden {
@@ -46,38 +61,37 @@
 }
 
 .info {
-  background-color: $alt-foreground-color;
+    background-color: $success-color;
 }
 
 .success {
-  background-color: $success-color;
+    background-color: $alt-foreground-color;
 }
 
 .warning {
-  background-color: $warning-color;
+    background-color: $warning-color;
 }
 
 .error {
-  background-color: $error-color;
+    background-color: $error-color;
 }
-
 
 @keyframes fadeInFromNone {
     0% {
-      opacity: 0;
+        opacity: 0;
     }
     100% {
-      opacity: 1;
+        opacity: 1;
     }
-  }
-  
-  @keyframes fadeOutFromBlock {
+}
+
+@keyframes fadeOutFromBlock {
     0% {
-      opacity: 1;
+        opacity: 1;
     }
-  
+
     100% {
-      opacity: 0;
-      display: none;
+        opacity: 0;
+        display: none;
     }
-  }
+}

@@ -20,8 +20,11 @@ class NotificationManager {
         });
     }
 
-    remove(model) {
-        this.notificationData.filter((n) => model.id !== n.id)
+    remove(id) {
+        this.notificationData = this.notificationData.filter((n) => id !== n.id);
+        this.subscribeMethods.forEach(element => {
+            element();
+        });
     }
 
 }
