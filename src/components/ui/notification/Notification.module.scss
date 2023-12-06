@@ -1,15 +1,24 @@
 @import "../../general/colors.scss";
 
 .notification {
-    position: fixed;
+    position: relative;
     z-index: 1000;
     right: 0;
     top: 0;
-    margin: 30px;
+    margin: 15px;
 }
 
 .none {
     display: none;
+}
+
+.notificationSection {
+    z-index: 10000;
+    right: 0;
+    top: 0;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
 }
 
 .notificationContent {
@@ -17,6 +26,7 @@
     flex-direction: column;
     justify-content: center;
     padding: 30px 40px;
+    min-width: 180px;
     text-align: left;
     border-radius: 5px;
     max-width: 350px;

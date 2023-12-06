@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import NotificationManager from "./notificationManager.js";
 import Notification from "./Notification.jsx";
+import styles from "./Notification.module.scss";
 
 const Notifications = () => {
     function onArrayChange() {
@@ -22,7 +23,7 @@ const Notifications = () => {
     }, []);
 
     return (
-        <div>
+        <div className={styles.notificationSection}>
             {notifications.map((item) => (
                 <Notification
                     close={remove}
