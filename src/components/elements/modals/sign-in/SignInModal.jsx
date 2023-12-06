@@ -1,11 +1,12 @@
 import styles from "../SignModal.module.scss";
 import { useState } from "react";
-import { signIn } from "../../../../services/api/authentication/authentication.js";
+import { signInAsync } from "../../../../services/api/authentication/authentication.js";
 import TextField from "../../../ui/fields/text/TextField.jsx";
 import RoundedButton from "../../../ui/buttons/rounded/RoundedButton.jsx";
 import { buttonTypes } from "../../../ui/buttons/buttonTypes.js";
 import { writeTokens } from "../../../../services/authentication.js";
 import notificationManager from "../../../ui/notification/notificationManager.js";
+import { notificationContents } from "./NotificationContents.js";
 
 const SignInModal = ({ method }) => {
     const [user, setUser] = useState(null);
@@ -17,17 +18,18 @@ const SignInModal = ({ method }) => {
         });
     };
 
-    async function signInAsync() {
-        const result = await signIn(user);
-
-        if (result.level === "success") {
+    async function loginAsync() {
+        const result = await signInAsync(user);
+        console.log(result);
+        if (result.level === 200) {
             setTimeout(() => {
                 writeTokens(result.data.data);
                 window.location.href = "..";
             }, 1000);
         }
 
-        notificationManager.addNotification(result.level, result.title, result.message);
+        const content = notificationContents[result.level][result.data.code];
+        notificationManager.addNotification(content.level, content.title, content.message);
     }
 
     return (
@@ -58,7 +60,7 @@ const SignInModal = ({ method }) => {
                 />
             </div>
             <div className={styles["modal-sign-buttons"]}>
-                <RoundedButton text="ВХОД" type="button" onClick={signInAsync}/>
+                <RoundedButton text="ВХОД" type="button" onClick={loginAsync}/>
                 <RoundedButton
                     text="СОЗДАТЬ АККАУНТ"
                     onClick={method}

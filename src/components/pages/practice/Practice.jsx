@@ -3,7 +3,7 @@ import styles from "./Practice.module.scss";
 import { useEffect } from "react";
 import { useState } from "react";
 import Translate from "./sections/translate/Translate.jsx";
-import { addRepeatToWord, getWordsArray } from "../../../services/api/words/words";
+import { addRepeatToWord, addRepeatToWordAsync, getWordsArray, getWordsArrayAsync } from "../../../services/api/words/words";
 import RoundedButton from "../../ui/buttons/rounded/RoundedButton.jsx";
 import { getRandomNumbers } from "../../../services/random.js";
 import notificationManager, { getNotificationModel } from "../../ui/notification/notificationManager.js";
@@ -28,7 +28,7 @@ const Practice = () => {
             setRightAnswer(isValid);
         };
 
-        const words = await getWordsArray(l);
+        const words = await getWordsArrayAsync(l);
         if (c > words.length) {
             c = words.length;
             setSummary(words.length);
@@ -114,7 +114,7 @@ const Practice = () => {
     const updateWordModel = async (index) => {
         const word = wordList[index];
         word.repeats = word.repeats + 1;
-        await addRepeatToWord(word.id);
+        await addRepeatToWordAsync(word.id);
     }
 
     useEffect(() => {

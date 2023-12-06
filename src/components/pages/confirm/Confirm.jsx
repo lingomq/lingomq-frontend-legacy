@@ -1,7 +1,7 @@
 import styles from "./Confirm.module.scss";
 import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { confirmEmail } from "../../../services/api/authentication/authentication";
+import { confirmEmailAsync } from "../../../services/api/authentication/authentication";
 import notificationManager from "../../ui/notification/notificationManager.js";
 import { writeTokens } from "../../../services/authentication";
 
@@ -13,7 +13,7 @@ export const Confirm = () => {
 
 	useEffect(() => {
 		const confirmAccount = async () => {
-			const result = await confirmEmail(token);
+			const result = await confirmEmailAsync(token);
 			if (!(result.data.code === 3)) 
             {
                 setIsValid(result.data.data);

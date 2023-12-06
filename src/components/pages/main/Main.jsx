@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import styles from "./Main.module.scss";
-import { getFamousWord, getUserStatistics } from "../../../services/api/words/words";
+import { getFamousWordAsync, getUserStatisticsAsync } from "../../../services/api/words/words";
 
 export const Main = () => {
     const [famousWord, setFamousWord] = useState();
@@ -8,11 +8,11 @@ export const Main = () => {
 
     useEffect(() => {
         const fetchUserStatistics = async () => {
-            const result = await getUserStatistics();
+            const result = await getUserStatisticsAsync();
             setUserStatistics(result.data.data);
         }
         const fetchFamousWord = async () => {
-            const result = await getFamousWord();
+            const result = await getFamousWordAsync();
             setFamousWord(result.data.data ?? "");
         }
         fetchFamousWord();

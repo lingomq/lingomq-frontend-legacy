@@ -1,4 +1,4 @@
-import { getUserWords } from "../../../services/api/words/words";
+import { getUserWordsAsync } from "../../../services/api/words/words";
 import styles from "./Dictionary.module.scss";
 
 const getWordsAsync = async (func) => {
@@ -6,7 +6,7 @@ const getWordsAsync = async (func) => {
         func(item);
     }
 
-    const result = await getUserWords();
+    const result = await getUserWordsAsync();
     const wordsArray = [];
     result.data.data.map((item) => {
         wordsArray.push(

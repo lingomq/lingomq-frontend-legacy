@@ -1,13 +1,14 @@
 import { requestAsync } from "../api";
+import { confirmEmailUrl, signInUrl, signUpUrl } from "../api-urls";
 
-export const signUp = async (model) => {
-    return await requestAsync("post", "api.lingomq/auth/sign-up", model);  
+export const signUpAsync = async (model) => {
+    return await requestAsync("post", signUpUrl, model);  
 }
 
-export const signIn = async (model) => {
-    return await requestAsync("post", "api.lingomq/auth/sign-in", model);
+export const signInAsync = async (model) => {
+    return await requestAsync("post", signInUrl, model);
 }
 
-export const confirmEmail = async (token) => {
-    return await requestAsync("get", "api.lingomq/confirm/"+token);
+export const confirmEmailAsync = async (token) => {
+    return await requestAsync("get", confirmEmailUrl+token);
 } 

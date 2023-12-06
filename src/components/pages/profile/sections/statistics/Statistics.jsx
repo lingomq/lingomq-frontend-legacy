@@ -2,7 +2,7 @@ import { Line } from "react-chartjs-2";
 import styles from "./Statistics.module.scss";
 import { Chart } from "chart.js/auto";
 import { useEffect, useState } from "react";
-import { getFamousWord, getUserStatistics, getWordsCountPerDays } from "../../../../../services/api/words/words";
+import { getFamousWord, getFamousWordAsync, getUserStatisticsAsync, getWordsCountPerDaysAsync } from "../../../../../services/api/words/words";
 
 export const Statistics = () => {
 	const [dates, setDates] = useState([]);
@@ -12,16 +12,16 @@ export const Statistics = () => {
 
 	useEffect(() => {
 		const fetchUserStatistics = async () => {
-            const result = await getUserStatistics();
+            const result = await getUserStatisticsAsync();
             setUserStatistics(result.data.data);
         }
         const fetchFamousWord = async () => {
-            const result = await getFamousWord();
+            const result = await getFamousWordAsync();
             setFamousWord(result.data.data);
         }
 
 		const fetchCounts = async (dates)=> {
-			const result = await getWordsCountPerDays(dates);
+			const result = await getWordsCountPerDaysAsync(dates);
 			setRepeats(result);
 		};
 

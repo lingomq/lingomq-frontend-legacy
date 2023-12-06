@@ -1,8 +1,7 @@
-import { getAccessToken } from "../../authentication";
 import { requestAsync } from "../api";
+import { getNotificationsUrl } from "../api-urls";
 
-export const getNotifications = async () => {
-    const token = getAccessToken();
-    const result = await requestAsync("get", "api.lingomq/notifications/user", {}, token);
+export const getNotificationsAsync = async () => {
+    const result = await requestAsync("get", getNotificationsUrl, {});
     return result;
 }

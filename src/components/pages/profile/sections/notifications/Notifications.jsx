@@ -2,7 +2,7 @@ import { useState } from "react";
 import styles from "./Notifications.module.scss";
 import { v4 as uuid } from 'uuid';
 import { useEffect } from "react";
-import { getNotifications } from "../../../../../services/api/notifications/notifications";
+import { getNotifications, getNotificationsAsync } from "../../../../../services/api/notifications/notifications";
 import ModalManager from "../../../../ui/modal/ModalManager";
 import { modalSize } from "../../../../ui/modal/modalSize";
 import NotificationContent from "../../../../elements/modals/notification-content/NotificationContent.jsx";
@@ -14,11 +14,10 @@ export const Notifications = () => {
 		const fetchData = async () => {
 
 			const handleShowNotification = (item) => {
-				console.log(item);
 				ModalManager.addModal(modalSize.SMALL, <NotificationContent data={item.notification}/>)
 			}
 
-			const result = await getNotifications();
+			const result = await getNotificationsAsync();
 			const array = result.data.data;
 			const notificationArray = [];
 			array.map((item) => notificationArray.push(

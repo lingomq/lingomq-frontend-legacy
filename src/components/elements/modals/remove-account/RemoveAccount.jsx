@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { removeAccount } from "../../../../services/api/identity/identity.js";
 import { clearAuthCookies } from "../../../../services/authentication.js";
 import notificationManager, { getNotificationModel } from "../../../ui/notification/notificationManager.js";
 import { buttonTypes } from "../../../ui/buttons/buttonTypes.js";
@@ -14,9 +13,9 @@ export const RemoveAccount = ({verificationText}) => {
         if (!(verificationText === text)) {
             notificationManager.addNotification("error", "Ошибка", "Вы ввели неправильное слово");
         } else {
-            const result = await removeAccount();
+            const result = await removeAccountAsync();
             clearAuthCookies();
-            notificationManager.addNotification(result.level, result.title, result.message);
+            notificationManager.addNotification("success", "Удаление аккаунта", "Аккаунт успешно удален");
         }
 
         setInterval(() => (window.location.href = ".."), 3000);

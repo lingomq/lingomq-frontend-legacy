@@ -1,4 +1,4 @@
-import { getLanguages, getTypes } from "./api/words/words";
+import { getLanguagesAsync, getTypesAsync } from "./api/words/words";
 
 const toArray = (data, name = "name") => {
     const array = [];
@@ -8,12 +8,12 @@ const toArray = (data, name = "name") => {
     return array;
 };
 
-export const getLanguagesAsync = async (count = 10) => {
-    const rawLanguages = await getLanguages(count);
+export const getLanguagesArrayAsync = async (count = 10) => {
+    const rawLanguages = await getLanguagesAsync(count);
     return toArray(rawLanguages.data.data);
 }
 
-export const getWordTypesAsync = async (count = 10) => {
-    const rawTypes = await getTypes(count);
+export const getWordTypesArrayAsync = async (count = 10) => {
+    const rawTypes = await getTypesAsync(count);
     return toArray(rawTypes.data.data, "typeName");
 }

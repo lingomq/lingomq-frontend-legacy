@@ -1,7 +1,6 @@
 import styles from './UnauthorizedHeader.module.scss';
 import React, { useState } from "react";
 import { HamburgerMenuPictureImage } from '../../../general/images.jsx';
-import Modal from '../../../ui/modal/Modal.jsx';
 import SignModal from '../../modals/SignModal.jsx';
 import RoundedButton from '../../../ui/buttons/rounded/RoundedButton.jsx';
 import { modalSize } from '../../../ui/modal/modalSize.js';
@@ -9,7 +8,6 @@ import ModalManager from '../../../ui/modal/ModalManager.js';
 
 const Header = () => {
     const [isVisible, setIsVisible] = useState(true);
-    const [isShowModal, setIsShowModal] = useState(false);
 
     function showHamburger() {
         let hamburger = document.getElementsByClassName(styles["hamburger-button"])[0];

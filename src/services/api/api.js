@@ -1,73 +1,50 @@
 import axios from "axios";
-import { getAccessToken, getRefreshToken, isAuthenticated, rewriteTokens } from "../authentication";
-
-const resultMap = new Map();
-resultMap.set(200, "Успешно");
-resultMap.set(400, "Ошибка");
-resultMap.set(500, "Ошибка сервера");
-
-const resultTitleMap = new Map();
-resultTitleMap.set(200, "success");
-resultTitleMap.set(400, "warning");
-resultTitleMap.set(500, "error");
+import { getAccessToken, isAuthenticated, isTokenExpired, updateTokensAsync } from "../authentication";
 
 const headers = {
     "Content-Type": "application/json;charset=UTF-8",
-    "Access-Control-Allow-Origin": "https://192.168.0.101:9000",
     "Access-Control-Allow-Credentials": true,
 };
 
 const authHeaders = (token) => {
     return {
-        "Content-Type": "application/json;charset=UTF-8",
-        "Access-Control-Allow-Origin": "https://192.168.0.101:9000",
-        "Access-Control-Allow-Credentials": true,
+        ...headers,
         "Authorization": "Bearer " + token
     };
 }
 
-export const apiUrl = "https://192.168.0.105:9999/";
-
 export const requestAsync = async(type, uri, model = {}, token = undefined) => {
-    let result;
     try {
-        if (isAuthenticated()) {
-            const refreshToken = getRefreshToken();
-            const response = await axios({
-                method: "get", 
-                url: apiUrl + "api.lingomq/auth/refresh-token/" + refreshToken,
-                headers: headers,
-            });
-            rewriteTokens(response.data.data);
-            token = getAccessToken();
+        let accessToken = getAccessToken();
+        if (isTokenExpired()) {
+            if (isAuthenticated()) {
+                await updateTokensAsync(headers);
+                accessToken = getAccessToken();
+            }
         }
 
         const response = await axios({
             method: type, 
-            url: apiUrl + uri,
-            headers: token === undefined ? headers : authHeaders(token),
+            url: uri,
+            headers: accessToken === undefined ? headers : authHeaders(accessToken),
             data: model
         });
 
-        result = handleRequest(response);
+        return responseProcessing(response);
     } catch (err) {
-        result = handleRequest(err);
+        return errorResponseProcessing(err);
     }
-
-    return result;
 }
 
-export function handleRequest(model) {
-    if (model.code === "ERR_NETWORK")
-        return { level: resultTitleMap.get(500), title: "Проблемы с интернетом", message: "Проверьте интернет соединение" };
-    else if (model.response === undefined)
-        return {
-            level: resultTitleMap.get(model.status), title: resultMap.get(model.status),
-            message: model.data.message, data: model.data
-        };
-    else
-        return {
-            level: resultTitleMap.get(model.response.status), title: resultMap.get(model.response.status),
-            message: model.response.data.message, data: model.response.data
-        };
+export const responseProcessing = (axiosResult) => {
+    let level = axiosResult.status;
+    let data = axiosResult.data;
+
+    return { level: level, data: data }
+}
+
+export const errorResponseProcessing = (axiosResult) => {
+    if (axiosResult.code === "ERR_NETWORK")
+        return { level: 500, data: { message: "network error"}};
+    return { level: axiosResult.response.status, data: axiosResult.response.data }
 }

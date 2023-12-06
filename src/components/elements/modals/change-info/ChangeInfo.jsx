@@ -1,9 +1,10 @@
 import stylesInfo from "./ChangeInfo.module.scss";
 import { useState } from "react";
-import { updateUserInfo } from "../../../../services/api/identity/identity.js";
+import { updateUserInfoAsync } from "../../../../services/api/identity/identity.js";
 import TextField from "../../../ui/fields/text/TextField.jsx";
 import notificationManager from "../../../ui/notification/notificationManager.js";
 import RoundedButton from "../../../ui/buttons/rounded/RoundedButton.jsx";
+import { notificationContents } from "./Responses.js";
 
 const ChangeInfo = ({ userData }) => {
     const [image, setImage] = useState("");
@@ -22,13 +23,14 @@ const ChangeInfo = ({ userData }) => {
             isRemoved: userData?.isRemoved,
         };
 
-        const result = await updateUserInfo(user);
+        const result = await updateUserInfoAsync(user);
 
-        if (result.level === "success") {
+        if (result.level === 200) {
             setInterval(() => (window.location.reload()), 3000);
         }
 
-        notificationManager.addNotification(result.level, result.title, result.message);
+        const content = notificationContents[result.level][result.data.code];
+        notificationManager.addNotification(content.level, content.title, content.message);
     }
 
     function uploadImage() {

@@ -1,15 +1,17 @@
 import styles from "./EditWord.module.scss";
-import {  removeUserWord } from "../../../../services/api/words/words.js";
+import { removeUserWordAsync } from "../../../../services/api/words/words.js";
 import RoundedButton from "../../../ui/buttons/rounded/RoundedButton.jsx";
 import { buttonTypes } from "../../../ui/buttons/buttonTypes.js";
-import notificationManager, { getNotificationModel } from "../../../ui/notification/notificationManager.js";
+import notificationManager from "../../../ui/notification/notificationManager.js";
+import { notificationContents } from "./NotificationContents.js";
 
 const EditWord = ({ data }) => {
 
     const removeWordAsync = async () => {
-        const result = await removeUserWord(data?.id);
-        console.log(data);
-        notificationManager.addNotification(result.level, result.title, result.message);
+        const result = await removeUserWordAsync(data?.id);
+        console.log(result);
+        const content = notificationContents[result.level][result.data.code ?? result.data.status];
+        notificationManager.addNotification(content.level, content.title, content.message);
         setTimeout(() => window.location.reload(), 700);
     }
 

@@ -1,71 +1,54 @@
-import notificationManager from "../../../components/ui/notification/notificationManager";
-import { addLastHour, getAccessToken, getRefreshToken, getUserId, hasLastHour, refreshTokens } from "../../authentication";
+import { addLastHour, getUserId, hasLastHour } from "../../authentication";
 import { requestAsync } from "../api";
+import { addHourUrl, addVisitUrl, getUserDataUrl, removeAccountUrl, updatePasswordUrl, updateUserDataUrl, updateUserInfoUrl } from "../api-urls";
 
-export const getUserData = async () => {
-    const token = getAccessToken();
-    const result = await requestAsync("get", "api.lingomq/identity/user/info", {}, token);
-    if (result.data === undefined) {
-        notificationManager.addNotification(result.level, result.title, result.message);
-        return { data: { data: { }}};
-    }
-    await addHour();
-    await addVisit();
+export const getUserDataAsync = async () => {
+    const result = await requestAsync("get", getUserDataUrl, {});
+    await addHourAsync();
+    await addVisitAsync();
     return result; 
 }
 
-export const addHour = async () => {
-    const token = getAccessToken();
-    const doUpdate = await hasLastHour();
+export const addHourAsync = async () => {
+    const doUpdate = hasLastHour();
     if (doUpdate === true)
     {
-        await addLastHour();
-        await requestAsync("put", "api.lingomq/identity/user/statistics/hour/add", {}, token);
+        addLastHour();
+        await requestAsync("put", addHourUrl, {});
     }
 
 }
 
-export const addVisit = async () => {
-    const token = getAccessToken();
-    const result = await requestAsync("put", "api.lingomq/identity/user/statistics/visit", {}, token);
+export const addVisitAsync = async () => {
+    const result = await requestAsync("put", addVisitUrl, {});
     return result;
 }
 
-export const updateUserInfo = async (model) => {
-    const token = getAccessToken();
-    const refreshToken = getRefreshToken();
-    const result = await requestAsync("put", "api.lingomq/identity/user/info", model, token);
-    await refreshTokens(refreshToken);
+export const updateUserInfoAsync = async (model) => {
+    const result = await requestAsync("put", updateUserInfoUrl, model);
     return result;
 }
 
-export const updateUserData = async (email, phone) => {
+export const updateUserDataAsync = async (email, phone) => {
     const userId = await getUserId();
     const requestModel = {
         id: userId,
         email: email,   
         phone: phone
     };
-    const token = getAccessToken();
-    const refreshToken = getRefreshToken();
-    const result = await requestAsync("put", "api.lingomq/identity/user", requestModel, token);
-    await refreshTokens(refreshToken);
+    const result = await requestAsync("put", updateUserDataUrl, requestModel);
     return result;
 }
 
-export const updatePassword = async (password) => {
+export const updatePasswordAsync = async (password) => {
     const requestModel = {
         password: password
     };
-    const token = getAccessToken();
-    const refreshToken = getRefreshToken();
-    const result = await requestAsync("put", "api.lingomq/identity/user/credentials", requestModel, token);
-    await refreshTokens(refreshToken);
+    const result = await requestAsync("put", updatePasswordUrl, requestModel);
     return result;
 }
 
-export const removeAccount = async () => {
-    const token = getAccessToken();
-    const result = await requestAsync("delete", "api.lingomq/identity/user", {}, token);
+export const removeAccountAsync = async () => {
+    const result = await requestAsync("delete", removeAccountUrl, {});
     return result;
 }

@@ -5,7 +5,7 @@ import UnauthorizedHeader from "../headers/unauthorized-header/UnauthorizedHeade
 import AuthorizedHeader from "../headers/authorized-header/AuthorizedHeader.jsx";
 import { Suspense, useEffect, useState } from "react";
 import { getNewTokens, getRefreshToken, isAuthenticated } from "../../../services/authentication.js";
-import { getUserData } from "../../../services/api/identity/identity.js";
+import { getUserData, getUserDataAsync } from "../../../services/api/identity/identity.js";
 import Footer from "../footers/Footer.jsx";
 import Wrapper from "../wrapper/Wrapper.jsx";
 import { Main } from "../../pages/main/Main.jsx";
@@ -28,11 +28,8 @@ const Application = () => {
         const checkAuth = async() => {
             const isAuth = isAuthenticated();
             setIsAuthenticate(isAuth);
-
             if (isAuth) {
-                const refreshToken = getRefreshToken();
-                await getNewTokens(refreshToken)
-                const takenUser = await getUserData();
+                const takenUser = await getUserDataAsync();
                 setUser(takenUser.data.data);
             }
         }

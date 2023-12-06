@@ -1,19 +1,20 @@
 import { useState } from "react";
-import { updateUserData } from "../../../../services/api/identity/identity";
+import { updateUserData, updateUserDataAsync } from "../../../../services/api/identity/identity";
 import notificationManager from "../../../ui/notification/notificationManager.js";
 import RoundedButton from "../../../ui/buttons/rounded/RoundedButton.jsx";
 import TextField from "../../../ui/fields/text/TextField.jsx";
+import { notificationContents } from "./NotificationContents.js";
 
 export const NonSensitiveData = ({ userData }) => {
     const [email, setEmail] = useState(userData.email);
     const [phone, setPhone] = useState(userData.phone);
 
     async function changeUserData() {
-        const result = await updateUserData(email, phone);
+        const result = await updateUserDataAsync(email, phone);
 
         setInterval(() => (window.location.href = ".."), 3000);
-
-        notificationManager.addNotification(result.level, result.title, result.message);
+        const content = notificationContents[result.level][result.data.code ?? result.data.status];
+        notificationManager.addNotification(content.level, content.title, content.message);
     }
 
     return (

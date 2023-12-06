@@ -2,8 +2,9 @@ import { useState } from "react";
 import styles from "../SignModal.module.scss";
 import RoundedButton from "../../../ui/buttons/rounded/RoundedButton.jsx";
 import TextField from "../../../ui/fields/text/TextField.jsx";
-import { signUp } from "../../../../services/api/authentication/authentication.js";
+import { signUpAsync } from "../../../../services/api/authentication/authentication.js";
 import notificationManager from "../../../ui/notification/notificationManager.js";
+import { notificationContents } from "./NotificationContents.js";
 
 const SignUpModal = ({ method }) => {
     const [user, setUser] = useState({ nickname: "", email: "", password: ""});
@@ -15,13 +16,10 @@ const SignUpModal = ({ method }) => {
         });
     } 
 
-    async function signUpAsync() {
-        const result = await signUp(user);
-
-        if (result.level === "success")
-            notificationManager.addNotification("success", "Успешно", "Подвердите аккаунт через почту");
-        else
-            notificationManager.addNotification(result.level, result.title, result.message);
+    async function signUp() {
+        const result = await signUpAsync(user);
+        const content = notificationContents[result.level][result.data.code];
+        notificationManager.addNotification(content.level, content.title, content.message);
     }
 
     return (
@@ -38,7 +36,7 @@ const SignUpModal = ({ method }) => {
                 />
             </div>
             <div className={styles["modal-sign-buttons"]}>
-                <RoundedButton text="ЗАРЕГИСТРИРОВАТЬСЯ" type="button" onClick={signUpAsync}/>
+                <RoundedButton text="ЗАРЕГИСТРИРОВАТЬСЯ" type="button" onClick={signUp}/>
             </div>
             <div className={styles["modal-sign-forgot-password"]}>
                 <p>УЖЕ ЕСТЬ АККАУНТ?</p>

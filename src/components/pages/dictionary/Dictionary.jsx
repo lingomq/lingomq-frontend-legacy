@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styles from "./Dictionary.module.scss";
 import { useEffect } from "react";
-import { getLanguagesAsync, getWordTypesAsync } from "../../../services/words.js";
+import { getLanguagesArrayAsync, getWordTypesArrayAsync } from "../../../services/words.js";
 import EditWord from "../../elements/modals/edit-word/EditWord.jsx";
 import { modalSize } from "../../ui/modal/modalSize.js";
 import SelectField from "../../ui/fields/select/SelectField.jsx";
@@ -18,14 +18,13 @@ export const Dictionary = () => {
     }, []);
 
     async function handleShowEdit(word) {
-        console.log(words);
         ModalManager.addModal(modalSize.SMALL, <EditWord data={word} wordList={words}/>);
     }
 
     const fetchData = async () => {
         const setLanguagesAndTypes = async () => {
-            const languagesArray = await getLanguagesAsync();
-            const typesArray = await getWordTypesAsync();
+            const languagesArray = await getLanguagesArrayAsync();
+            const typesArray = await getWordTypesArrayAsync();
             setLanguages(languagesArray);
             setWordTypes(typesArray);
         };

@@ -1,4 +1,4 @@
-import { addWord } from "../../../../services/api/words/words.js";
+import { addWordAsync } from "../../../../services/api/words/words.js";
 import notificationManager from "../../../ui/notification/notificationManager.js";
 import { buttonTypes } from "../../../ui/buttons/buttonTypes";
 import RoundedButton from "../../../ui/buttons/rounded/RoundedButton.jsx";
@@ -7,13 +7,12 @@ import styles from "./WrongWordConfirm.module.scss";
 const WrongWordConfirm = ({ rightWord, wordModel }) => {
 
     const addWordForce = async (isAutocomplete) => {
-        const result = await addWord(wordModel, true, isAutocomplete);
-        notificationManager.addNotification(result.level, result.title, result.message);
+        const result = await addWordAsync(wordModel, true, isAutocomplete);
+        const content = notificationContents[result.level][result.data.code];
+        notificationManager.addNotification(content.level, content.title, content.message);
     } 
 
-    const reloadPage = () => {
-        window.location.reload();
-    }
+    const reloadPage = () => window.location.reload();
 
     return (
         <>

@@ -2,9 +2,10 @@ import { useState } from "react";
 import RoundedButton from "../../../ui/buttons/rounded/RoundedButton.jsx";
 import styles from "./Practice.module.scss";
 import { useEffect } from "react";
-import { getLanguages, getUserWords } from "../../../../services/api/words/words.js";
+import { getLanguages, getUserWords, getUserWordsAsync } from "../../../../services/api/words/words.js";
 import SelectField from "../../../ui/fields/select/SelectField.jsx";
 import notificationManager from "../../../ui/notification/notificationManager.js";
+import { getLanguagesArrayAsync } from "../../../../services/words.js";
 
 const Practice = () => {
     const [languages, setLanguages] = useState();
@@ -12,15 +13,7 @@ const Practice = () => {
     const [repeatCount, setRepeatCount] = useState(1);
 
     const fetchData = async () => {
-        const toArray = (data, name = "name") =>{
-            const array = [];
-            data.map(item => {
-                array.push({name: item[name], value: item.id});
-            });
-            return array;
-        }
-        const rawLanguages = await getLanguages(10);
-        const languagesArray = toArray(rawLanguages.data.data);
+        const languagesArray = await getLanguagesArrayAsync(10);
         setLanguages(languagesArray);
     }
 
@@ -30,12 +23,11 @@ const Practice = () => {
 
     const start = async () => {
         let wordsArray = [];
-        const words = await getUserWords();
+        const words = await getUserWordsAsync();
         words.data.data.map((item) => { wordsArray.push(item) });
         wordsArray = wordsArray.filter((item) => {
             return item.languageId === language;
         });
-        console.log(wordsArray);
         if (wordsArray.length === 0 && language != "none") {
             notificationManager.addNotification("warning", "ПРЕДУПРЕЖДЕНИЕ", "Слов нет в данной коллекции");
         }
