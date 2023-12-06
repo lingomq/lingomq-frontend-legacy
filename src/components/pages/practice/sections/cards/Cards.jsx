@@ -10,7 +10,7 @@ const Cards = ({words, rightWord, checkFunction}) => {
         const clear = () => {
             const cards = document.getElementsByClassName(styles.card);
             for (let i = 0; i < cards.length; i++)
-                cards[i].style.background = "none";
+                cards[i].style.background = "#FFFFFF";
         }
 
         const handleClick = (e) => {

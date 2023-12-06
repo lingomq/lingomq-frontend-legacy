@@ -1,3 +1,5 @@
+@import "../../../../general/fonts.scss";
+
 .translateSection p {
     margin: 0;
 }
@@ -23,5 +25,6 @@
     margin: 1em;
     padding: 2em;
     border-radius: 15px;
-    box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.25);
+    background: #ffffff;
+    font-family: $all-font-family;
 }

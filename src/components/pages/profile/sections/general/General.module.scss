@@ -2,9 +2,11 @@
     display: flex;
     width: 70%;
     justify-content: space-between;
-    border-radius: 15px;
+    align-items: center;
+    border-radius: 5px;
     padding: 0 10px;
-    box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.25);
+    margin: 5px 10px;
+    background-color: #FFFFFF;
 }
 
 .profileInfo {
@@ -44,7 +46,7 @@
     border-radius: 15px;
     padding: 15px 10px;
     margin: 10px 0;
-    box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.25);
+    background-color: #F9F9F9;
 }
 
 .profileDataCard p {

@@ -76,7 +76,6 @@ export function hasLastHour() {
 }
 
 export function rewriteTokens(tokens) {
-    console.log(tokens);
     let date = new Date(tokens.accessExpiredAt);
     let infDate = new Date(2024, 0, 1);
     cookies.set("access-token", tokens.accessToken, { path: "/", expires: date });
