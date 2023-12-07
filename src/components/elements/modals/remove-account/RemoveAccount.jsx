@@ -5,6 +5,7 @@ import { buttonTypes } from "../../../ui/buttons/buttonTypes.js";
 import RoundedButton from "../../../ui/buttons/rounded/RoundedButton.jsx";
 import styles from "../Credentials.module.scss";
 import TextField from "../../../ui/fields/text/TextField.jsx";
+import { removeAccountAsync } from "../../../../services/api/identity/identity.js";
 
 export const RemoveAccount = ({verificationText}) => {
     const [text, setText] = useState("");
