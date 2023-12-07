@@ -20,7 +20,9 @@ export const Confirm = () => {
 				writeTokens(result.data.data);
                 setInterval(() => window.location.href = '..', 4000);
             }
-			notificationManager.addNotification(result.level, result.title, result.message);
+			
+			const content = notificationContents[result.level][result.data.code];
+			notificationManager.addNotification(content.level, content.title, content.message);
 		};
 		confirmAccount();
 	}, []);
