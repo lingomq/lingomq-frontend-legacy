@@ -15,7 +15,7 @@ export const updateUserDataUrl = GATEWAY_URL + "identity/user";
 export const addHourUrl = GATEWAY_URL + "identity/user/statistics/hour/add";
 export const addVisitUrl = GATEWAY_URL + "identity/user/statistics/visit";
 export const updatePasswordUrl = GATEWAY_URL + "identity/user/credentials";
-export const removeAccountUrl = GATEWAY_URL + "identity/user/";
+export const removeAccountUrl = GATEWAY_URL + "identity/user";
 
 // Notification Service Urls
 export const getNotificationsUrl = GATEWAY_URL + "notifications/user";
