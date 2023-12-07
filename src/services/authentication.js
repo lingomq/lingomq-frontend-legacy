@@ -59,7 +59,6 @@ function validToken(token) {
     const date = new Date();
     if (decodedToken.exp * 1000 < date.getTime())
         return false;
-    
     return true;
 }
 

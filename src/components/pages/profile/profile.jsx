@@ -5,6 +5,7 @@ import { clearAuthCookies } from '../../../services/authentication.js';
 import { Notifications } from './sections/notifications/Notifications.jsx';
 import { Statistics } from './sections/statistics/Statistics.jsx';
 import { Security } from './sections/security/Security.jsx';
+import Achievements from './sections/achievements/Achievements.jsx';
 
 export const Profile = ({ data, changeSubTitleMethod = undefined }) => {
 
@@ -21,6 +22,7 @@ export const Profile = ({ data, changeSubTitleMethod = undefined }) => {
     sections.set("Общие", <ProfileGeneral data={user}/>);
     sections.set("Уведомления", <Notifications/>);
     sections.set("Статистика", <Statistics/>)
+    sections.set("Достижения", <Achievements/>)
     sections.set("Безопасность", <Security data={user}/>);
 
     function changeSection(sectionName) {
@@ -48,6 +50,10 @@ export const Profile = ({ data, changeSubTitleMethod = undefined }) => {
 
                     <div className={styles.profileNavigationContentSubmenu} onClick={() => changeSection("Уведомления")}>
                         <p>Уведомления</p>
+                    </div>
+
+                    <div className={styles.profileNavigationContentSubmenu} onClick={() => changeSection("Достижения")}>
+                        <p>Достижения</p>
                     </div>
 
                     <div className={styles.profileNavigationContentSubmenu} onClick={() => changeSection("Статистика")}>

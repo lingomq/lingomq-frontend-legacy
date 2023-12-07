@@ -31,3 +31,6 @@ export const getUserWordsUrl = GATEWAY_URL + "words/user-words/user";
 export const removeUserWordUrl = GATEWAY_URL + "words/user-words/";
 export const addRepeatToWordUrl = GATEWAY_URL + "words/user-words/add/repeats/";
 export const addWordToStatisticsUrl = GATEWAY_URL + "identity/user/statistics/word/add";
+
+// Achievements Service Urls
+export const getUserAchievementsUrl = GATEWAY_URL + "achievements/user";
