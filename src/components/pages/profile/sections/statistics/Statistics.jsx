@@ -17,7 +17,7 @@ export const Statistics = () => {
         }
         const fetchFamousWord = async () => {
             const result = await getFamousWordAsync();
-            setFamousWord(result.data.data);
+            setFamousWord(result.data.data.word ?? "");
         }
 
 		const fetchCounts = async (dates)=> {
@@ -81,7 +81,7 @@ export const Statistics = () => {
 
 				<div className={styles.statisticsDataCard}>
 					<p className={styles.statisticsDataCardName}>Популярное слово</p>
-					<p className={styles.statisticsDataCardContent}>{famousWord?.word}</p>
+					<p className={styles.statisticsDataCardContent}>{famousWord}</p>
 				</div>
 
 				<div className={styles.statisticsDataCard}>

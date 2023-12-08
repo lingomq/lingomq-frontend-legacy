@@ -13,7 +13,7 @@ export const Main = () => {
         }
         const fetchFamousWord = async () => {
             const result = await getFamousWordAsync();
-            setFamousWord(result.data.data ?? "");
+            setFamousWord(result.data.data.word ?? "");
         }
         fetchFamousWord();
         fetchUserStatistics();
@@ -51,7 +51,7 @@ export const Main = () => {
                         Слово дня
                     </p>
                     <p className={styles.todayStatisticsCardContent}>
-                        {famousWord?.word}
+                        {famousWord}
                     </p>
                 </div>
            </div>
