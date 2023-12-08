@@ -1,4 +1,4 @@
-const GATEWAY_DOMAIN = "https://192.168.0.105:9999/"
+const GATEWAY_DOMAIN = "http://192.168.0.105:9998/" // "https://192.168.0.105:9999/"
 const GATEWAY_PATH = "api.lingomq/";
 const GATEWAY_URL = GATEWAY_DOMAIN + GATEWAY_PATH;
 

@@ -1,8 +1,12 @@
+.main {
+    margin-bottom: 10vh;
+}
+
 .todayStatisticsSection {
     display: flex;
     justify-content: space-between;
     align-items: stretch;
-    margin-top: 20vh;
+    margin-top: 5vh;
 }
 
 .todayStatisticsCard {
@@ -25,14 +29,114 @@
     font-size: 3em;
 }
 
+.mainSection {
+    display: grid;
+    margin-top: 5vh;
+    grid-template-columns: 65% 30%;
+    justify-content: space-between;
+    grid-column-gap: 2vw;
+}
+
+.topicsSection {
+    background: #ffffff;
+    border-radius: 5px;
+    min-height: 500px;
+}
+
+.recordsSection {
+    background: #ffffff;
+    border-radius: 5px;
+    height: auto;
+}
+
+.recordsTitleSection {
+    font-size: 1.2em;
+    text-align: center;
+    margin-bottom: 0;
+}
+
+.recordsSubtitleSection {
+    font-size: 0.9em;
+    text-align: center;
+    color: #7d7d7d;
+    margin: 0;
+}
+
+.recordsContent {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 20px;
+}
+
+.recordsCard {
+    display: grid;
+    background: #F9F9F9;
+    border-radius: 5px;
+    justify-content: space-between;
+    padding: 0 30px;
+    align-items: center;
+    grid-template-columns: 10px 150px 10px;
+    margin: 5px 0;
+}
+
+.recordsPlace {
+    font-size: 0.9em;
+    color: #7d7d7d;
+}
+
+.recordsProfile {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.recordsProfile img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.recordsProfile p {
+    font-size: 1em;
+}
+
+.recordsWordsCount {
+    font-size: 0.9em;
+}
+
 @media screen and (max-width: 950px) {
     .todayStatisticsSection {
-        flex-direction: column;
+        display: grid;
+        grid-template-columns: auto auto;
+        justify-content: center;
+        justify-items: center;
         align-items: center;
     }
 
     .todayStatisticsCard {
-        width: 100%;
-        margin: 50px;
+        width: 170px;
+        height: 170px;
+        margin: 20px;
+    }
+
+    .todayStatisticsCardContent {
+        font-size: 2em;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .todayStatisticsCard {
+        width: 130px;
+        height: 130px;
+        margin: 15px;
+    }
+
+    .todayStatisticsCardTitle {
+        font-size: 0.7em;
+    }
+
+    .todayStatisticsCardContent {
+        font-size: 1em;
+        font-weight: 600;
     }
 }

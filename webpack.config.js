@@ -33,10 +33,10 @@ module.exports = {
       },
       progress: true,
     },
-    https: {
-      key: fs.readFileSync(".cert/key.pem"),
-      cert: fs.readFileSync(".cert/cert.pem")
-    },
+    // https: {
+    //   key: fs.readFileSync(".cert/key.pem"),
+    //   cert: fs.readFileSync(".cert/cert.pem")
+    // },
     hot: true,
   },
   module: {
