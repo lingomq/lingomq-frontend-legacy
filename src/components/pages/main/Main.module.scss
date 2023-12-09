@@ -1,142 +1,260 @@
 .main {
-    margin-bottom: 10vh;
+  margin-bottom: 10vh;
 }
 
 .todayStatisticsSection {
-    display: flex;
-    justify-content: space-between;
-    align-items: stretch;
-    margin-top: 5vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  margin-top: 5vh;
 }
 
 .todayStatisticsCard {
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    align-items: center;
-    width: 20%;
-    justify-content: center;
-    border-radius: 5px;
-    background-color: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  width: 20%;
+  justify-content: center;
+  border-radius: 5px;
+  background-color: #ffffff;
 }
 
 .todayStatisticsCardTitle {
-    font-size: 1em;
-    color: #7e7d7d;
+  font-size: 1em;
+  color: #7e7d7d;
 }
 
 .todayStatisticsCardContent {
-    font-size: 3em;
+  font-size: 3em;
 }
 
 .mainSection {
-    display: grid;
-    margin-top: 5vh;
-    grid-template-columns: 65% 30%;
-    justify-content: space-between;
-    grid-column-gap: 2vw;
-}
-
-.topicsSection {
-    background: #ffffff;
-    border-radius: 5px;
-    min-height: 500px;
+  display: grid;
+  margin-top: 5vh;
+  grid-template-columns: 65% 30%;
+  justify-content: space-between;
+  grid-column-gap: 2vw;
 }
 
 .recordsSection {
-    background: #ffffff;
-    border-radius: 5px;
-    height: auto;
+  background: #ffffff;
+  border-radius: 5px;
+  height: auto;
+}
+
+.topicsSectionTitle {
+  font-size: 1.2em;
+  text-align: left;
+  margin-bottom: 0;
 }
 
 .recordsTitleSection {
-    font-size: 1.2em;
-    text-align: center;
-    margin-bottom: 0;
+  font-size: 1.2em;
+  text-align: center;
+  margin-bottom: 0;
 }
 
 .recordsSubtitleSection {
-    font-size: 0.9em;
-    text-align: center;
-    color: #7d7d7d;
-    margin: 0;
+  font-size: 0.9em;
+  text-align: center;
+  color: #7d7d7d;
+  margin: 0;
 }
 
 .recordsContent {
-    display: flex;
-    flex-direction: column;
-    padding: 10px 20px;
+  display: flex;
+  flex-direction: column;
+  padding: 10px 20px;
 }
 
 .recordsCard {
-    display: grid;
-    background: #F9F9F9;
-    border-radius: 5px;
-    justify-content: space-between;
-    padding: 0 30px;
-    align-items: center;
-    grid-template-columns: 10px 150px 10px;
-    margin: 5px 0;
+  display: grid;
+  background: #f9f9f9;
+  border-radius: 5px;
+  justify-content: space-between;
+  padding: 0 30px;
+  align-items: center;
+  grid-template-columns: 10px 150px 10px;
+  margin: 5px 0;
 }
 
 .recordsPlace {
-    font-size: 0.9em;
-    color: #7d7d7d;
+  font-size: 0.9em;
+  color: #7d7d7d;
 }
 
 .recordsProfile {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .recordsProfile img {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
 }
 
 .recordsProfile p {
-    font-size: 1em;
+  font-size: 1em;
 }
 
 .recordsWordsCount {
-    font-size: 0.9em;
+  font-size: 0.9em;
+}
+
+.topicsSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #ffffff;
+  border-radius: 5px;
+  min-height: 500px;
+}
+
+.topicCard {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  max-width: 45vw;
+  min-width: 40vw;
+  min-height: 50vh;
+  max-height: 55vh;
+  margin: 30px 10px;
+}
+
+.topicCard img {
+  width: 45vw;
+  object-fit: cover;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  height: 45vh;
+}
+
+.topicCardTitle {
+  font-size: 1.3em;
+  margin: 5px;
+  word-wrap: break-word;
+  width: -webkit-fill-available;
+}
+
+.topicCardContent {
+  font-size: 1em;
+  margin: 5px;
+  width: inherit;
+  color: #7d7d7d;
+  word-wrap: break-word;
+  width: -webkit-fill-available;
+}
+
+.mainSelector {
+  display: none;
+  justify-content: center;
+}
+
+.mainSelectorContent {
+  margin: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+}
+
+.mainSelector p {
+  background-color: #f9f9f9;
+  margin: 0;
+  padding: 10px 10px;
+  font-size: 1em;
+  cursor: pointer;
+}
+
+.mainSelector p:hover {
+  background-color: #ffffff;
+  transition: 0.3s ease-in;
+}
+
+.selected {
+  color: #00a3ff;
+}
+
+.disabled {
+  display: none;
+}
+
+@media screen and (max-width: 1050px) {
+  .mainSelector {
+    display: flex;
+  }
+
+  .mainSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .topicsSection {
+    background-color: #f9f9f9;
+  }
+
+  .topicCard {
+    max-width: 65vw;
+    min-width: 60vw;
+    min-height: 70vh;
+    max-height: 75vh;
+    margin: 30px 10px;
+    background-color: #ffffff;
+  }
+
+  .topicCard img {
+    width: 65vw;
+    object-fit: cover;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    height: 75vh;
+  }
+
+  .recordsSection {
+    width: 100%;
+  }
 }
 
 @media screen and (max-width: 950px) {
-    .todayStatisticsSection {
-        display: grid;
-        grid-template-columns: auto auto;
-        justify-content: center;
-        justify-items: center;
-        align-items: center;
-    }
+  .todayStatisticsSection {
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+  }
 
-    .todayStatisticsCard {
-        width: 170px;
-        height: 170px;
-        margin: 20px;
-    }
+  .todayStatisticsCard {
+    width: 170px;
+    height: 170px;
+    margin: 20px;
+  }
 
-    .todayStatisticsCardContent {
-        font-size: 2em;
-    }
+  .todayStatisticsCardContent {
+    font-size: 2em;
+  }
 }
 
 @media screen and (max-width: 450px) {
-    .todayStatisticsCard {
-        width: 130px;
-        height: 130px;
-        margin: 15px;
-    }
+  .todayStatisticsCard {
+    width: 130px;
+    height: 130px;
+    margin: 15px;
+  }
 
-    .todayStatisticsCardTitle {
-        font-size: 0.7em;
-    }
+  .todayStatisticsCardTitle {
+    font-size: 0.7em;
+  }
 
-    .todayStatisticsCardContent {
-        font-size: 1em;
-        font-weight: 600;
-    }
+  .todayStatisticsCardContent {
+    font-size: 1em;
+    font-weight: 600;
+  }
 }
