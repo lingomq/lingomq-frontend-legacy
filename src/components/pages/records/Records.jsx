@@ -119,8 +119,8 @@ const Records = () => {
 	useEffect(() => {
 		const fetchData = async () => {
 			let result = await getWordsCount();
+			result.reverse();
 			let content = getTableContent(result);
-			content.reverse();
 			setTableContent(content);
 		};
 

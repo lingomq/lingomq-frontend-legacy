@@ -28,8 +28,8 @@ export const Main = () => {
 
 		const fetchRecords = async () => {
 			const result = await getRecordsByWordsCount();
+			result.reverse();
 			const content = getTableContent(result);
-			content.reverse();
 			setRecords(content);
 		}
 
@@ -60,7 +60,6 @@ export const Main = () => {
 	};
 
 	const getTableContent = (raw) => {
-		console.log(raw);
 		const elementsArray = [];
 		let i = 1;
 		raw.map((item) => {
