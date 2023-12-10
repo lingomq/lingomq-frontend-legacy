@@ -14,6 +14,7 @@ import { Confirm } from "../../pages/confirm/Confirm.jsx";
 import { Profile } from "../../pages/profile/profile.jsx";
 import { Notifications } from "../../pages/profile/sections/notifications/Notifications.jsx";
 import Practice from "../../pages/practice/Practice.jsx";
+import Records from "../../pages/records/Records.jsx";
 
 const Application = () => {
     const [isAuthenticate, setIsAuthenticate] = useState(false);
@@ -47,6 +48,7 @@ const Application = () => {
                     <Route path="profile" element={user && <Wrapper title="ПРОФИЛЬ" subTitle={subTitle} element={<Profile data={user} changeSubTitleMethod={changeSubTitle} /> }/>}/>
                     <Route path="notifications" element={user && <Wrapper title="УВЕДОМЛЕНИЯ" element={<Notifications /> }/>}/>
                     <Route path="practice/:c/:l" element={user && <Wrapper title="ПРАКТИКА" element={<Practice/> }/>}/>
+                    <Route path="records" element={user && <Wrapper title="РЕКОРДЫ" element={<Records/>}/>}/>
                     <Route path = "*" element={<div>Not found page will be here</div>}/>
                 </Routes>
             </div>
