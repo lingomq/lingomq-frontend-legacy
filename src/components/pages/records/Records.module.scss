@@ -1,0 +1,143 @@
+.recordsSections {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	border-radius: 5px;
+	background-color: #ffffff;
+	margin-top: 5vh;
+	padding: 10px;
+}
+
+.recordsTitle {
+	text-align: center;
+	font-size: 1.2em;
+	margin: 0;
+}
+
+.recordsSubTitle {
+    font-size: 0.9em;
+    text-align: center;
+    color: #7d7d7d;
+}
+
+.filters {
+	display: grid;
+	grid-template-columns: 1fr repeat(3, auto) 1fr;
+	justify-items: center;
+    padding: 0 20px;
+	align-items: center;
+}
+
+.filter:nth-child(1) {
+	margin-right: auto;
+}
+
+.filter {
+	display: flex;
+	align-items: center;
+}
+
+.filter p {
+	font-size: 1em;
+	color: #7d7d7d;
+}
+
+.pickFilter {
+	display: flex;
+	justify-content: center;
+	padding: 10px 10px;
+	align-items: center;
+	background: #f9f9f9;
+	border-radius: 5px;
+	height: fit-content;
+}
+
+.pickFilter p {
+	margin: 0 5px;
+	padding: 10px;
+	background: #ffffff;
+	border-radius: 5px;
+	font-size: 1em;
+	cursor: pointer;
+}
+
+.pickFilter p:hover {
+	color: #00a3ff;
+}
+
+.pickFilter p:active {
+	color: #00a3ff;
+}
+
+.selected {
+	color: #00a3ff;
+}
+
+.recordsContent {
+	display: flex;
+	flex-direction: column;
+	padding: 10px 20px;
+}
+
+.recordsCard {
+	display: grid;
+	background: #f9f9f9;
+	border-radius: 5px;
+	justify-content: space-between;
+	padding: 0 30px;
+	align-items: center;
+	grid-template-columns: 10px 0.7fr 10px;
+	margin: 5px 0;
+}
+
+.recordsPlace {
+	font-size: 0.9em;
+	color: #7d7d7d;
+}
+
+.recordsProfile {
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+}
+
+.recordsProfile img {
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	margin-right: 10px;
+}
+
+.recordsProfile p {
+	font-size: 1em;
+}
+
+.recordsWordsCount {
+	font-size: 0.9em;
+}
+
+.empty {
+    font-size: 1.2em;
+    color: #7d7d7d;
+    text-align: center;
+}
+
+@media screen and (max-width: 950px) {
+    .filters {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .filter {
+        margin: 10px 0;
+    }
+
+    .filter:nth-child(1) {
+        margin-right: 0;
+    }
+
+    .recordsSections {
+        padding: 0;
+    }
+}
