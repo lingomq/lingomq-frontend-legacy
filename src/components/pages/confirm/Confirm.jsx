@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { confirmEmailAsync } from "../../../services/api/authentication/authentication";
 import notificationManager from "../../ui/notification/notificationManager.js";
 import { writeTokens } from "../../../services/authentication";
+import { notificationContents } from "./NotificationContents.js";
 
 export const Confirm = () => {
 	const search = useLocation().search;

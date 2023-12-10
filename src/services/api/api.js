@@ -30,8 +30,10 @@ export const requestAsync = async(type, uri, model = {}, token = undefined) => {
             data: model
         });
 
+
         return responseProcessing(response);
     } catch (err) {
+        console.log(err);
         return errorResponseProcessing(err);
     }
 }

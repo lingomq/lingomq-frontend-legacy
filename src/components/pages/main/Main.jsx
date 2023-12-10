@@ -17,7 +17,7 @@ export const Main = () => {
     };
     const fetchFamousWord = async () => {
       const result = await getFamousWordAsync();
-      setFamousWord(result.data.data.word ?? "");
+      setFamousWord(result.data.data ? result.data.data.word : "нет");
     };
     fetchFamousWord();
     fetchUserStatistics();

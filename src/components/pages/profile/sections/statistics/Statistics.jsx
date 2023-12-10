@@ -17,7 +17,7 @@ export const Statistics = () => {
         }
         const fetchFamousWord = async () => {
             const result = await getFamousWordAsync();
-            setFamousWord(result.data.data.word ?? "");
+            setFamousWord(result.data.data ? result.data.data.word : "нет");
         }
 
 		const fetchCounts = async (dates)=> {
