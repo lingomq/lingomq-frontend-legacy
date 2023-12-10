@@ -10,6 +10,7 @@ export const confirmEmailUrl = GATEWAY_URL + "confirm/";
 
 // Identity Service Urls
 export const getUserDataUrl = GATEWAY_URL + "identity/user/info";
+export const getUserDataByIdUrl = GATEWAY_URL + "identity/user/info/user-id";
 export const updateUserInfoUrl = GATEWAY_URL + "identity/user/info";
 export const updateUserDataUrl = GATEWAY_URL + "identity/user";
 export const addHourUrl = GATEWAY_URL + "identity/user/statistics/hour/add";
@@ -31,6 +32,8 @@ export const getUserWordsUrl = GATEWAY_URL + "words/user-words/user";
 export const removeUserWordUrl = GATEWAY_URL + "words/user-words/";
 export const addRepeatToWordUrl = GATEWAY_URL + "words/user-words/add/repeats/";
 export const addWordToStatisticsUrl = GATEWAY_URL + "identity/user/statistics/word/add";
+export const getRecordsByRepeatsUrl = GATEWAY_URL + "words/user-words/records/repeats/";
+export const getRecordsByWordsCountUrl = GATEWAY_URL + "words/user-words/records/word-count/";
 
 // Achievements Service Urls
 export const getUserAchievementsUrl = GATEWAY_URL + "achievements/user";

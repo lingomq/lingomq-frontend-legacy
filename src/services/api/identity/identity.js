@@ -1,9 +1,16 @@
 import { addLastHour, getUserId, hasLastHour } from "../../authentication";
 import { requestAsync } from "../api";
-import { addHourUrl, addVisitUrl, getUserDataUrl, removeAccountUrl, updatePasswordUrl, updateUserDataUrl, updateUserInfoUrl } from "../api-urls";
+import { addHourUrl, addVisitUrl, getUserDataByIdUrl, getUserDataUrl, removeAccountUrl, updatePasswordUrl, updateUserDataUrl, updateUserInfoUrl } from "../api-urls";
 
 export const getUserDataAsync = async () => {
     const result = await requestAsync("get", getUserDataUrl, {});
+    await addHourAsync();
+    await addVisitAsync();
+    return result; 
+}
+
+export const getUserDataByIdAsync = async (id) => {
+    const result = await requestAsync("get", getUserDataByIdUrl + "/"+id, {});
     await addHourAsync();
     await addVisitAsync();
     return result; 

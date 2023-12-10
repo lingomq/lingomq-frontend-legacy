@@ -1,6 +1,6 @@
 import { getUserId } from "../../authentication";
 import { requestAsync } from "../api";
-import { addRepeatToWordUrl, addWordToStatisticsUrl, addWordUrl, getFamousWordUrl, getLanguagesUrl, getUserStatisticsUrl, getUserWordsUrl, getWordTypesUrl, getWordsCountPerDayUrl, removeUserWordUrl } from "../api-urls";
+import { addRepeatToWordUrl, addWordToStatisticsUrl, addWordUrl, getFamousWordUrl, getLanguagesUrl, getRecordsByRepeatsUrl, getRecordsByWordsCountUrl, getUserStatisticsUrl, getUserWordsUrl, getWordTypesUrl, getWordsCountPerDayUrl, removeUserWordUrl } from "../api-urls";
 
 export const getLanguagesAsync = async (count) => {
     const result = await requestAsync("get", getLanguagesUrl+count, {});
@@ -56,6 +56,16 @@ export const removeUserWordAsync = async (id) => {
 
 export const addRepeatToWordAsync = async (id) => {
     const result = await requestAsync("put", addRepeatToWordUrl+`${id}`, {});
+    return result;
+}
+
+export const getRecordsByRepeatsAsync = async (count = 4) => {
+    const result = await requestAsync("get", getRecordsByRepeatsUrl + count, {});
+    return result;
+}
+
+export const getRecordsByWordsCountAsync = async (count = 4) => {
+    const result = await requestAsync("get", getRecordsByWordsCountUrl + count, {});
     return result;
 }
 
