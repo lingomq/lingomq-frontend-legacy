@@ -2,13 +2,18 @@ import { useEffect, useState } from "react";
 import styles from "./Main.module.scss";
 import {
 	getFamousWordAsync,
+	getRecordsByRepeatsAsync,
+	getRecordsByWordsCountAsync,
 	getUserStatisticsAsync,
 } from "../../../services/api/words/words";
 import { Link } from "react-router-dom";
+import { getUserDataByIdAsync } from "../../../services/api/identity/identity";
+import { v4 } from "uuid";
 
 export const Main = () => {
 	const [famousWord, setFamousWord] = useState();
 	const [isTopicShow, setIsTopicShow] = useState(true);
+	const [records, setRecords] = useState();
 	const [userStatistics, setUserStatistics] = useState();
 
 	useEffect(() => {
@@ -20,6 +25,15 @@ export const Main = () => {
 			const result = await getFamousWordAsync();
 			setFamousWord(result.data.data ? result.data.data.word : "нет");
 		};
+
+		const fetchRecords = async () => {
+			const result = await getRecordsByWordsCount();
+			result.reverse();
+			const content = getTableContent(result);
+			setRecords(content);
+		}
+
+		fetchRecords();
 		fetchFamousWord();
 		fetchUserStatistics();
 	}, []);
@@ -28,9 +42,50 @@ export const Main = () => {
 		setIsTopicShow(!isTopicShow);
 	};
 
+	const getRecordsByWordsCount = async () => {
+		let array = [];
+		let result = await getRecordsByWordsCountAsync(4);
+
+		for (let i = 0; i < result.data.data.length; i++) {
+			let item = result.data.data[i];
+			let user = await getUserDataByIdAsync(item.userId);
+			array.push({
+				id: v4(),
+				count: item.wordsCount,
+				user: user.data.data,
+			});
+		}
+		
+		return array;
+	};
+
+	const getTableContent = (raw) => {
+		const elementsArray = [];
+		let i = 1;
+		raw.map((item) => {
+			console.log(item);
+			elementsArray.push(
+				<div className={styles.recordsCard} key={item.id}>
+					<p className={styles.recordsPlace}>{i}</p>
+					<div className={styles.recordsProfile}>
+						<img src={item.user.imageUri} />
+						<p>{item.user.nickname}</p>
+					</div>
+					<p className={styles.recordsWordsCount}>
+						{item.count}
+					</p>
+				</div>
+			);
+			i = i + 1;
+		});
+		
+		return elementsArray;
+	};
+
 	return (
 		famousWord &&
-		userStatistics && (
+		userStatistics &&
+		records && (
 			<div className={styles.main}>
 				<div className={styles.todayStatisticsSection}>
 					<div className={styles.todayStatisticsCard}>
@@ -138,38 +193,7 @@ export const Main = () => {
 							по словам
 						</p>
 						<div className={styles.recordsContent}>
-							<div className={styles.recordsCard}>
-								<p className={styles.recordsPlace}>1</p>
-								<div className={styles.recordsProfile}>
-									<img src="https://sun9-30.userapi.com/impg/_U9i-fvgkQBGgL3W0AU9Cw4JmXz2mS3SPepkSg/L0sbl1Uc0pc.jpg?size=720x720&quality=95&sign=8b9bc5f2f83977c44275f1797ea4540a&type=album" />
-									<p>zmqpkyf</p>
-								</div>
-								<p className={styles.recordsWordsCount}>228</p>
-							</div>
-							<div className={styles.recordsCard}>
-								<p className={styles.recordsPlace}>2</p>
-								<div className={styles.recordsProfile}>
-									<img src="https://sun9-30.userapi.com/impg/_U9i-fvgkQBGgL3W0AU9Cw4JmXz2mS3SPepkSg/L0sbl1Uc0pc.jpg?size=720x720&quality=95&sign=8b9bc5f2f83977c44275f1797ea4540a&type=album" />
-									<p>zmqpkyf23232</p>
-								</div>
-								<p className={styles.recordsWordsCount}>228</p>
-							</div>
-							<div className={styles.recordsCard}>
-								<p className={styles.recordsPlace}>3</p>
-								<div className={styles.recordsProfile}>
-									<img src="https://sun9-30.userapi.com/impg/_U9i-fvgkQBGgL3W0AU9Cw4JmXz2mS3SPepkSg/L0sbl1Uc0pc.jpg?size=720x720&quality=95&sign=8b9bc5f2f83977c44275f1797ea4540a&type=album" />
-									<p>zmqpkyf12</p>
-								</div>
-								<p className={styles.recordsWordsCount}>228</p>
-							</div>
-							<div className={styles.recordsCard}>
-								<p className={styles.recordsPlace}>4</p>
-								<div className={styles.recordsProfile}>
-									<img src="https://sun9-30.userapi.com/impg/_U9i-fvgkQBGgL3W0AU9Cw4JmXz2mS3SPepkSg/L0sbl1Uc0pc.jpg?size=720x720&quality=95&sign=8b9bc5f2f83977c44275f1797ea4540a&type=album" />
-									<p>zmqpkyf123</p>
-								</div>
-								<p className={styles.recordsWordsCount}>228</p>
-							</div>
+							{records}
 							<Link
 								className={styles.showAllRecords}
 								to="records"

@@ -2,33 +2,77 @@ import { useEffect, useState } from "react";
 import styles from "./Records.module.scss";
 import SelectField from "../../ui/fields/select/SelectField.jsx";
 import { v4 } from "uuid";
+import {
+	getRecordsByRepeatsAsync,
+	getRecordsByWordsCountAsync,
+} from "../../../services/api/words/words.js";
+import {
+	getUserDataAsync,
+	getUserDataByIdAsync,
+} from "../../../services/api/identity/identity.js";
 
 const Records = () => {
 	const [filter, setFilter] = useState("wordsCount");
-    const [orderBy, setOrderBy] = useState("asc");
+	const [orderBy, setOrderBy] = useState("asc");
 	const [filterText, setFilterText] = useState("По словам");
-	const [rawTableContent, setRawTableContent] = useState();
-    const [tableContent, setTableContent] = useState();
+	const [tableContent, setTableContent] = useState();
 
-	const changeFilter = (filterType, ordering) => {
-        updateOrderBy(ordering);
+	const changeFilter = async (filterType, ordering) => {
+		updateOrderBy(ordering);
 		updateFilter(filterType);
-		let result = applyFilters(rawTableContent, filterType);
+		let result = await applyFilters(filterType);
 		if (ordering === "desc") {
 			result.reverse();
 		}
-		setTableContent(getTableContent(result, filterType));
+		console.log("chf: ")
+		console.log(result);
+		setTableContent(getTableContent(result));
 	};
 
-    const updateOrderBy = (ordering) => {
-        setOrderBy(ordering);
-    }
+	const updateOrderBy = (ordering) => {
+		setOrderBy(ordering);
+	};
 
+	const getRepeats = async () => {
+		let array = [];
+		let result = await getRecordsByRepeatsAsync(20);
 
-	const getTableContent = (raw, filterType) => {
+		for (let i = 0; i < result.data.data.length; i++) {
+			let item = result.data.data[i];
+			let user = await getUserDataByIdAsync(item.userId);
+			array.push({
+				id: v4(),
+				count: item.repeats,
+				user: user.data.data,
+			});
+		}
+
+		return array;
+	};
+
+	const getWordsCount = async () => {
+		let array = [];
+		let result = await getRecordsByWordsCountAsync(20);
+
+		for (let i = 0; i < result.data.data.length; i++) {
+			let item = result.data.data[i];
+			let user = await getUserDataByIdAsync(item.userId);
+			array.push({
+				id: v4(),
+				count: item.wordsCount,
+				user: user.data.data,
+			});
+		}
+		
+		return array;
+	};
+
+	const getTableContent = (raw) => {
+		console.log(raw);
 		const elementsArray = [];
 		let i = 1;
 		raw.map((item) => {
+			console.log(item);
 			elementsArray.push(
 				<div className={styles.recordsCard} key={item.id}>
 					<p className={styles.recordsPlace}>{i}</p>
@@ -37,13 +81,13 @@ const Records = () => {
 						<p>{item.user.nickname}</p>
 					</div>
 					<p className={styles.recordsWordsCount}>
-						{getByParameter(item, filterType)}
+						{item.count}
 					</p>
 				</div>
 			);
 			i = i + 1;
 		});
-
+		
 		return elementsArray;
 	};
 
@@ -54,87 +98,43 @@ const Records = () => {
 			setFilterText("По повторениям");
 		}
 
-        setFilter(filterType);
+		setFilter(filterType);
 	};
 
-	const applyFilters = (array, filterType) => {
-        console.log(filterType);
-		let result = [...array];
+	const applyFilters = async (filterType) => {
+		let result;
 		if (filterType === "wordsCount") {
-			result = result.sort(
-				(a, b) => Number(b.wordsCount) - Number(a.wordsCount)
-			);
+			result = await getWordsCount();
 		} else if (filterType === "repeats") {
-			result = result.sort(
-				(a, b) => Number(b.repeats) - Number(a.repeats)
-			);
+			result = await getRepeats();
 		}
-        console.log(result);
+
+		result = result.sort(
+			(a, b) => Number(b.count) - Number(a.count)
+		);
+
 		return result;
 	};
 
-	const getByParameter = (item, filterType) => {
-		return item[filterType];
-	};
-
 	useEffect(() => {
-		let result = [
-			{
-				id: v4(),
-				wordsCount: 30,
-				repeats: 100,
-				user: {
-					additional: "daemon",
-					creationalDate: "2023-11-29T17:51:05",
-					id: "220a1b21-2c6c-4f0c-ba0c-37ada34cc961",
-					imageUri:
-						"https://sun9-30.userapi.com/impg/_U9i-fvgkQBGgL3W0AU9Cw4JmXz2mS3SPepkSg/L0sbl1Uc0pc.jpg?size=720x720&quality=95&sign=8b9bc5f2f83977c44275f1797ea4540a&type=album",
-					isRemoved: false,
-					nickname: "zmqpkyf123",
-					userId: "a3467652-ad3a-44b0-b7b3-9ec875f7c90a",
-				},
-			},
-			{
-				id: v4(),
-				wordsCount: 20,
-				repeats: 200,
-				user: {
-					additional: "daemon",
-					creationalDate: "2023-11-29T17:51:05",
-					id: "220a1b21-2c6c-4f0c-ba0c-37ada34cc961",
-					imageUri:
-						"https://sun9-30.userapi.com/impg/_U9i-fvgkQBGgL3W0AU9Cw4JmXz2mS3SPepkSg/L0sbl1Uc0pc.jpg?size=720x720&quality=95&sign=8b9bc5f2f83977c44275f1797ea4540a&type=album",
-					isRemoved: false,
-					nickname: "zmqpkyf12",
-					userId: "a3467652-ad3a-44b0-b7b3-9ec875f7c90a",
-				},
-			},
-			{
-				id: v4(),
-				wordsCount: 10,
-				repeats: 300,
-				user: {
-					additional: "daemon",
-					creationalDate: "2023-11-29T17:51:05",
-					id: "220a1b21-2c6c-4f0c-ba0c-37ada34cc961",
-					imageUri:
-						"https://sun9-30.userapi.com/impg/_U9i-fvgkQBGgL3W0AU9Cw4JmXz2mS3SPepkSg/L0sbl1Uc0pc.jpg?size=720x720&quality=95&sign=8b9bc5f2f83977c44275f1797ea4540a&type=album",
-					isRemoved: false,
-					nickname: "zmqpkyf1",
-					userId: "a3467652-ad3a-44b0-b7b3-9ec875f7c90a",
-				},
-			},
-		];
-		setRawTableContent(result);
-        setTableContent(getTableContent(result, filter));
+		const fetchData = async () => {
+			let result = await getWordsCount();
+			result.reverse();
+			let content = getTableContent(result);
+			setTableContent(content);
+		};
+
+		fetchData();
 	}, []);
 
 	return (
-		rawTableContent && tableContent && (
+		tableContent && (
 			<div className={styles.recordsSections}>
 				<div className={styles.recordsTitleSection}>
 					<p className={styles.recordsTitle}>ТАБЛИЦА РЕКОРДОВ</p>
-					<p className={styles.recordsSubTitle}>{filterText}</p>
+					<p className={styles.recordsSubTitle}>
+						{filterText}
+					</p>
 					<div className={styles.filters}>
 						<div className={styles.filter}>
 							<p>Порядок: </p>
@@ -143,16 +143,22 @@ const Records = () => {
 									{ name: "По возрастанию", value: "desc" },
 									{ name: "По убыванию", value: "asc" },
 								]}
-								selectStateFunction={(e) => changeFilter(filter, e.target.value)}
+								selectStateFunction={async (e) =>
+									await changeFilter(filter, e.target.value)
+								}
 							/>
 						</div>
 						<div className={styles.pickFilter}>
-							<p onClick={() => changeFilter("wordsCount", orderBy)}>
+							<p
+								onClick={async () =>
+									await changeFilter("wordsCount", orderBy)
+								}
+							>
 								ПО СЛОВАМ
 							</p>
 							<p
 								className={styles.pickFilterEnd}
-								onClick={() => changeFilter("repeats", orderBy)}
+								onClick={async () => await changeFilter("repeats", orderBy)}
 							>
 								ПО ПОВТОРЕНИЯМ
 							</p>
@@ -161,7 +167,7 @@ const Records = () => {
 				</div>
 				<div className={styles.content}>
 					<div className={styles.recordsContent}>
-						{getTableContent(rawTableContent).length === 0 ? (
+						{tableContent.length === 0 ? (
 							<p className={styles.empty}>Рекордсменов нет</p>
 						) : (
 							tableContent
