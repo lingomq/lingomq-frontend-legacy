@@ -53,9 +53,12 @@ const Records = () => {
 	const getWordsCount = async () => {
 		let array = [];
 		let result = await getRecordsByWordsCountAsync(20);
+		result = result.data.data.sort(
+			(a, b) => Number(b.wordsCount) - Number(a.wordsCount));
+		result.reverse();
 
-		for (let i = 0; i < result.data.data.length; i++) {
-			let item = result.data.data[i];
+		for (let i = 0; i < result.length; i++) {
+			let item = result[i];
 			let user = await getUserDataByIdAsync(item.userId);
 			array.push({
 				id: v4(),
@@ -119,8 +122,9 @@ const Records = () => {
 	useEffect(() => {
 		const fetchData = async () => {
 			let result = await getWordsCount();
+			console.log(result);
 			result = result.sort(
-				(a, b) => Number(b.count) - Number(a.count));
+				(a, b) => Number(b.wordsCount) - Number(a.wordsCount));
 			result.reverse();
 			let content = getTableContent(result);
 			setTableContent(content);

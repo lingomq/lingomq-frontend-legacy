@@ -45,11 +45,13 @@ export const Main = () => {
 	const getRecordsByWordsCount = async () => {
 		let array = [];
 		let result = await getRecordsByWordsCountAsync(4);
-		result = result.sort(
-			(a, b) => Number(b.count) - Number(a.count));
+		result = result.data.data.sort(
+			(a, b) => Number(b.wordsCount) - Number(a.wordsCount));
 
-		for (let i = 0; i < result.data.data.length; i++) {
-			let item = result.data.data[i];
+		result.reverse();
+
+		for (let i = 0; i < result.length; i++) {
+			let item = result[i];
 			let user = await getUserDataByIdAsync(item.userId);
 			array.push({
 				id: v4(),
@@ -65,7 +67,6 @@ export const Main = () => {
 		const elementsArray = [];
 		let i = 1;
 		raw.map((item) => {
-			console.log(item);
 			elementsArray.push(
 				<div className={styles.recordsCard} key={item.id}>
 					<p className={styles.recordsPlace}>{i}</p>
