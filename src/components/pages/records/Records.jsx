@@ -119,6 +119,8 @@ const Records = () => {
 	useEffect(() => {
 		const fetchData = async () => {
 			let result = await getWordsCount();
+			result = result.sort(
+				(a, b) => Number(b.count) - Number(a.count));
 			result.reverse();
 			let content = getTableContent(result);
 			setTableContent(content);

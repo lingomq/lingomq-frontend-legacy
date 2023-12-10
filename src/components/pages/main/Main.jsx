@@ -45,6 +45,8 @@ export const Main = () => {
 	const getRecordsByWordsCount = async () => {
 		let array = [];
 		let result = await getRecordsByWordsCountAsync(4);
+		result = result.sort(
+			(a, b) => Number(b.count) - Number(a.count));
 
 		for (let i = 0; i < result.data.data.length; i++) {
 			let item = result.data.data[i];
