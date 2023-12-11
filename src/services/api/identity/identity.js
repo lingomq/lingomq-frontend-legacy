@@ -9,10 +9,13 @@ export const getUserDataAsync = async () => {
     return result; 
 }
 
+export const getUserIdAsync = async () => {
+    const result = await requestAsync("get", getUserDataUrl, {});
+    return result.data.data.userId; 
+}
+
 export const getUserDataByIdAsync = async (id) => {
     const result = await requestAsync("get", getUserDataByIdUrl + "/"+id, {});
-    await addHourAsync();
-    await addVisitAsync();
     return result; 
 }
 
