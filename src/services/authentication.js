@@ -1,7 +1,7 @@
 import { jwtDecode } from "jwt-decode";
 import { Cookies } from "react-cookie";
 import { requestAsync } from "./api/api";
-import { getUserData, getUserDataAsync } from "./api/identity/identity";
+import { getUserData, getUserDataAsync, getUserIdAsync } from "./api/identity/identity";
 import axios from "axios";
 import { refreshTokenUrl } from "./api/api-urls";
 
@@ -87,8 +87,8 @@ export function clearAuthCookies() {
 }
 
 export async function getUserId() {
-    const result = await getUserDataAsync();
-    return result.data.data.userId;
+    const result = await getUserIdAsync();
+    return result;
 }
 
 export function getAccessToken() {
