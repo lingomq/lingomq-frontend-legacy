@@ -152,17 +152,11 @@ export const Main = () => {
 							<p className={styles.topicCardTitle}>
 								Название топика
 							</p>
-							<p className={styles.topicCardContent}>
-								asdkfj;lasdlfl;aksdjf;alskdjf;lasdkjf;alskdfj;asdlkfjpioewur019238jre019832j1e2039ejp9238jd98sjd019823jed091823jd213-098du20389
-							</p>
 						</div>
 						<div className={styles.topicCard}>
 							<img src="https://sun9-40.userapi.com/impg/Pp3Ubz12XN15SaQKcW4dnROFSjeI6Z7qcdcm4w/9CZI1EH4eco.jpg?size=682x314&quality=96&sign=01dead64eaf61d86eaa7912a9ab03ccd&type=album" />
 							<p className={styles.topicCardTitle}>
 								Название топика
-							</p>
-							<p className={styles.topicCardContent}>
-								asdkfj;lasdlfl;aksdjf;alskdjf;lasdkjf;alskdfj;asdlkfjpioewur019238jre019832j1e2039ejp9238jd98sjd019823jed091823jd213-098du20389
 							</p>
 						</div>
 						<div className={styles.topicCard}>
@@ -170,19 +164,13 @@ export const Main = () => {
 							<p className={styles.topicCardTitle}>
 								Название топика
 							</p>
-							<p className={styles.topicCardContent}>
-								asdkfj;lasdlfl;aksdjf;alskdjf;lasdkjf;alskdfj;asdlkfjpioewur019238jre019832j1e2039ejp9238jd98sjd019823jed091823jd213-098du20389
-							</p>
 						</div>
-						<div className={styles.topicCard}>
-							<img src="https://sun9-27.userapi.com/impg/xvh14hEvNH4urkOPcN5sF7krhEjRN3WAMHdyvQ/1oumWcN6Kk4.jpg?size=2560x1920&quality=95&sign=963d7287ae72c9d28657671111edb30c&type=album" />
+						<Link className={styles.topicCard} to="topic/123">
+							<img src="https://i.ytimg.com/vi/lOJQl9UtdkE/maxresdefault.jpg?sqp=-oaymwEmCIAKENAF8quKqQMa8AEB-AH-CYAC0AWKAgwIABABGGUgWihPMA8=&rs=AOn4CLD8TbXBjU1VJp28lo6ONV11genawA" />
 							<p className={styles.topicCardTitle}>
-								Название топика
+								Мы запускаемся. Let`s celebrate and ...
 							</p>
-							<p className={styles.topicCardContent}>
-								asdkfj;lasdlfl;aksdjf;alskdjf;lasdkjf;alskdfj;asdlkfjpioewur019238jre019832j1e2039ejp9238jd98sjd019823jed091823jd213-098du20389
-							</p>
-						</div>
+						</Link>
 					</div>
 					<div
 						className={`${styles.recordsSection} ${

@@ -1,6 +1,6 @@
 import styles from './Wrapper.module.scss';
 
-const Wrapper = ({title = "LINGO.MQ", subTitle = "", isLoading = true, element}) => {
+const Wrapper = ({title = "", subTitle = "", isLoading = true, element}) => {
     return(
         <>
             <>
