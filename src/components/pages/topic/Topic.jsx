@@ -1,13 +1,12 @@
-import { markdown } from "markdown";
+
+import Markdown from "react-markdown";
 import styles from "./Topic.module.scss";
 
 const Topic = () => {
 	const md =
-		"# Описание\n Данное Api реализовано в RESTful стиле, также была соблюдена 3 нормальная форма базы данных, и проект был разбит на 3 составляющие: \n#![alt-text](https://sun9-44.userapi.com/impg/Av8cxJ7fINHUtJr6DUXCFKe7IrOdXwk4JqhJNw/cFVLaHLAiKw.jpg?size=583x404&quality=96&sign=354c820be3e3d6dfa201505a5f775d14&type=album)"
+		"# Описание\n Данное Api реализовано в RESTful стиле, также была соблюдена 3 нормальная форма базы данных, и проект был разбит на 3 составляющие: \n![alt-text](https://sun9-44.userapi.com/impg/Av8cxJ7fINHUtJr6DUXCFKe7IrOdXwk4JqhJNw/cFVLaHLAiKw.jpg?size=583x404&quality=96&sign=354c820be3e3d6dfa201505a5f775d14&type=album)"
         + "\n- _Модели_ (TikTakToe.Domain) \n- _Абстракция-доступ к_  *базе данных* \n- _https://localhost:7241/api/User_";
 
-	const mdToHtml = markdown.toHTML(md);
-	console.log(mdToHtml);
 
 	return (
 		<div className={styles.topic}>
@@ -24,10 +23,10 @@ const Topic = () => {
 					</div>
 				</div>
 			</div>
-			<div
-				className={styles.topicContent}
-				dangerouslySetInnerHTML={{ __html: mdToHtml }}
-			></div>
+            <Markdown 
+				className={styles.topicContent}>
+                {md}
+            </Markdown>
 		</div>
 	);
 };

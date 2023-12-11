@@ -94,13 +94,17 @@
 
 .topicContent p {
     font-size: 1.1em;
+    text-align: center;
 }
 
 .topicContent li {
     font-size: 1.1em;
 }
-
+.topicContent p > img {
+    width: 50%;
+    margin: 0 auto;
+}
 .topicContent img {
-    width: 100%;
+    width: 50%;
     margin: 0 auto;
 }
