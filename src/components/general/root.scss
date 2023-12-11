@@ -25,6 +25,12 @@ p{
     color: $foreground-color;
 }
 
+li {
+    font-family: $all-font-family;
+    font-size: $default-font-size;
+    color: $foreground-color;
+}
+
 h1, h2, h3, h4, h5  {
     font-family: $all-font-family;
 }
