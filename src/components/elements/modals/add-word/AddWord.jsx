@@ -3,12 +3,12 @@ import TextField from "../../../ui/fields/text/TextField.jsx";
 import { useEffect, useState } from "react";
 import RoundedButton from "../../../ui/buttons/rounded/RoundedButton.jsx";
 import SelectField from "../../../ui/fields/select/SelectField.jsx";
-import { addWord, addWordAsync, getTypesAsync } from "../../../../services/api/words/words.js";
+import { addWordAsync } from "../../../../services/api/words/words.js";
 import notificationManager from "../../../ui/notification/notificationManager.js";
 import WrongWordConfirm from "../wrong-word-confirm/WrongWordConfirm.jsx";
 import { modalSize } from "../../../ui/modal/modalSize.js";
 import ModalManager from "../../../ui/modal/ModalManager.js";
-import { getLanguagesArrayAsync, getLanguagesAsync, getWordTypesArrayAsync } from "../../../../services/words.js";
+import { getLanguagesArrayAsync, getWordTypesArrayAsync } from "../../../../services/words.js";
 import { notificationContents } from "./NotificationContents.js";
 
 const AddWord = ({userId}) => {
