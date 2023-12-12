@@ -1,6 +1,6 @@
 export const notificationContents = {
     200: {
-        0: { level: "success", title: "Добавление собственного слова", message: "Слово успешно добавлено" }
+        2: { level: "success", title: "Добавление собственного слова", message: "Слово успешно добавлено" }
     },
     400: {
         0: { level: "warning", title: "Добавление собственного слова", message: "Отправлены недопустимые данные"},

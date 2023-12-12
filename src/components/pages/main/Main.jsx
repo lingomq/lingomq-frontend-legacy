@@ -9,14 +9,21 @@ import {
 import { Link } from "react-router-dom";
 import { getUserDataByIdAsync } from "../../../services/api/identity/identity";
 import { v4 } from "uuid";
+import { getAllTopicsAsync } from "../../../services/api/topics/topics";
 
 export const Main = () => {
 	const [famousWord, setFamousWord] = useState();
 	const [isTopicShow, setIsTopicShow] = useState(true);
 	const [records, setRecords] = useState();
+	const [topics, setTopics] = useState();
 	const [userStatistics, setUserStatistics] = useState();
 
 	useEffect(() => {
+		const fetchTopics = async () => {
+			const result = await getAllTopicsAsync(15);
+			const content = getTopicsContent(result.data.data);
+			setTopics(content);
+		};
 		const fetchUserStatistics = async () => {
 			const result = await getUserStatisticsAsync();
 			setUserStatistics(result.data.data);
@@ -31,8 +38,9 @@ export const Main = () => {
 			result.reverse();
 			const content = getTableContent(result);
 			setRecords(content);
-		}
+		};
 
+		fetchTopics();
 		fetchRecords();
 		fetchFamousWord();
 		fetchUserStatistics();
@@ -46,7 +54,8 @@ export const Main = () => {
 		let array = [];
 		let result = await getRecordsByWordsCountAsync(4);
 		result = result.data.data.sort(
-			(a, b) => Number(b.wordsCount) - Number(a.wordsCount));
+			(a, b) => Number(b.wordsCount) - Number(a.wordsCount)
+		);
 
 		result.reverse();
 
@@ -59,8 +68,22 @@ export const Main = () => {
 				user: user.data.data,
 			});
 		}
-		
+
 		return array;
+	};
+
+	const getTopicsContent = (raw) => {
+		const resultArray = [];
+		raw.map((item) => {
+			resultArray.push(
+				<Link className={styles.topicCard} key={item.id} to={"topic/"+item.id}>
+					<img src={item.icon} />
+					<p className={styles.topicCardTitle}>{item.title}</p>
+				</Link>
+			);
+		});
+
+		return resultArray;
 	};
 
 	const getTableContent = (raw) => {
@@ -74,21 +97,20 @@ export const Main = () => {
 						<img src={item.user.imageUri} />
 						<p>{item.user.nickname}</p>
 					</div>
-					<p className={styles.recordsWordsCount}>
-						{item.count}
-					</p>
+					<p className={styles.recordsWordsCount}>{item.count}</p>
 				</div>
 			);
 			i = i + 1;
 		});
-		
+
 		return elementsArray;
 	};
 
 	return (
 		famousWord &&
 		userStatistics &&
-		records && (
+		records && 
+		topics && (
 			<div className={styles.main}>
 				<div className={styles.todayStatisticsSection}>
 					<div className={styles.todayStatisticsCard}>
@@ -147,30 +169,7 @@ export const Main = () => {
 						}`}
 					>
 						<p className={styles.topicsSectionTitle}>ТОПИКИ</p>
-						<div className={styles.topicCard}>
-							<img src="https://sun9-30.userapi.com/impg/_U9i-fvgkQBGgL3W0AU9Cw4JmXz2mS3SPepkSg/L0sbl1Uc0pc.jpg?size=720x720&quality=95&sign=8b9bc5f2f83977c44275f1797ea4540a&type=album" />
-							<p className={styles.topicCardTitle}>
-								Название топика
-							</p>
-						</div>
-						<div className={styles.topicCard}>
-							<img src="https://sun9-40.userapi.com/impg/Pp3Ubz12XN15SaQKcW4dnROFSjeI6Z7qcdcm4w/9CZI1EH4eco.jpg?size=682x314&quality=96&sign=01dead64eaf61d86eaa7912a9ab03ccd&type=album" />
-							<p className={styles.topicCardTitle}>
-								Название топика
-							</p>
-						</div>
-						<div className={styles.topicCard}>
-							<img src="https://sun9-78.userapi.com/impg/MjSlFFMlPm_MtU2HlnDunIasoj2JB2E1-6Q2Eg/G2v3Ym_QQEY.jpg?size=300x129&quality=96&sign=57e569e85b2eec74dbfe213635fa3007&type=album" />
-							<p className={styles.topicCardTitle}>
-								Название топика
-							</p>
-						</div>
-						<Link className={styles.topicCard} to="topic/123">
-							<img src="https://i.ytimg.com/vi/lOJQl9UtdkE/maxresdefault.jpg?sqp=-oaymwEmCIAKENAF8quKqQMa8AEB-AH-CYAC0AWKAgwIABABGGUgWihPMA8=&rs=AOn4CLD8TbXBjU1VJp28lo6ONV11genawA" />
-							<p className={styles.topicCardTitle}>
-								Мы запускаемся. Let`s celebrate and ...
-							</p>
-						</Link>
+						{topics}
 					</div>
 					<div
 						className={`${styles.recordsSection} ${

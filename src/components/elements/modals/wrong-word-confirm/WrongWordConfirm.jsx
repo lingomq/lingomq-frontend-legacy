@@ -3,13 +3,16 @@ import notificationManager from "../../../ui/notification/notificationManager.js
 import { buttonTypes } from "../../../ui/buttons/buttonTypes";
 import RoundedButton from "../../../ui/buttons/rounded/RoundedButton.jsx";
 import styles from "./WrongWordConfirm.module.scss";
+import { notificationContents } from "./NotificationContents.js";
 
 const WrongWordConfirm = ({ rightWord, wordModel }) => {
 
     const addWordForce = async (isAutocomplete) => {
         const result = await addWordAsync(wordModel, true, isAutocomplete);
+        console.log(result);
         const content = notificationContents[result.level][result.data.code];
         notificationManager.addNotification(content.level, content.title, content.message);
+        setTimeout(() => window.location.reload(), 2000);
     } 
 
     const reloadPage = () => window.location.reload();

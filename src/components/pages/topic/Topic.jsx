@@ -1,31 +1,54 @@
 
 import Markdown from "react-markdown";
 import styles from "./Topic.module.scss";
+import { useParams } from "react-router";
+import { useEffect, useState } from "react";
+import { getTopicByIdAsync } from "../../../services/api/topics/topics";
 
 const Topic = () => {
-	const md =
-		"# Описание\n Данное Api реализовано в RESTful стиле, также была соблюдена 3 нормальная форма базы данных, и проект был разбит на 3 составляющие: \n![alt-text](https://sun9-44.userapi.com/impg/Av8cxJ7fINHUtJr6DUXCFKe7IrOdXwk4JqhJNw/cFVLaHLAiKw.jpg?size=583x404&quality=96&sign=354c820be3e3d6dfa201505a5f775d14&type=album)"
-        + "\n- _Модели_ (TikTakToe.Domain) \n- _Абстракция-доступ к_  *базе данных* \n- _https://localhost:7241/api/User_";
 
+	const levelTypes = new Map();
+	levelTypes.set("info", "typeInfo");
+	levelTypes.set("beginner", "typeBeginner");
+	levelTypes.set("intermediate", "typeIntermediate");
+	levelTypes.set("advanced", "typeAdvanced");
+	
+    let { id } = useParams();
+	const [topic, setTopic] = useState();
+	const [language, setLanguage] = useState();
+	const [level, setLevel] = useState();
 
-	return (
+	useEffect(() => {
+		const fetchData = async () => {
+			const result = await getTopicByIdAsync(id);
+			console.log(result);
+			setTopic(result.data.data);
+			setLanguage(result.data.data.language.name);
+			setLevel(result.data.data.topicLevel.levelName)
+			console.log(styles[levelTypes.get(result.data.data.topicLevel.levelName)]);
+		}
+
+		fetchData();
+	}, []);
+
+	return topic && level && (
 		<div className={styles.topic}>
 			<div className={styles.topicCredentials}>
-				<img src="https://i.ytimg.com/vi/lOJQl9UtdkE/maxresdefault.jpg?sqp=-oaymwEmCIAKENAF8quKqQMa8AEB-AH-CYAC0AWKAgwIABABGGUgWihPMA8=&rs=AOn4CLD8TbXBjU1VJp28lo6ONV11genawA" />
+				<img src={topic.icon} />
 				<div className={styles.topicCredentialsInfo}>
-					<p className={styles.topicTitle}>Мы запускаемся. Let`s celebrate and ...</p>
+					<p className={styles.topicTitle}>{topic.title}</p>
 					<p className={styles.topicDate}>
-						Дата создания: 11.11.2011
+						Дата создания: {topic.creationalDate}
 					</p>
 					<div className={styles.badges}>
-						<p className={`${styles.topicType} ${styles.typeInfo}`}>All</p>
-						<p className={styles.topicLanguage}>English</p>
+						<p className={`${styles.topicType} ${styles[levelTypes.get(level)]}`}>{level}</p>
+						<p className={styles.topicLanguage}>{language}</p>
 					</div>
 				</div>
 			</div>
             <Markdown 
 				className={styles.topicContent}>
-                {md}
+                {topic.content}
             </Markdown>
 		</div>
 	);
