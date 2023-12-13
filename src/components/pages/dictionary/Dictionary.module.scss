@@ -1,8 +1,8 @@
 @import "../../general/fonts.scss";
 
 .dictionaryContentSection {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
 }
 
 .wordCardNative {
@@ -36,6 +36,7 @@
     display: flex;
     align-items: center;
     flex-direction: column;
+    text-align: center;
     border-radius: 10px;
     padding: 5px 100px;
     margin: 10px 10px;
@@ -66,7 +67,21 @@
     font-family: $all-font-family;
 }
 
-@media screen and (max-width: 650px) {
+@media screen and (max-width: 1330px) {
+    .dictionaryContentSection {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media screen and (max-width: 1030px) {
+    .dictionaryContentSection {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (max-width: 740px) {
     .filters {
         flex-direction: column;
         align-items: center;
@@ -74,6 +89,7 @@
     }
 
     .dictionaryContentSection {
+        display: flex;
         flex-direction: column;
     }
 }

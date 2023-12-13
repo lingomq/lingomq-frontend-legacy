@@ -51,7 +51,7 @@ const Practice = () => {
                     checkFunction={checkAnswer}
                 />,
                 <Cards 
-                    words={words.filter((item) => item.id !== word.id)
+                    words={words.filter((item) => item.word !== word.word || item.word !== word.translated)
                     .sort(() => Math.random() - 0.5)
                     .slice(0, 3)}
                     rightWord={word}
