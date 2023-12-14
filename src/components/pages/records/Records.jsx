@@ -1,81 +1,30 @@
 import { useEffect, useState } from "react";
 import styles from "./Records.module.scss";
 import SelectField from "../../ui/fields/select/SelectField.jsx";
-import { v4 } from "uuid";
 import {
 	getRecordsByRepeatsAsync,
 	getRecordsByWordsCountAsync,
 } from "../../../services/api/words/words.js";
-import {
-	getUserDataAsync,
-	getUserDataByIdAsync,
-} from "../../../services/api/identity/identity.js";
 
 const Records = () => {
 	const [filter, setFilter] = useState("wordsCount");
-	const [orderBy, setOrderBy] = useState("asc");
+	const [orderBy, setOrderBy] = useState("desc");
 	const [filterText, setFilterText] = useState("По словам");
 	const [tableContent, setTableContent] = useState();
 
-	const changeFilter = async (filterType, ordering) => {
-		updateOrderBy(ordering);
-		updateFilter(filterType);
-		let result = await applyFilters(filterType);
-		if (ordering === "desc") {
-			result.reverse();
-		}
-		console.log("chf: ")
-		console.log(result);
-		setTableContent(getTableContent(result));
-	};
-
-	const updateOrderBy = (ordering) => {
+	const updateOrderBy = async (ordering) => {
 		setOrderBy(ordering);
-	};
-
-	const getRepeats = async () => {
-		let array = [];
-		let result = await getRecordsByRepeatsAsync(20);
-
-		for (let i = 0; i < result.data.data.length; i++) {
-			let item = result.data.data[i];
-			let user = await getUserDataByIdAsync(item.userId);
-			array.push({
-				id: v4(),
-				count: item.repeats,
-				user: user.data.data,
-			});
+		if (filter === "wordsCount") {
+			await getRecordsByRepeats(ordering);
+		} else if (filter === "repeats") {
+			await getRecordsByWordsCount(ordering);
 		}
-
-		return array;
-	};
-
-	const getWordsCount = async () => {
-		let array = [];
-		let result = await getRecordsByWordsCountAsync(20);
-		result = result.data.data.sort(
-			(a, b) => Number(b.wordsCount) - Number(a.wordsCount));
-		result.reverse();
-
-		for (let i = 0; i < result.length; i++) {
-			let item = result[i];
-			let user = await getUserDataByIdAsync(item.userId);
-			array.push({
-				id: v4(),
-				count: item.wordsCount,
-				user: user.data.data,
-			});
-		}
-		
-		return array;
 	};
 
 	const getTableContent = (raw) => {
-		console.log(raw);
 		const elementsArray = [];
 		let i = 1;
 		raw.map((item) => {
-			console.log(item);
 			elementsArray.push(
 				<div className={styles.recordsCard} key={item.id}>
 					<p className={styles.recordsPlace}>{i}</p>
@@ -94,43 +43,22 @@ const Records = () => {
 		return elementsArray;
 	};
 
-	const updateFilter = (filterType) => {
-		if (filterType === "wordsCount") {
-			setFilterText("По словам");
-		} else if (filterType === "repeats") {
-			setFilterText("По повторениям");
-		}
+	const getRecordsByRepeats = async (ordering) => {
+		let result = await getRecordsByRepeatsAsync(20, ordering);
+		setFilterText("По повторениям");
+		setFilter("repeats");
+		setTableContent(getTableContent(result));
+	}
 
-		setFilter(filterType);
-	};
-
-	const applyFilters = async (filterType) => {
-		let result;
-		if (filterType === "wordsCount") {
-			result = await getWordsCount();
-		} else if (filterType === "repeats") {
-			result = await getRepeats();
-		}
-
-		result = result.sort(
-			(a, b) => Number(b.count) - Number(a.count)
-		);
-
-		return result;
-	};
+	const getRecordsByWordsCount = async (ordering) => {
+		let result = await getRecordsByWordsCountAsync(20, ordering);
+		setFilterText("По словам");
+		setFilter("wordsCount");
+		setTableContent(getTableContent(result));
+	}
 
 	useEffect(() => {
-		const fetchData = async () => {
-			let result = await getWordsCount();
-			console.log(result);
-			result = result.sort(
-				(a, b) => Number(b.wordsCount) - Number(a.wordsCount));
-			result.reverse();
-			let content = getTableContent(result);
-			setTableContent(content);
-		};
-
-		fetchData();
+		getRecordsByWordsCount("desc");
 	}, []);
 
 	return (
@@ -146,25 +74,25 @@ const Records = () => {
 							<p>Порядок: </p>
 							<SelectField
 								values={[
-									{ name: "По возрастанию", value: "desc" },
-									{ name: "По убыванию", value: "asc" },
+									{ name: "По возрастанию", value: "asc" },
+									{ name: "По убыванию", value: "desc" },
 								]}
 								selectStateFunction={async (e) =>
-									await changeFilter(filter, e.target.value)
+									await updateOrderBy(e.target.value)
 								}
 							/>
 						</div>
 						<div className={styles.pickFilter}>
 							<p
 								onClick={async () =>
-									await changeFilter("wordsCount", orderBy)
+									await getRecordsByWordsCount(orderBy)
 								}
 							>
 								ПО СЛОВАМ
 							</p>
 							<p
 								className={styles.pickFilterEnd}
-								onClick={async () => await changeFilter("repeats", orderBy)}
+								onClick={async () => await getRecordsByRepeats(orderBy)}
 							>
 								ПО ПОВТОРЕНИЯМ
 							</p>

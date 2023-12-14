@@ -1,6 +1,8 @@
+import { v4 } from "uuid";
 import { getUserId } from "../../authentication";
 import { requestAsync } from "../api";
 import { addRepeatToWordUrl, addWordToStatisticsUrl, addWordUrl, getFamousWordUrl, getLanguagesUrl, getRecordsByRepeatsUrl, getRecordsByWordsCountUrl, getUserStatisticsUrl, getUserWordsUrl, getWordTypesUrl, getWordsCountPerDayUrl, removeUserWordUrl } from "../api-urls";
+import { getUserDataByIdAsync } from "../identity/identity";
 
 export const getLanguagesAsync = async (count) => {
     const result = await requestAsync("get", getLanguagesUrl+count, {});
@@ -59,15 +61,37 @@ export const addRepeatToWordAsync = async (id) => {
     return result;
 }
 
-export const getRecordsByRepeatsAsync = async (count = 4) => {
-    const result = await requestAsync("get", getRecordsByRepeatsUrl + count, {});
+export const getRecordsByRepeatsAsync = async (count = 4, order = "desc") => {
+    let result = await requestAsync("get", getRecordsByRepeatsUrl + `order/${order}/count/` + count, {});
+    
+    result = transformToRecordsArray(result.data.data, "repeats");
+    
     return result;
 }
 
-export const getRecordsByWordsCountAsync = async (count = 4) => {
-    const result = await requestAsync("get", getRecordsByWordsCountUrl + count, {});
+export const getRecordsByWordsCountAsync = async (count = 4, order = "desc") => {
+    let result = await requestAsync("get", getRecordsByWordsCountUrl + `order/${order}/count/`  + count, {});
+
+    result = transformToRecordsArray(result.data.data, "wordsCount");
+    
     return result;
 }
+
+const transformToRecordsArray = async (data, countName) => {
+    let array = [];
+    for (let i = 0; i < data.length; i++) {
+        let item = data[i];
+        let user = await getUserDataByIdAsync(item.userId);
+        array.push({
+            id: v4(),
+            count: item[countName],
+            user: user.data.data,
+        });
+    }
+
+    return array;
+}
+
 
 export const getWordsArrayAsync = async (languageId) => {
     const result = [];
