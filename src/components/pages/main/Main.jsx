@@ -2,13 +2,10 @@ import { useEffect, useState } from "react";
 import styles from "./Main.module.scss";
 import {
 	getFamousWordAsync,
-	getRecordsByRepeatsAsync,
 	getRecordsByWordsCountAsync,
 	getUserStatisticsAsync,
 } from "../../../services/api/words/words";
 import { Link } from "react-router-dom";
-import { getUserDataByIdAsync } from "../../../services/api/identity/identity";
-import { v4 } from "uuid";
 import { getAllTopicsAsync } from "../../../services/api/topics/topics";
 
 export const Main = () => {
@@ -34,10 +31,8 @@ export const Main = () => {
 		};
 
 		const fetchRecords = async () => {
-			const result = await getRecordsByWordsCount();
-			result.reverse();
-			const content = getTableContent(result);
-			setRecords(content);
+			let result = await getRecordsByWordsCountAsync(20, "desc");
+			setRecords(getTableContent(result));
 		};
 
 		fetchTopics();
@@ -48,28 +43,6 @@ export const Main = () => {
 
 	const changeView = () => {
 		setIsTopicShow(!isTopicShow);
-	};
-
-	const getRecordsByWordsCount = async () => {
-		let array = [];
-		let result = await getRecordsByWordsCountAsync(4);
-		result = result.data.data.sort(
-			(a, b) => Number(b.wordsCount) - Number(a.wordsCount)
-		);
-
-		result.reverse();
-
-		for (let i = 0; i < result.length; i++) {
-			let item = result[i];
-			let user = await getUserDataByIdAsync(item.userId);
-			array.push({
-				id: v4(),
-				count: item.wordsCount,
-				user: user.data.data,
-			});
-		}
-
-		return array;
 	};
 
 	const getTopicsContent = (raw) => {
