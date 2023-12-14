@@ -7,7 +7,11 @@ import {
 } from "../../../services/api/words/words";
 import RoundedButton from "../../ui/buttons/rounded/RoundedButton.jsx";
 import { Link } from "react-router-dom";
-import { getAllTopicsAsync, getTopicByFiltersAsync, getTopicTypesArrayAsync } from "../../../services/api/topics/topics";
+import {
+	getAllTopicsAsync,
+	getTopicByFiltersAsync,
+	getTopicTypesArrayAsync,
+} from "../../../services/api/topics/topics";
 import TextField from "../../ui/fields/text/TextField.jsx";
 import SelectField from "../../ui/fields/select/SelectField.jsx";
 import { getLanguagesArrayAsync } from "../../../services/words.js";
@@ -16,24 +20,30 @@ export const Main = () => {
 	const [famousWord, setFamousWord] = useState();
 	const [showFilter, setShowFilter] = useState(false);
 	const [isTopicShow, setIsTopicShow] = useState(true);
+	const [filterModel, setFilterModel] = useState({
+		language: null,
+		type: null,
+		date: undefined,
+		skip: 0,
+		take: 20,
+		search: "",
+	});
 	const [records, setRecords] = useState();
 	const [topics, setTopics] = useState();
-	const [topicsLanguage, setTopicsLanguage] = useState();
-	const [topicsTypes, setTopicsTypes] = useState();
-    const [languages, setLanguages] = useState();
-	const [topicsType, setTopicsType] = useState("none");
+	const [topicsTypes, setTopicsTypes] = useState(null);
+	const [languages, setLanguages] = useState();
 	const [userStatistics, setUserStatistics] = useState();
 
 	useEffect(() => {
-        const fetchLanguages = async () => {
-            const languagesArray = await getLanguagesArrayAsync();
-            setLanguages(languagesArray);
-        };
+		const fetchLanguages = async () => {
+			const languagesArray = await getLanguagesArrayAsync();
+			setLanguages(languagesArray);
+		};
 
-        const fetchTopicTypes = async () => {
-            const topicTypes = await getTopicTypesArrayAsync();
-            setTopicsTypes(topicTypes);
-        };
+		const fetchTopicTypes = async () => {
+			const topicTypes = await getTopicTypesArrayAsync();
+			setTopicsTypes(topicTypes);
+		};
 
 		const fetchTopics = async () => {
 			const result = await getAllTopicsAsync();
@@ -62,32 +72,44 @@ export const Main = () => {
 		fetchUserStatistics();
 	}, []);
 
-	const changeView = () => {
-		setIsTopicShow(!isTopicShow);
+	const changeView = () => setIsTopicShow(!isTopicShow);
+
+	const selectTopicLanguage = (id) =>
+		setFilterModel({ ...filterModel, language: id });
+
+	const selectTopicType = async (id) =>
+		setFilterModel({ ...filterModel, type: id });
+
+	const selectDate = (e) =>
+		setFilterModel({ ...filterModel, date: e.target.value });
+
+	const setSearch = (e) =>
+		setFilterModel({ ...filterModel, search: e.target.value });
+
+	const turnFilter = () => setShowFilter(!showFilter);
+
+	const applyFilters = async () => {
+		const result = await getTopicByFiltersAsync(
+			filterModel.skip,
+			filterModel.take,
+			filterModel.language,
+			filterModel.type,
+			filterModel.date,
+			filterModel.search
+		);
+		const content = getTopicsContent(result.data.data);
+		setTopics(content);
 	};
-
-	const selectTopicLanguage = (id) => {
-		setTopicsLanguage(id);
-	}
-
-	const selectTopicType = async (id) => {
-		console.log(result);
-		setTopicsType(id);
-	}
-
-	const selectDate = (e) => {
-		console.log(e.target.value);
-	} 
-
-	const turnFilter = () => {
-		setShowFilter(!showFilter);
-	}
 
 	const getTopicsContent = (raw) => {
 		const resultArray = [];
 		raw.map((item) => {
 			resultArray.push(
-				<Link className={styles.topicCard} key={item.id} to={"topic/"+item.id}>
+				<Link
+					className={styles.topicCard}
+					key={item.id}
+					to={"topic/" + item.id}
+				>
 					<img src={item.icon} />
 					<p className={styles.topicCardTitle}>{item.title}</p>
 				</Link>
@@ -120,10 +142,10 @@ export const Main = () => {
 	return (
 		famousWord &&
 		userStatistics &&
-		records && 
-		topics && 
+		records &&
+		topics &&
 		languages &&
-		topicsTypes &&  (
+		topicsTypes && (
 			<div className={styles.main}>
 				<div className={styles.todayStatisticsSection}>
 					<div className={styles.todayStatisticsCard}>
@@ -182,30 +204,50 @@ export const Main = () => {
 						}`}
 					>
 						<p className={styles.topicsSectionTitle}>ТОПИКИ</p>
-						<RoundedButton text="ФИЛЬТРЫ"
-							onClick={turnFilter}
-						/>
-						<div className={`${showFilter === false ? styles.none : styles.topicsFilter}`}>
-							<TextField labelText="ДАТА"
+						<RoundedButton text="ФИЛЬТРЫ" onClick={turnFilter} />
+						<div
+							className={`${
+								showFilter === false
+									? styles.none
+									: styles.topicsFilter
+							}`}
+						>
+							<TextField
+								labelText="ДАТА"
 								type="date"
 								textStateFunction={(e) => selectDate(e)}
 							/>
-							<SelectField labelText="ЯЗЫК"
-								selectedValue={topicsLanguage}
+							<SelectField
+								labelText="ЯЗЫК"
+								selectedValue={filterModel.language}
 								values={languages}
-								selectStateFunction={(e) => selectTopicLanguage(e.target.value)}
+								selectStateFunction={(e) =>
+									selectTopicLanguage(e.target.value)
+								}
 							/>
-							<SelectField labelText="ТИП"
-								selectedValue={topicsType}
+							<SelectField
+								labelText="ТИП"
+								selectedValue={filterModel.type}
 								values={topicsTypes}
-								selectStateFunction={(e) => selectTopicType(e.target.value)}
+								selectStateFunction={(e) =>
+									selectTopicType(e.target.value)
+								}
 							/>
-							<TextField labelText="ПОИСК"/>
-							<RoundedButton text="ИСКАТЬ"
-
+							<TextField
+								labelText="ПОИСК"
+								placeholder="search"
+								textStateFunction={(e) => setSearch(e)}
+							/>
+							<RoundedButton
+								text="ИСКАТЬ"
+								onClick={applyFilters}
 							/>
 						</div>
-						{topics}
+						{topics.length === 0 ? (
+							<p className={styles.empty}>Топиков нет</p>
+						) : (
+							topics
+						)}
 					</div>
 					<div
 						className={`${styles.recordsSection} ${

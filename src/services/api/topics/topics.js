@@ -25,13 +25,15 @@ export const getTopicByFiltersAsync = async (
 	take = 100,
 	languageId = null,
 	levelId = null,
-	endDate = undefined
+	endDate = undefined,
+	search = ""
 ) => {
 	const skipUrl = `?skip=${skip}`;
 	const takeUrl = `&take=${take}`;
-	const languageUrl = languageId !== null ? `&languageId=${languageId}` : "";
-	const levelUrl = levelId !== null ? `&levelId=${levelId}` : "";
-	const endTime = endDate !== undefined ? `&endDate=${endDate}` : "";
+	const languageUrl = languageId !== null && new String(languageId).valueOf() !== new String("none").valueOf() ? `&languageId=${languageId}` : "";
+	const levelUrl = levelId !== null && new String(levelId).valueOf() !== new String("none").valueOf() ? `&levelId=${levelId}` : "";
+	const endTimeUrl = endDate !== undefined ? `&endDate=${endDate}` : "";
+	const searchUrl = `&search=${search}`;
 
 	const url =
 		getFilteredTopicsUrl +
@@ -39,31 +41,10 @@ export const getTopicByFiltersAsync = async (
 		takeUrl +
 		languageUrl +
 		levelUrl +
-		endTime;
+		endTimeUrl +
+		searchUrl;
 
-	console.log(url);
 	const result = await requestAsync("get", url, {});
-	console.log(result);
-};
-
-export const getFilteredTopicsArrayAsync = async (skip, typeId, languageId) => {
-	const result = [];
-	const levelsArray = [];
-	const levels = await getAllTopicsAsync();
-	levels.data.data.map((item) => {
-		levelsArray.push(item);
-	});
-	if (typeId === "none") {
-		result = levelsArray;
-	} else {
-		const newLevels = levelsArray.filter((item) => {
-			return item.topicTypeId === typeId;
-		});
-		newLevels.map((item) => {
-			result.push(item);
-		});
-	}
-
 	return result;
 };
 
