@@ -2,7 +2,7 @@ import axios from "axios";
 import { getAccessToken, isAuthenticated, isTokenExpired, updateTokensAsync } from "../authentication";
 
 const headers = {
-    "Content-Type": "application/json;charset=UTF-8",
+    "Content-Type": "application/json;",
     "Access-Control-Allow-Credentials": true,
 };
 

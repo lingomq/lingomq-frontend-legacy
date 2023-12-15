@@ -194,6 +194,11 @@
 	align-items: end;
 }
 
+.empty {
+	font-size: 1.1em;
+	color: #7d7d7d;
+}
+
 @media screen and (max-width: 1050px) {
 	.mainSelector {
 		display: flex;
