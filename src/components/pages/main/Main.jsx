@@ -5,19 +5,38 @@ import {
 	getRecordsByWordsCountAsync,
 	getUserStatisticsAsync,
 } from "../../../services/api/words/words";
+import RoundedButton from "../../ui/buttons/rounded/RoundedButton.jsx";
 import { Link } from "react-router-dom";
-import { getAllTopicsAsync } from "../../../services/api/topics/topics";
+import { getAllTopicsAsync, getTopicByFiltersAsync, getTopicTypesArrayAsync } from "../../../services/api/topics/topics";
+import TextField from "../../ui/fields/text/TextField.jsx";
+import SelectField from "../../ui/fields/select/SelectField.jsx";
+import { getLanguagesArrayAsync } from "../../../services/words.js";
 
 export const Main = () => {
 	const [famousWord, setFamousWord] = useState();
+	const [showFilter, setShowFilter] = useState(false);
 	const [isTopicShow, setIsTopicShow] = useState(true);
 	const [records, setRecords] = useState();
 	const [topics, setTopics] = useState();
+	const [topicsLanguage, setTopicsLanguage] = useState();
+	const [topicsTypes, setTopicsTypes] = useState();
+    const [languages, setLanguages] = useState();
+	const [topicsType, setTopicsType] = useState("none");
 	const [userStatistics, setUserStatistics] = useState();
 
 	useEffect(() => {
+        const fetchLanguages = async () => {
+            const languagesArray = await getLanguagesArrayAsync();
+            setLanguages(languagesArray);
+        };
+
+        const fetchTopicTypes = async () => {
+            const topicTypes = await getTopicTypesArrayAsync();
+            setTopicsTypes(topicTypes);
+        };
+
 		const fetchTopics = async () => {
-			const result = await getAllTopicsAsync(15);
+			const result = await getAllTopicsAsync();
 			const content = getTopicsContent(result.data.data);
 			setTopics(content);
 		};
@@ -36,7 +55,9 @@ export const Main = () => {
 		};
 
 		fetchTopics();
+		fetchLanguages();
 		fetchRecords();
+		fetchTopicTypes();
 		fetchFamousWord();
 		fetchUserStatistics();
 	}, []);
@@ -44,6 +65,23 @@ export const Main = () => {
 	const changeView = () => {
 		setIsTopicShow(!isTopicShow);
 	};
+
+	const selectTopicLanguage = (id) => {
+		setTopicsLanguage(id);
+	}
+
+	const selectTopicType = async (id) => {
+		console.log(result);
+		setTopicsType(id);
+	}
+
+	const selectDate = (e) => {
+		console.log(e.target.value);
+	} 
+
+	const turnFilter = () => {
+		setShowFilter(!showFilter);
+	}
 
 	const getTopicsContent = (raw) => {
 		const resultArray = [];
@@ -83,7 +121,9 @@ export const Main = () => {
 		famousWord &&
 		userStatistics &&
 		records && 
-		topics && (
+		topics && 
+		languages &&
+		topicsTypes &&  (
 			<div className={styles.main}>
 				<div className={styles.todayStatisticsSection}>
 					<div className={styles.todayStatisticsCard}>
@@ -142,6 +182,29 @@ export const Main = () => {
 						}`}
 					>
 						<p className={styles.topicsSectionTitle}>ТОПИКИ</p>
+						<RoundedButton text="ФИЛЬТРЫ"
+							onClick={turnFilter}
+						/>
+						<div className={`${showFilter === false ? styles.none : styles.topicsFilter}`}>
+							<TextField labelText="ДАТА"
+								type="date"
+								textStateFunction={(e) => selectDate(e)}
+							/>
+							<SelectField labelText="ЯЗЫК"
+								selectedValue={topicsLanguage}
+								values={languages}
+								selectStateFunction={(e) => selectTopicLanguage(e.target.value)}
+							/>
+							<SelectField labelText="ТИП"
+								selectedValue={topicsType}
+								values={topicsTypes}
+								selectStateFunction={(e) => selectTopicType(e.target.value)}
+							/>
+							<TextField labelText="ПОИСК"/>
+							<RoundedButton text="ИСКАТЬ"
+
+							/>
+						</div>
 						{topics}
 					</div>
 					<div

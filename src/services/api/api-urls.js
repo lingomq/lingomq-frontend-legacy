@@ -39,5 +39,7 @@ export const getRecordsByWordsCountUrl = GATEWAY_URL + "words/user-words/records
 export const getUserAchievementsUrl = GATEWAY_URL + "achievements/user";
 
 // Topics Service Urls
-export const getAllTopicsUrl = GATEWAY_URL + "topics/all";
-export const getTopicByIdUrl = GATEWAY_URL + "topics/topic-id"
+export const getAllTopicsUrl = GATEWAY_URL + "topics/all/";
+export const getTopicByIdUrl = GATEWAY_URL + "topics/topic-id";
+export const getTopicLevelsUrl = GATEWAY_URL + "topics/level/all/";
+export const getFilteredTopicsUrl = GATEWAY_URL + "topics/filters";
