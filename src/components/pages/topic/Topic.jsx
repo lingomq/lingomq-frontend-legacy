@@ -4,6 +4,7 @@ import styles from "./Topic.module.scss";
 import { useParams } from "react-router";
 import { useEffect, useState } from "react";
 import { getTopicByIdAsync } from "../../../services/api/topics/topics";
+import Loading from "../../ui/loading/Loading.jsx";
 
 const Topic = () => {
 
@@ -31,7 +32,7 @@ const Topic = () => {
 		fetchData();
 	}, []);
 
-	return topic && level && (
+	return !(topic && level) ? <Loading/> : (
 		<div className={styles.topic}>
 			<div className={styles.topicCredentials}>
 				<img src={topic.icon} />

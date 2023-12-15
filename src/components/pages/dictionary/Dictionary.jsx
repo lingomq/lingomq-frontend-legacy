@@ -7,6 +7,7 @@ import { modalSize } from "../../ui/modal/modalSize.js";
 import SelectField from "../../ui/fields/select/SelectField.jsx";
 import ModalManager from "../../ui/modal/ModalManager.js";
 import getWordsAsync from "./Words.jsx";
+import Loading from "../../ui/loading/Loading.jsx";
 
 export const Dictionary = () => {
     const [words, setWords] = useState();
@@ -44,9 +45,9 @@ export const Dictionary = () => {
     }
 
     return (
-        words &&
+        !(words &&
         languages &&
-        wordTypes && (
+        wordTypes) ? <Loading/> : (
             <div className={styles.dictionarySection}>
                 <div className={styles.filters}>
                     <SelectField

@@ -5,12 +5,13 @@ import { confirmEmailAsync } from "../../../services/api/authentication/authenti
 import notificationManager from "../../ui/notification/notificationManager.js";
 import { writeTokens } from "../../../services/authentication";
 import { notificationContents } from "./NotificationContents.js";
+import Loading from "../../ui/loading/Loading.jsx";
 
 export const Confirm = () => {
 	const search = useLocation().search;
 	const token = new URLSearchParams(search).get("token");
 
-	const [isValid, setIsValid] = useState(false);
+	const [isValid, setIsValid] = useState(null);
 
 	useEffect(() => {
 		const confirmAccount = async () => {
@@ -28,7 +29,7 @@ export const Confirm = () => {
 		confirmAccount();
 	}, []);
 
-	return (
+	return !(isValid) ? <Loading/> : (
 		<div className={styles.confirm}>
 			<p>
 				{isValid

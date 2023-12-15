@@ -15,6 +15,7 @@ import {
 import TextField from "../../ui/fields/text/TextField.jsx";
 import SelectField from "../../ui/fields/select/SelectField.jsx";
 import { getLanguagesArrayAsync } from "../../../services/words.js";
+import Loading from "../../ui/loading/Loading.jsx";
 
 export const Main = () => {
 	const [famousWord, setFamousWord] = useState();
@@ -89,6 +90,7 @@ export const Main = () => {
 	const turnFilter = () => setShowFilter(!showFilter);
 
 	const applyFilters = async () => {
+		setTopics(<Loading/>);
 		const result = await getTopicByFiltersAsync(
 			filterModel.skip,
 			filterModel.take,
@@ -140,12 +142,12 @@ export const Main = () => {
 	};
 
 	return (
-		famousWord &&
+		!(famousWord &&
 		userStatistics &&
 		records &&
 		topics &&
 		languages &&
-		topicsTypes && (
+		topicsTypes) ? <Loading/> : (
 			<div className={styles.main}>
 				<div className={styles.todayStatisticsSection}>
 					<div className={styles.todayStatisticsCard}>
