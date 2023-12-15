@@ -3,6 +3,7 @@ import styles from "./Statistics.module.scss";
 import { Chart } from "chart.js/auto";
 import { useEffect, useState } from "react";
 import { getFamousWord, getFamousWordAsync, getUserStatisticsAsync, getWordsCountPerDaysAsync } from "../../../../../services/api/words/words";
+import Loading from "../../../../ui/loading/Loading.jsx";
 
 export const Statistics = () => {
 	const [dates, setDates] = useState([]);
@@ -68,7 +69,7 @@ export const Statistics = () => {
         };
     }
 
-	return (famousWord && userStatistics && repeats) && (
+	return !(famousWord && userStatistics && repeats) ? <Loading/> : (
 		<div className={styles.statisticsSection}>
 			<div className={styles.statisticsLineSection}>
 				<Line data={data} options={config("Статистика по словам")}/>

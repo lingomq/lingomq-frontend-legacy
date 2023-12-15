@@ -6,6 +6,7 @@ import { getNotifications, getNotificationsAsync } from "../../../../../services
 import ModalManager from "../../../../ui/modal/ModalManager";
 import { modalSize } from "../../../../ui/modal/modalSize";
 import NotificationContent from "../../../../elements/modals/notification-content/NotificationContent.jsx";
+import Loading from "../../../../ui/loading/Loading.jsx";
 
 export const Notifications = () => {
 	const [notifications, setNotifications] = useState();
@@ -51,7 +52,7 @@ export const Notifications = () => {
 		fetchData();
 	}, []);
 
-	return notifications && (
+	return !notifications ? <Loading/> : (
 		<div className={styles.notificationsSection}>
 		{
 			notifications.length === 0 ? <p className={styles.emptyNotificationsText}>Уведомлений нет</p> : notifications

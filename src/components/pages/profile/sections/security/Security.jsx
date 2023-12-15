@@ -7,6 +7,7 @@ import RoundedButton from "../../../../ui/buttons/rounded/RoundedButton.jsx";
 import { buttonTypes } from "../../../../ui/buttons/buttonTypes.js";
 import ModalManager from "../../../../ui/modal/ModalManager.js";
 import { modalSize } from "../../../../ui/modal/modalSize.js";
+import Loading from "../../../../ui/loading/Loading.jsx";
 
 export const Security = ({ data }) => {
     const [user, setUser] = useState(null);
@@ -38,7 +39,7 @@ export const Security = ({ data }) => {
     }
 
     return (
-        data && (
+        !data ? <Loading/> : (
             <div className={styles.securitySection}>
                 <div className={styles.securitySectionContent}>
                     <div className={styles.securityChangeSection}>

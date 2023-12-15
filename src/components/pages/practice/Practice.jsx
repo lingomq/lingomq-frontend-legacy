@@ -11,6 +11,7 @@ import { modalSize } from "../../ui/modal/modalSize.js";
 import PracticeResults from "../../elements/modals/practice-results/PracticeResults.jsx";
 import ModalManager from "../../ui/modal/ModalManager.js";
 import Cards from "./sections/cards/Cards.jsx";
+import Loading from "../../ui/loading/Loading.jsx";
 
 const Practice = () => {
     let { l, c } = useParams();
@@ -122,7 +123,7 @@ const Practice = () => {
     }, []);
 
     return (
-        (exercises && wordList) && (
+        !(exercises && wordList) ? <Loading/> : (
             <>
                 <div className={styles.practice}>
                     <div className={styles.progressBar}>

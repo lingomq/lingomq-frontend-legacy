@@ -5,6 +5,7 @@ import {
 	getRecordsByRepeatsAsync,
 	getRecordsByWordsCountAsync,
 } from "../../../services/api/words/words.js";
+import Loading from "../../ui/loading/Loading.jsx";
 
 const Records = () => {
 	const [filter, setFilter] = useState("wordsCount");
@@ -44,6 +45,7 @@ const Records = () => {
 	};
 
 	const getRecordsByRepeats = async (ordering) => {
+		setTableContent(<Loading/>);
 		let result = await getRecordsByRepeatsAsync(20, ordering);
 		setFilterText("По повторениям");
 		setFilter("repeats");
@@ -51,6 +53,7 @@ const Records = () => {
 	}
 
 	const getRecordsByWordsCount = async (ordering) => {
+		setTableContent(<Loading/>);
 		let result = await getRecordsByWordsCountAsync(20, ordering);
 		setFilterText("По словам");
 		setFilter("wordsCount");
@@ -62,7 +65,7 @@ const Records = () => {
 	}, []);
 
 	return (
-		tableContent && (
+		!tableContent ? <Loading/> : (
 			<div className={styles.recordsSections}>
 				<div className={styles.recordsTitleSection}>
 					<p className={styles.recordsTitle}>ТАБЛИЦА РЕКОРДОВ</p>

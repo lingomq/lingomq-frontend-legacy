@@ -2,6 +2,7 @@ import { useState } from "react";
 import styles from "./Achievements.module.scss";
 import { getUserAchievementsAsync } from "../../../../../services/api/achievements/achievements";
 import { useEffect } from "react";
+import Loading from "../../../../ui/loading/Loading.jsx";
 
 const Achievements = () => {
     const [achievements, setAchievements] = useState();
@@ -32,7 +33,7 @@ const Achievements = () => {
     }, []);
 
 
-    return achievements && (
+    return !achievements ? <Loading/> : (
         <div className={styles.achievementsSection}>
             <div className={styles.userAchievements}>
                 <p className={styles.userAchievementsTitle}>Мои достижения</p>
