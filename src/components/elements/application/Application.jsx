@@ -16,9 +16,10 @@ import { Notifications } from "../../pages/profile/sections/notifications/Notifi
 import Practice from "../../pages/practice/Practice.jsx";
 import Records from "../../pages/records/Records.jsx";
 import Topic from "../../pages/topic/Topic.jsx";
+import Loading from "../../ui/loading/Loading.jsx";
 
 const Application = () => {
-    const [isAuthenticate, setIsAuthenticate] = useState(false);
+    const [isAuthenticate, setIsAuthenticate] = useState();
     const [user, setUser] = useState(null);
     const [subTitle, setSubTitle] = useState("");
 
@@ -38,7 +39,7 @@ const Application = () => {
         checkAuth();
     }, []);
 
-    return (
+    return isAuthenticate === undefined? <Loading/> : (
         <Suspense fallback={<div>Loading ...</div>}>
             <div className={`${styles.wrapper} ${isAuthenticate ? styles.authWrapper : ""}`}>
                 {isAuthenticate ? <AuthorizedHeader data={user}/> : <UnauthorizedHeader />}
