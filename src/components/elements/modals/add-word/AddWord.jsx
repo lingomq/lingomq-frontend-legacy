@@ -18,7 +18,7 @@ const AddWord = ({userId}) => {
     const [wordModel, setWordModel] = useState({
         repeats: 0,
         userId: userId,
-        createdAt: new Date().toLocaleDateString()  
+        createdAt: new Date().toISOString()  
     });
 
     useEffect(() => {
