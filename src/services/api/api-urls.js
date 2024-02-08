@@ -1,4 +1,4 @@
-const GATEWAY_DOMAIN = "http://192.168.0.101:9998/" // "https://192.168.0.105:9999/"
+const GATEWAY_DOMAIN = "http://localhost:9998/" // "https://192.168.0.105:9999/"
 const GATEWAY_PATH = "api.lingomq/";
 const GATEWAY_URL = GATEWAY_DOMAIN + GATEWAY_PATH;
 
@@ -32,8 +32,8 @@ export const getUserWordsUrl = GATEWAY_URL + "words/user-words/user";
 export const removeUserWordUrl = GATEWAY_URL + "words/user-words/";
 export const addRepeatToWordUrl = GATEWAY_URL + "words/user-words/add/repeats/";
 export const addWordToStatisticsUrl = GATEWAY_URL + "identity/user/statistics/word/add";
-export const getRecordsByRepeatsUrl = GATEWAY_URL + "words/user-words/records/repeats/";
-export const getRecordsByWordsCountUrl = GATEWAY_URL + "words/user-words/records/word-count/";
+export const getRecordsByRepeatsUrl = GATEWAY_URL + "words/user-words/records/type/repeats/";
+export const getRecordsByWordsCountUrl = GATEWAY_URL + "words/user-words/records/type/word-count/";
 
 // Achievements Service Urls
 export const getUserAchievementsUrl = GATEWAY_URL + "achievements/user";
